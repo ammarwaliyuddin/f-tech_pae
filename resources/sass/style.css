@@ -1,0 +1,17 @@
+/* Error: Can't find stylesheet to import.
+ *    ,
+ * 40 | @import "~@left4code/tw-starter/dist/scss/breakpoint";
+ *    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   app.scss 40:9  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a    \2577 \a 40 \2502  @import \"~@left4code/tw-starter/dist/scss/breakpoint\";\a    \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   app.scss 40:9  root stylesheet";
+}
