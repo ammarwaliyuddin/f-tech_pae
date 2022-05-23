@@ -14,7 +14,7 @@ class CreateDestinasisTable extends Migration
     public function up()
     {
         Schema::create('destinasis', function (Blueprint $table) {
-            $table->primary('id_destinasi');
+            $table->id('id_destinasi');
             $table->foreignId('id_kota_pengirim');
             $table->foreignId('id_kota_penerima');
             $table->foreignId('id_kecamatan');
