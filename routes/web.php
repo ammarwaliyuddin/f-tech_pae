@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-// Route::get('/datamaster/barang', [DashboardController::class, 'index']);
-Route::get('/datamaster/barang', function () {
-    return view('dashboard.datamaster.barang');
+// Route::resource('barang', [BarangController::class, 'index']);
+Route::prefix('datamaster')->group(function () {
+    Route::resource('barang', BarangController::class);
 });

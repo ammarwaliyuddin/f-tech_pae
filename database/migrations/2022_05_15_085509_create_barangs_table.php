@@ -14,10 +14,11 @@ class CreateBarangsTable extends Migration
     public function up()
     {
         Schema::create('barangs', function (Blueprint $table) {
-            $table->primary('id_barang');
+            $table->id('id_barang');
             $table->string('jenis_barang');
             $table->string('harga');
             $table->string('keterangan');
+            $table->timestamps();
         });
     }
 
