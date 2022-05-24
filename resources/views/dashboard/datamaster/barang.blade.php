@@ -1,13 +1,14 @@
 @extends('layouts.layout')
 @section('content')
-        
 
 <h2 class="intro-y text-lg font-medium mt-10">
     Data Barang
 </h2>
+
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <button class="btn btn-primary shadow-md mr-2">Tambah Barang</button>
+        <a  href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Barang</a>
+       
         <div class="dropdown">
             <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
@@ -28,8 +29,15 @@
             </div>
         </div>
     </div>
+    
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+        @if ($errors->any())
+    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
+        {{ $error }}
+    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
+       
+    @endif
         <table class="table table-report -mt-2">
             <thead>
                 <tr>
@@ -42,19 +50,20 @@
             </thead>
             <tbody>
                 @php
-                $data = 6;
+                $no = 1;
                 @endphp
-                @for ($i = 1; $i <= $data; $i++)
+                @foreach ($barangs as $item)
+
                     <tr class="intro-x">
                         <td class="w-40">
-                            <a href="" class="font-medium whitespace-nowrap">{{ $i }}</a> 
+                            <a href="" class="font-medium whitespace-nowrap">{{ $no++ }}</a> 
                         </td>
                         <td>
-                            <a href="" class="font-medium whitespace-nowrap">Electronic</a> 
+                            <a href="" class="font-medium whitespace-nowrap">{{ $item->jenis_barang }}</a> 
                         </td>
-                        <td class="text-center">Rp 200.000</td>
-                        <td class="w-40">
-                            <div class="flex items-center justify-center text-theme-6"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Inactive </div>
+                        <td class="text-center">Rp {{ $item->harga }}</td>
+                        <td class="w-40 text-center">
+                            {{ $item->keterangan }}
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
@@ -63,7 +72,8 @@
                             </div>
                         </td>
                     </tr>
-                @endfor
+                    
+                @endforeach
                 
                 
             </tbody>
@@ -123,6 +133,48 @@
     </div>
 </div>
 <!-- END: Delete Confirmation Modal -->
+
+ <!-- BEGIN: Add Item Modal -->
+ <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-medium text-base mr-auto">
+                    Tambah Barang
+                </h2>
+            </div>
+
+            
+
+            <form method="post" action="{{ route('barang.store') }}">
+                @csrf
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                    <div class="col-span-12">
+                        <label for="jenis_barang" class="form-label">Jenis Barang</label>
+                        <input type="text" id="jenis_barang" name="jenis_barang" class="form-control w-full mt-2" placeholder="Jenis Barang">
+                    </div>
+                    <div class="col-span-12">
+                        <label for="harga" class="form-label">Harga Barang</label>
+                        <div class="input-group mt-2">
+                            <div id="harga" class="input-group-text">Rp.</div>
+                            <input type="text" class="form-control w-full" id="harga" name="harga" placeholder="Harga" aria-describedby="Rp.">
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea id="keterangan" class="form-control w-full mt-2" name="keterangan" placeholder="keterangan"></textarea>
+                    </div>
+                
+                </div>
+                <div class="modal-footer text-right">
+                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button type="submit" class="btn btn-primary w-24">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END: Add Item Modal -->
     
         
        
