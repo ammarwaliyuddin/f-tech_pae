@@ -14,7 +14,7 @@ class CreatePengirimsTable extends Migration
     public function up()
     {
         Schema::create('pengirims', function (Blueprint $table) {
-            $table->primary('id_pengirim');
+            $table->id('id_pengirim');
             $table->string('nama_pengirim');
             $table->string('alamat');
             $table->string('hp');

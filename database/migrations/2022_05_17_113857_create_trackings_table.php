@@ -14,7 +14,7 @@ class CreateTrackingsTable extends Migration
     public function up()
     {
         Schema::create('trackings', function (Blueprint $table) {
-            $table->primary('id_tracking');
+            $table->id('id_tracking');
             $table->string('status_pengiriman');
             $table->foreignId('disposisi');
             $table->string('keterangan');

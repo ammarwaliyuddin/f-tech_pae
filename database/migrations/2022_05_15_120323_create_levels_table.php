@@ -14,7 +14,7 @@ class CreateLevelsTable extends Migration
     public function up()
     {
         Schema::create('levels', function (Blueprint $table) {
-            $table->primary('id_level');
+            $table->id('id_level');
             $table->string('level');
             $table->string('bonus');
             $table->string('keterangan');

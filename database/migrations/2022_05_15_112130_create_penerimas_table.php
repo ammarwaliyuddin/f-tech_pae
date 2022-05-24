@@ -14,7 +14,7 @@ class CreatePenerimasTable extends Migration
     public function up()
     {
         Schema::create('penerimas', function (Blueprint $table) {
-            $table->primary('id_penerima');
+            $table->id('id_penerima');
             $table->string('nama_penerima');
             $table->string('alamat');
             $table->string('hp');

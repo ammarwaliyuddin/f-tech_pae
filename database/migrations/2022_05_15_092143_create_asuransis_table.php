@@ -14,7 +14,7 @@ class CreateAsuransisTable extends Migration
     public function up()
     {
         Schema::create('asuransis', function (Blueprint $table) {
-            $table->primary('id_asuransi');
+            $table->id('id_asuransi');
             $table->string('nama_asuransi');
             $table->string('biaya');
             $table->string('keterangan');

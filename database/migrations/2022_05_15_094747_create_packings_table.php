@@ -14,7 +14,7 @@ class CreatePackingsTable extends Migration
     public function up()
     {
         Schema::create('packings', function (Blueprint $table) {
-            $table->primary('id_packing');
+            $table->id('id_packing');
             $table->string('packing');
             $table->string('harga');
             $table->string('keterangan');
