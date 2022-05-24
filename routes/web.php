@@ -23,3 +23,27 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/datamaster/barang', function () {
     return view('dashboard.datamaster.barang');
 });
+Route::get('/datamaster/packing', function () {
+    return view('dashboard.datamaster.packing');
+});
+Route::get('/datamaster/service', function () {
+    return view('dashboard.datamaster.service');
+});
+Route::get('/datamaster/asuransi', function () {
+    return view('dashboard.datamaster.asuransi');
+});
+Route::get('/datamaster/disposisi', function () {
+    return view('dashboard.datamaster.disposisi');
+});
+Route::get('/datadestinasi/kota', function () {
+    return view('dashboard.datadestinasi.kota');
+});
+Route::get('/datadestinasi/kecamatan', function () {
+    return view('dashboard.datadestinasi.kecamatan');
+});
+Route::get('/datadestinasi/destinasi', function () {
+    return view('dashboard.datadestinasi.destinasi');
+});
+Route::get('/datapelanggan/level', function () {
+    return view('dashboard.datapelanggan.level');
+});

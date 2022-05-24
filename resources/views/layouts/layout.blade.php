@@ -545,7 +545,7 @@
 
                     {{-- Data Destinasi --}}
                     <li>
-                        <a href="javascript:;" class="side-menu">
+                        <a href="javascript:;" class="side-menu {{  Request::path() =="datadestinasi/".Request::segment(2) ? 'side-menu--active' : '' }}">
                             <div class="side-menu__icon"> <i data-feather="flag"></i> </div>
                             <div class="side-menu__title">
                                 Data Destinasi 
@@ -554,19 +554,19 @@
                         </a>
                         <ul class="">
                             <li>
-                                <a href="index.html" class="side-menu">
+                                <a href="{{URL::to('datadestinasi/kota')}}" class="side-menu {{ Request::path() == 'datadestinasi/kota' ? 'side-menu--active' : '' }}">
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Kota </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
+                                <a href="{{URL::to('datadestinasi/kecamatan')}}" class="side-menu {{ Request::path() == 'datadestinasi/kecamatan' ? 'side-menu--active' : '' }}">
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Kecamatan </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
+                                <a href="{{URL::to('datadestinasi/destinasi')}}" class="side-menu {{ Request::path() == 'datadestinasi/destinasi' ? 'side-menu--active' : '' }}">
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Destinasi </div>
                                 </a>
@@ -592,20 +592,26 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
+                                <a href="{{URL::to('datamaster/service')}}" class="side-menu {{ Request::path() == 'datamaster/service' ? 'side-menu--active' : '' }}">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Service </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{URL::to('datamaster/packing')}}" class="side-menu {{ Request::path() == 'datamaster/packing' ? 'side-menu--active' : '' }}">                                    
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Packing </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
+                                <a href="{{URL::to('datamaster/asuransi')}}" class="side-menu {{ Request::path() == 'datamaster/asuransi' ? 'side-menu--active' : '' }}">                                    
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Asuransi </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
-                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                <a href="{{URL::to('datamaster/disposisi')}}" class="side-menu {{ Request::path() == 'datamaster/disposisi' ? 'side-menu--active' : '' }}">                                   
+                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Disposisi </div>
                                 </a>
                             </li>
@@ -613,7 +619,7 @@
                     </li>
                     {{-- Data Pelanggan --}}
                     <li>
-                        <a href="javascript:;" class="side-menu">
+                        <a href="javascript:;" class="side-menu {{  Request::path() =="datapelanggan/".Request::segment(2) ? 'side-menu--active' : '' }}">                            
                             <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                             <div class="side-menu__title">
                                 Data Pelanggan 
@@ -634,8 +640,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
-                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                <a href="{{URL::to('datapelanggan/level')}}" class="side-menu {{ Request::path() == 'datamaster/level' ? 'side-menu--active' : '' }}">                                   
+                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Level </div>
                                 </a>
                             </li>
