@@ -18,6 +18,7 @@ class CreateServicesTable extends Migration
             $table->string('nama_service');
             $table->string('biaya');
             $table->string('keterangan');
+            $table->timestamps();
         });
     }
 

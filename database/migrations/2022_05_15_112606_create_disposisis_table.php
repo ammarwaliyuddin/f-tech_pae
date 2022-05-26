@@ -17,8 +17,7 @@ class CreateDisposisisTable extends Migration
             $table->id('id_disposi');
             $table->string('disposisi');
             $table->string('keterangan');
-            $table->string('tanggal');
-            $table->time('waktu');
+            $table->timestamps();
         });
     }
 

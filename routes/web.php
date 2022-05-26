@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PackingController;
+use App\Http\Controllers\AsuransiController;
+use App\Http\Controllers\DisposisiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/datamaster/packing', function () {
-    return view('dashboard.datamaster.packing');
-});
-Route::get('/datamaster/service', function () {
-    return view('dashboard.datamaster.service');
-});
-Route::get('/datamaster/asuransi', function () {
-    return view('dashboard.datamaster.asuransi');
-});
-Route::get('/datamaster/disposisi', function () {
-    return view('dashboard.datamaster.disposisi');
-});
+
 Route::get('/datadestinasi/kota', function () {
     return view('dashboard.datadestinasi.kota');
 });
@@ -46,4 +39,16 @@ Route::get('/datapelanggan/level', function () {
 });
 Route::prefix('datamaster')->group(function () {
     Route::resource('barang', BarangController::class);
+});
+Route::prefix('datamaster')->group(function () {
+    Route::resource('service', ServiceController::class);
+});
+Route::prefix('datamaster')->group(function () {
+    Route::resource('packing', PackingController::class);
+});
+Route::prefix('datamaster')->group(function () {
+    Route::resource('asuransi', AsuransiController::class);
+});
+Route::prefix('datamaster')->group(function () {
+    Route::resource('disposisi', DisposisiController::class);
 });
