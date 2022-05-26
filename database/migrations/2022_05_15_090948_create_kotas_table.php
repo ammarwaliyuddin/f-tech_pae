@@ -16,8 +16,9 @@ class CreateKotasTable extends Migration
         Schema::create('kotas', function (Blueprint $table) {
             $table->id('id_kota');
             $table->string('nama_kota');
-            $table->string('keterangan');
             $table->string('kode_kota');
+            $table->string('keterangan');
+            $table->timestamps();
         });
     }
 

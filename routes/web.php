@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PackingController;
 use App\Http\Controllers\AsuransiController;
 use App\Http\Controllers\DisposisiController;
+use App\Http\Controllers\KotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/datadestinasi/kota', function () {
-    return view('dashboard.datadestinasi.kota');
-});
 Route::get('/datadestinasi/kecamatan', function () {
     return view('dashboard.datadestinasi.kecamatan');
 });
@@ -52,3 +50,7 @@ Route::prefix('datamaster')->group(function () {
 Route::prefix('datamaster')->group(function () {
     Route::resource('disposisi', DisposisiController::class);
 });
+Route::prefix('datadestinasi')->group(function () {
+    Route::resource('kota', KotaController::class);
+});
+
