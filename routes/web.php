@@ -23,4 +23,5 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 // Route::resource('barang', [BarangController::class, 'index']);
 Route::prefix('datamaster')->group(function () {
     Route::resource('barang', BarangController::class);
+    Route::get('barang-list', [BarangController::class,'list']);
 });

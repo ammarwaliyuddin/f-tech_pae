@@ -5,18 +5,18 @@
         <meta charset="utf-8">
         <link href="{{asset('images/logo.svg')}}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Rubick admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
-        <meta name="keywords" content="admin template, Rubick Admin Template, dashboard template, flat admin template, responsive admin template, web app">
-        <meta name="author" content="LEFT4CODE">
+        <meta name="description" content="Manajemen Pengiriman Barang">
+        <meta name="keywords" content="System Tracking Pintu Air Ekspress">
+        <meta name="author" content="Flobamora Tech">
         <title>Dashboard</title>
         <!-- BEGIN: CSS Assets-->
-        <link rel="stylesheet" href="{{ asset('css/main.css')}}" />
+        {{-- <link rel="stylesheet" href="{{ asset('css/main.css')}}" /> --}}
         <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
 
-    <body class="main">
+    <body class="main ">
         <!-- BEGIN: Mobile Menu -->
         <div class="mobile-menu md:hidden">
             <div class="mobile-menu-bar">
@@ -694,13 +694,13 @@
                                 <div class="text-xs text-theme-28 mt-0.5 dark:text-gray-600">Backend Engineer</div>
                             </div>
                             <div class="p-2">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
+                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
+                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
+                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
+                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
                             </div>
                             <div class="p-2 border-t border-theme-27 dark:border-dark-3">
-                                <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
                             </div>
                         </div>
                     </div>
@@ -714,9 +714,32 @@
         </div>
         <!-- BEGIN: JS Assets-->
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script> --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="{{asset('js/script.js')}}"></script>
         <!-- END: JS Assets-->
+        <script>
+             const modal = {
+                show: function(id) {
+
+                    $("body").addClass('overflow-y-hidden');
+                    $("body").css("padding-right", "32px");
+
+                    $(`${id}`).addClass('show');
+                    $(`${id}`).addClass('overflow-y-auto');
+                    $(`${id}`).css({"margin-top": "0px", "margin-left": "0px","padding-left":"0px","z-index": "10000"});
+                
+                },
+                hide: function(id){
+                    $("body").removeClass('overflow-y-hidden');
+                    $("body").css("padding-right", "");
+
+                    $(`${id}`).removeClass('show');
+                    $(`${id}`).removeClass('overflow-y-auto');
+                    $(`${id}`).css({"margin-top": "", "margin-left": "","padding-left":"","z-index": ""});
+                }
+            }
+        </script>
         @yield('script')
+        
     </body>
 </html>
