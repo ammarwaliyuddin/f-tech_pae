@@ -9,6 +9,7 @@ use App\Http\Controllers\AsuransiController;
 use App\Http\Controllers\DisposisiController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\TransaksiController;
 
 use App\Models\Packing;
@@ -30,9 +31,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/datadestinasi/destinasi', function () {
-    return view('dashboard.datadestinasi.destinasi');
-});
 Route::get('/datapelanggan/level', function () {
     return view('dashboard.datapelanggan.level');
 });
