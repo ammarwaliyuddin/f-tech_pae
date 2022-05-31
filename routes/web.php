@@ -43,6 +43,7 @@ Route::prefix('datamaster')->group(function () {
     // service
     Route::resource('service', ServiceController::class);
     Route::get('service-list', [ServiceController::class,'list']);
+    Route::post('service-update', [ServiceController::class,'update']);
 
     // Packing
     Route::resource('packing', PackingController::class);
@@ -52,10 +53,12 @@ Route::prefix('datamaster')->group(function () {
     // asuransi
     Route::resource('asuransi', AsuransiController::class);
     Route::get('asuransi-list', [AsuransiController::class,'list']);
+    Route::post('asuransi-update', [AsuransiController::class,'update']);
 
     // disposisi
     Route::resource('disposisi', DisposisiController::class);
     Route::get('disposisi-list', [DisposisiController::class,'list']);
+    Route::post('disposisi-update', [AsuransiController::class,'update']);
 
 });
 
@@ -63,14 +66,17 @@ Route::prefix('datadestinasi')->group(function () {
     //kota
     Route::resource('kota', KotaController::class);
     Route::get('kota-list', [KotaController::class,'list']);
+    Route::post('kota-update', [KotaController::class,'update']);
 
     //kecamatan
     Route::resource('kecamatan', KecamatanController::class);
     Route::get('kecamatan-list', [KecamatanController::class,'list']);
+    Route::post('kecamatan-update', [KecamatanController::class,'update']);
 
     //destinasi
     Route::resource('destinasi', DestinasiController::class);
     Route::get('destinasi-list', [DestinasiController::class,'list']);
+    Route::post('destinasi-update', [DestinasiController::class,'update']);
 });
 
 // Route::prefix('transaksi') ->group(function () {

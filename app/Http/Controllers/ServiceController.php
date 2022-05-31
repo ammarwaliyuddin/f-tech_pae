@@ -61,33 +61,48 @@ class ServiceController extends Controller
         
     }
 
-    
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request)
     {
-        //
-    }
+        $rules=[
+            'nama_service' => 'required|max:255',
+            'biaya' => 'required',
+            'keterangan' => 'required'
+        ];
+        $pesan=[
+            'nama_service.required'=>'Nama Service harus diisi',
+            'biaya.required'=>'Biaya harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            $serviceUpdate=Service::where('id_service',$request->input('id_service'))
+            ->update(
+                [
+                    'nama_service' => $request->input('nama_service'),
+                    'biaya' => $request->input('biaya'),
+                    'keterangan' => $request->input('keterangan')
+                ]);
+
+
+            $data=array(
+                'success'=>$serviceUpdate,
+                'pesan'=>'Data berhasil di Update'
+            );
+            return $data;
+
+        }
     }
 
     /**

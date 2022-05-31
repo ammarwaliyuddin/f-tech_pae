@@ -22,11 +22,11 @@ class DisposisiController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'disposisi' => 'required|max:255',
+            'nama_disposisi' => 'required|max:255',
             'keterangan' => 'required'
         ];
         $pesan=[
-            'disposisi.required'=>'Nama Service harus diisi',
+            'nama_disposisi.required'=>'Nama Service harus diisi',
             'keterangan.required'=>'Keterangan harus diisi'
         ];
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -44,7 +44,7 @@ class DisposisiController extends Controller
            
             // $show = Disposisi::create();
            $disposisi=new Disposisi();
-           $disposisi->disposisi = $request->input('disposisi');
+           $disposisi->nama_disposisi = $request->input('nama_disposisi');
            $disposisi->keterangan = $request->input('keterangan');
            $disposisi =$disposisi->save();
 
@@ -58,33 +58,44 @@ class DisposisiController extends Controller
         
     }
 
-    
-    public function show($id)
+    public function update(Request $request)
     {
-        //
-    }
+        $rules=[
+            'nama_disposisi' => 'required|max:255',
+            'keterangan' => 'required'
+        ];
+        $pesan=[
+            'nama_disposisi.required'=>'Nama Disposisi harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            $disposisiUpdate=Disposisi::where('id_disposisi',$request->input('id_disposisi'))
+            ->update(
+                [
+                    'nama_disposisi' => $request->input('nama_disposisi'),
+                    'keterangan' => $request->input('keterangan')
+                ]);
+
+
+            $data=array(
+                'success'=>$disposisiUpdate,
+                'pesan'=>'Data berhasil di Update'
+            );
+            return $data;
+
+        }
     }
 
     /**
