@@ -14,7 +14,7 @@ class CreateDisposisisTable extends Migration
     public function up()
     {
         Schema::create('disposisis', function (Blueprint $table) {
-            $table->id('id_disposi');
+            $table->id('id_disposisi');
             $table->string('disposisi');
             $table->string('keterangan');
             $table->timestamps();

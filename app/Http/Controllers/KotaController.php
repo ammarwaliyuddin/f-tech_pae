@@ -9,22 +9,58 @@ class KotaController extends Controller
 {
     public function index()
     { 
+        return view('dashboard.datadestinasi.kota');
+    }
+
+    public function list(){     
         $kotas = Kota::all();
         
-        return view('dashboard.datadestinasi.kota',compact('kotas'));
+        return view('dashboard.datadestinasi.view.list_kota',compact('kotas'));
     }
 
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules=[
             'nama_kota' => 'required|max:255',
             'kode_kota' => 'required',
             'keterangan' => 'required'
-        ]);
-        $show = Kota::create($validatedData);
-   
-        return redirect('/datadestinasi/kota')->with('success', 'Game is successfully saved');
+        ];
+
+        $pesan=[
+            'nama_kota.required'=>'Nama Kota harus diisi',
+            'kode_kota.required'=>'Kode Kota harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+      
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            // $show = Kota::create();
+           $kota=new Kota();
+           $kota->nama_kota = $request->input('nama_kota');
+           $kota->kode_kota = $request->input('kode_kota');
+           $kota->keterangan = $request->input('keterangan');
+           $kota =$kota->save();
+
+            $data=array(
+                'success'=>$kota,
+                'pesan'=>'Data berhasil dikirim'
+            );
+            return $data;
+
+        }
+        
     }
 
     
@@ -64,6 +100,15 @@ class KotaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kota = Kota::where('id_kota',$id);
+        $kota->delete();
+
+        $pesan = ($kota)?'Data berhasil Dihapus':'Ada Kesalahan';
+
+        $data=array(
+            'success'=> $kota,
+            'pesan'=> $pesan
+        );
+        return $data;
     }
 }

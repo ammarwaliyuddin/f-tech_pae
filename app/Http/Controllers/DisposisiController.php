@@ -9,21 +9,53 @@ class DisposisiController extends Controller
 {
     public function index()
     { 
+        return view('dashboard.datamaster.disposisi');
+    }
+
+    public function list(){     
         $disposisis = Disposisi::all();
         
-        return view('dashboard.datamaster.disposisi',compact('disposisis'));
+        return view('dashboard.datamaster.view.list_disposisi',compact('disposisis'));
     }
 
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules=[
             'disposisi' => 'required|max:255',
             'keterangan' => 'required'
-        ]);
-        $show = Disposisi::create($validatedData);
-   
-        return redirect('/datamaster/disposisi')->with('success', 'Game is successfully saved');
+        ];
+        $pesan=[
+            'disposisi.required'=>'Nama Service harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+      
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            // $show = Disposisi::create();
+           $disposisi=new Disposisi();
+           $disposisi->disposisi = $request->input('disposisi');
+           $disposisi->keterangan = $request->input('keterangan');
+           $disposisi =$disposisi->save();
+
+            $data=array(
+                'success'=>$disposisi,
+                'pesan'=>'Data berhasil dikirim'
+            );
+            return $data;
+
+        }
+        
     }
 
     
@@ -63,6 +95,15 @@ class DisposisiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $disposisi = Disposisi::where('id_disposisi',$id);
+        $disposisi->delete();
+
+        $pesan = ($disposisi)?'Data berhasil Dihapus':'Ada Kesalahan';
+
+        $data=array(
+            'success'=> $disposisi,
+            'pesan'=> $pesan
+        );
+        return $data;
     }
 }

@@ -8,7 +8,9 @@ use App\Http\Controllers\PackingController;
 use App\Http\Controllers\AsuransiController;
 use App\Http\Controllers\DisposisiController;
 use App\Http\Controllers\KotaController;
+use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\TransaksiController;
+
 use App\Models\Packing;
 
 /*
@@ -28,15 +30,13 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/datadestinasi/kecamatan', function () {
-    return view('dashboard.datadestinasi.kecamatan');
-});
 Route::get('/datadestinasi/destinasi', function () {
     return view('dashboard.datadestinasi.destinasi');
 });
 Route::get('/datapelanggan/level', function () {
     return view('dashboard.datapelanggan.level');
 });
+
 Route::prefix('datamaster')->group(function () {
     // barang
     Route::resource('barang', BarangController::class);
@@ -44,23 +44,34 @@ Route::prefix('datamaster')->group(function () {
 
     // service
     Route::resource('service', ServiceController::class);
+    Route::get('service-list', [ServiceController::class,'list']);
 
     // Packing
     Route::resource('packing', PackingController::class);
+    Route::get('packing-list', [PackingController::class,'list']);
 
     // asuransi
     Route::resource('asuransi', AsuransiController::class);
+    Route::get('asuransi-list', [AsuransiController::class,'list']);
 
     // disposisi
     Route::resource('disposisi', DisposisiController::class);
+    Route::get('disposisi-list', [DisposisiController::class,'list']);
 
-    //kota
-    // Route::resource('kota', KotaController::class);
 });
 
 Route::prefix('datadestinasi')->group(function () {
     //kota
     Route::resource('kota', KotaController::class);
+    Route::get('kota-list', [KotaController::class,'list']);
+
+    //kecamatan
+    Route::resource('kecamatan', KecamatanController::class);
+    Route::get('kecamatan-list', [KecamatanController::class,'list']);
+
+    //destinasi
+    Route::resource('destinasi', DestinasiController::class);
+    Route::get('destinasi-list', [DestinasiController::class,'list']);
 });
 
 // Route::prefix('transaksi') ->group(function () {

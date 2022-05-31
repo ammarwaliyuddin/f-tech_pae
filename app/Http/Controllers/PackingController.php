@@ -9,22 +9,57 @@ class PackingController extends Controller
 {
     public function index()
     { 
-        $packings = Packing::all();
-        
-        return view('dashboard.datamaster.packing',compact('packings'));
+        return view('dashboard.datamaster.packing');
     }
 
+    public function list(){     
+        $packings = Packing::all();
+        
+        return view('dashboard.datamaster.view.list_packing',compact('packings'));
+    }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules=[
             'nama_packing' => 'required|max:255',
             'biaya' => 'required',
             'keterangan' => 'required'
-        ]);
-        $show = Packing::create($validatedData);
-   
-        return redirect('/datamaster/packing')->with('success', 'Game is successfully saved');
+        ];
+
+        $pesan=[
+            'nama_packing.required'=>'Nama Packing harus diisi',
+            'biaya.required'=>'Biaya harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+      
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            // $show = Packing::create();
+           $packing=new Packing();
+           $packing->nama_packing = $request->input('nama_packing');
+           $packing->biaya = $request->input('biaya');
+           $packing->keterangan = $request->input('keterangan');
+           $packing =$packing->save();
+
+            $data=array(
+                'success'=>$packing,
+                'pesan'=>'Data berhasil dikirim'
+            );
+            return $data;
+
+        }
+        
     }
 
     
@@ -64,6 +99,15 @@ class PackingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $packing = Packing::where('id_packing',$id);
+        $packing->delete();
+
+        $pesan = ($packing)?'Data berhasil Dihapus':'Ada Kesalahan';
+
+        $data=array(
+            'success'=> $packing,
+            'pesan'=> $pesan
+        );
+        return $data;
     }
 }
