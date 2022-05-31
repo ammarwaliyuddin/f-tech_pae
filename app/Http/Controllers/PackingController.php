@@ -68,35 +68,53 @@ class PackingController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function update(Request $request)
     {
-        //
+
+        $rules=[
+            'nama_packing' => 'required|max:255',
+            'biaya' => 'required',
+            'keterangan' => 'required'
+        ];
+
+        $pesan=[
+            'nama_packing.required'=>'Nama Packing harus diisi',
+            'biaya.required'=>'Biaya harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
+
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            $packingUpdate=Packing::where('id_packing',$request->input('id_packing'))
+            ->update(
+                [
+                    'nama_packing' => $request->input('nama_packing'),
+                    'biaya' => $request->input('biaya'),
+                    'keterangan' => $request->input('keterangan')
+                ]);
+
+
+            $data=array(
+                'success'=>$packingUpdate,
+                'pesan'=>'Data berhasil di Update'
+            );
+            return $data;
+
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $packing = Packing::where('id_packing',$id);

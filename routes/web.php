@@ -47,6 +47,7 @@ Route::prefix('datamaster')->group(function () {
     // Packing
     Route::resource('packing', PackingController::class);
     Route::get('packing-list', [PackingController::class,'list']);
+    Route::post('packing-update', [PackingController::class,'update']);
 
     // asuransi
     Route::resource('asuransi', AsuransiController::class);
