@@ -8,6 +8,7 @@ use App\Http\Controllers\PackingController;
 use App\Http\Controllers\AsuransiController;
 use App\Http\Controllers\DisposisiController;
 use App\Http\Controllers\KotaController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\Packing;
 
 /*
@@ -54,7 +55,18 @@ Route::prefix('datamaster')->group(function () {
     Route::resource('disposisi', DisposisiController::class);
 
     //kota
+    // Route::resource('kota', KotaController::class);
+});
+
+Route::prefix('datadestinasi')->group(function () {
+    //kota
     Route::resource('kota', KotaController::class);
 });
+
+// Route::prefix('transaksi') ->group(function () {
+//     Route::resource('transaksi', TransaksiController::class);
+// });
+
+Route::resource('/transaksi', TransaksiController::class);
 
 

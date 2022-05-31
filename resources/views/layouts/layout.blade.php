@@ -643,7 +643,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="side-menu-light-inbox.html" class="side-menu">
+                        <a href="{{URL::to('transaksi')}}" class="side-menu {{ Request::path() == 'transaksi' ? 'side-menu--active' : '' }}">
                             <div class="side-menu__icon"> <i data-feather="truck"></i> </div>
                             <div class="side-menu__title"> Transaksi </div>
                         </a>

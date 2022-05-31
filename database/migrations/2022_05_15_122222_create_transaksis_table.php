@@ -29,7 +29,8 @@ class CreateTransaksisTable extends Migration
             $table->string('biaya_barang');
             $table->string('diskon');
             $table->string('biaya_pengiriman');
-            $table->string('status_pengiriman');    
+            $table->string('status_pengiriman');
+            $table->timestamps();    
         });
     }
 
