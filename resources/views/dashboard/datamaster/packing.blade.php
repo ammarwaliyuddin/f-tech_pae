@@ -14,9 +14,9 @@
             </button>
             <div class="dropdown-menu w-20">
                 <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </a>
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
+                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </a>
+                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
+                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
                 </div>
             </div>
         </div>
@@ -135,7 +135,49 @@
             </div>
         </div>
     </div>
-</div> <!-- END: Modal Content -->   
+</div> <!-- END: Modal Content -->
+
+<!-- BEGIN: Add Edit Modal -->
+<div id="update-item-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-medium text-base mr-auto">
+                    Edit Packing
+                </h2>
+            </div>
+            <form  method="post" id="form_edit" onsubmit="return false;" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+
+                    <input type="hidden" class="id_packing" id="id_packing" name="id_packing" >
+
+                    <div class="col-span-12">
+                        <label for="nama_packing" class="form-label">Nama Packing</label>
+                        <input type="text" id="nama_packing" name="nama_packing" class="form-control w-full mt-2 nama_packing" >
+                    </div>
+                    <div class="col-span-12">
+                        <label for="biaya" class="form-label">Biaya</label>
+                        <div class="input-group mt-2">
+                            <div id="biaya" class="input-group-text">Rp.</div>
+                            <input type="text" class="form-control w-full biaya" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea id="keterangan" class="form-control w-full mt-2 keterangan" name="keterangan" placeholder="keterangan"></textarea>
+                    </div>
+                
+                </div>
+                <div class="modal-footer text-right">
+                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END: Edit Item Modal -->
         
 @stop
 @section('script')
@@ -250,6 +292,46 @@
             })
 
     });
+
+    $('#myTabel').on('click', '#btn-edit', function() {
+
+        const id_packing = $(this).data('id_packing');
+        const packing = $(this).data('packing');
+        const biaya = $(this).data('biaya');
+        const keterangan = $(this).data('ket');
+
+        $('.id_packing').val(id_packing);
+        $('.nama_packing').val(packing);
+        $('.biaya').val(biaya);
+        $('.keterangan').val(keterangan);
+        modal.show('#update-item-modal');   
+    });
+
+    $(document).on("submit","#form_edit",function(e){
+
+        var id = $('#id_packing').val();
+        var data = new FormData(this);
+
+        if($("#form_edit")[0].checkValidity()) {
+            //updateAllMessageForms();
+            e.preventDefault();
+            $.ajax({
+                url         : "{{URL::to('datamaster/packing-update')}}",
+                type        : 'POST',
+                data        : data,
+                dataType    : 'JSON',
+                contentType : false,
+                cache       : false,
+                processData : false,
+                success: function(data) {
+                    modal.show('#success-saved'); 
+                    showData();
+                }      
+            });
+        }
+
+    });
+    
 
 
     $(document).ready(function(){        
