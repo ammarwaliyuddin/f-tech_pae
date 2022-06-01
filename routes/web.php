@@ -99,6 +99,7 @@ Route::prefix('api')->group(function () {
     Route::get('data-asuransi', [AsuransiController::class,'data_asuransi']);
     Route::get('data-disposisi', [DisposisiController::class,'data_disposisi']);
     Route::get('data-destinasi', [DestinasiController::class,'data_destinasi']);
+    Route::get('data-user', [UserController::class,'data_user']);
 });
 
 
