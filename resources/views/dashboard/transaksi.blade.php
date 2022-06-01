@@ -10,13 +10,17 @@
     <form method="post" id="form_tambah" onsubmit="return false;" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-12 gap-4 p-5">
-            <div class="intro-y col-span-12 lg:col-span-4">
+            <div class="intro-y col-span-12 lg:col-span-4 remote-data-pengirim">
                 <label for="pengirim" class="form-label">Pengirim</label>
-                <input id="pengirim" name="pengirim" type="text" class="form-control" placeholder="Masukkan Pengirim">
+                <select id="pengirim" class="form-select" name="pengirim">
+                    <option>Loading ...</option>
+                </select>
             </div>
-            <div class="intro-y col-span-12 lg:col-span-4">
+            <div class="intro-y col-span-12 lg:col-span-4 remote-data-penerima">
                 <label for="penerima" class="form-label">Penerima</label>
-                <input id="penerima" type="text" class="form-control" placeholder="Masukkan Penerima">
+                <select id="penerima" class="form-select" name="penerima">
+                    <option>Loading ...</option>
+                </select>
             </div>
             <div class="intro-y col-span-12 lg:col-span-4 remote-data-destinasi">
                 <label for="destinasi" class="form-label">Destinasi</label>
@@ -471,6 +475,42 @@
             }
         })
     }
+    function getPengirim(){
+        $.ajax({
+            url:"{{URL::to('api/data-user')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                let el = `
+                <label for="pengirim" class="form-label">Pengirim</label>
+                <select id="pengirim" class="form-select" name="pengirim">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-pengirim").empty().html(el);
+            }
+        })
+    }
+    function getPenerima(){
+        $.ajax({
+            url:"{{URL::to('api/data-user')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                let el = `
+                <label for="penerima" class="form-label">Penerima</label>
+                <select id="penerima" class="form-select" name="penerima">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-penerima").empty().html(el);
+            }
+        })
+    }
 
     // BEGIN :: Biaya Barang
     $(document).on("change","#barang",function(){
@@ -550,6 +590,8 @@
         getAsuransi(); 
         getDisposisi();
         getDestinasi();
+        getPengirim();
+        getPenerima();
         
        
         // console.log(harga_barang,asuransi)

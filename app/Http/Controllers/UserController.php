@@ -146,6 +146,9 @@ class UserController extends Controller
         );
         return $data;
 
-        
+    }
+    public function data_user(){
+        $users = User::all();
+        return $users;
     }
 }

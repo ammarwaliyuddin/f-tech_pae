@@ -10,9 +10,6 @@ $no = 1;
         <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_user }}</a> 
     </td>
     <td>
-        <a href="" class="font-medium whitespace-nowrap">{{ $item->password }}</a> 
-    </td>
-    <td>
         <a href="" class="font-medium whitespace-nowrap">{{ $item->level }}</a> 
     </td>
     <td>

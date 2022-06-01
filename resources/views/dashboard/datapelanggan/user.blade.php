@@ -42,7 +42,6 @@
                 <tr>
                     <th class="whitespace-nowrap">No</th>
                     <th class="whitespace-nowrap">Nama User</th>
-                    <th class="text-center whitespace-nowrap">Password</th>
                     <th class="text-center whitespace-nowrap">Level</th>
                     <th class="text-center whitespace-nowrap">Alamat</th>
                     <th class="text-center whitespace-nowrap">HP</th>
