@@ -79,11 +79,7 @@ Route::prefix('datadestinasi')->group(function () {
     Route::post('destinasi-update', [DestinasiController::class,'update']);
 });
 
-// Route::prefix('transaksi') ->group(function () {
-//     Route::resource('transaksi', TransaksiController::class);
-// });
-
-Route::resource('/transaksi', TransaksiController::class);
+Route::resource('transaksi', TransaksiController::class);
 
 Route::prefix('api')->group(function () {
     Route::get('data-barang', [BarangController::class,'data_barang']);
@@ -91,6 +87,7 @@ Route::prefix('api')->group(function () {
     Route::get('data-service', [ServiceController::class,'data_service']);
     Route::get('data-asuransi', [AsuransiController::class,'data_asuransi']);
     Route::get('data-disposisi', [DisposisiController::class,'data_disposisi']);
+    Route::get('data-destinasi', [DestinasiController::class,'data_destinasi']);
 });
 
 
