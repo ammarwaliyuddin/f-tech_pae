@@ -15,10 +15,12 @@ class CreateDestinasisTable extends Migration
     {
         Schema::create('destinasis', function (Blueprint $table) {
             $table->id('id_destinasi');
-            $table->foreignId('id_kota_pengirim');
-            $table->foreignId('id_kota_penerima');
-            $table->foreignId('id_kecamatan');
+            $table->string('kota_origin');
+            $table->string('kota_destinasi');
+            $table->string('nama_kecamatan');
+            $table->string('kode_destinasi');
             $table->string('harga');
+            $table->timestamps();
         });
     }
 
