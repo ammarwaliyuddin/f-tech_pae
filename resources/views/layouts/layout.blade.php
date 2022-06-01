@@ -622,20 +622,15 @@
                             </div>
                         </a>
                         <ul class="">
+                            
                             <li>
-                                <a href="index.html" class="side-menu">
-                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                                    <div class="side-menu__title"> Pengirim </div>
+                                <a href="{{URL::to('datapelanggan/user')}}" class="side-menu {{ Request::path() == 'datapelanggan/user' ? 'side-menu--active' : '' }}">                                   
+                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> User </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
-                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                                    <div class="side-menu__title"> Penerima </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{URL::to('datapelanggan/level')}}" class="side-menu {{ Request::path() == 'datamaster/level' ? 'side-menu--active' : '' }}">                                   
+                                <a href="{{URL::to('datapelanggan/level')}}" class="side-menu {{ Request::path() == 'datapelanggan/level' ? 'side-menu--active' : '' }}">                                   
                                      <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Level </div>
                                 </a>
