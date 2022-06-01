@@ -12,6 +12,7 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KeuanganController;
 
 use App\Models\Packing;
 
@@ -90,6 +91,8 @@ Route::prefix('datadestinasi')->group(function () {
 // });
 
 Route::resource('/transaksi', TransaksiController::class);
+
+Route::resource('/keuangan', KeuanganController::class);
 
 Route::prefix('api')->group(function () {
     Route::get('data-barang', [BarangController::class,'data_barang']);

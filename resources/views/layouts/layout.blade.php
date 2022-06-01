@@ -651,7 +651,7 @@
                     </li>
                     <li class="side-nav__devider my-6"></li>
                     <li>
-                        <a href="side-menu-light-inbox.html" class="side-menu">
+                        <a href="{{URL::to('keuangan')}}" class="side-menu {{ Request::path() == 'keuangan' ? 'side-menu--active' : '' }}">
                             <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
                             <div class="side-menu__title"> Keuangan </div>
                         </a>

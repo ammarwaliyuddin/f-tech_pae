@@ -108,8 +108,8 @@
                         <input type="text" id="kota_destinasi" name="kota_destinasi" class="form-control w-full mt-2" placeholder="Kota Destinasi">
                     </div>
                     <div class="col-span-12">
-                        <label for="kota_destinasi" class="form-label">Nama Kecamatan</label>
-                        <input type="text" id="kota_destinasi" name="kota_destinasi" class="form-control w-full mt-2" placeholder="Kota Destinasi">
+                        <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
+                        <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2" placeholder="Nama Kecamatan">
                     </div>
                     <div class="col-span-12">
                         <label for="kode_destinasi" class="form-label">Kode Destinasi</label>
@@ -350,7 +350,7 @@ const harga = $(this).data('harga');
 $('.id_destinasi').val(id_destinasi);
 $('.kota_origin').val(origin);
 $('.kota_destinasi').val(destinasi);
-$('.kecamatan').val(kecamatan);
+$('.nama_kecamatan').val(kecamatan);
 $('.kode_destinasi').val(kode);
 $('.harga').val(harga);
 modal.show('#update-item-modal');   

@@ -10,7 +10,6 @@ class TransaksiController extends Controller
     public function index()
     { 
         $transaksis = Transaksi::all();
-        
         return view('dashboard.transaksi',compact('transaksis'));
     }
 

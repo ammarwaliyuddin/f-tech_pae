@@ -65,32 +65,48 @@ class BarangController extends Controller
     }
 
     
-    public function show($id)
+    public function update(Request $request)
     {
-        //
-    }
+        $rules=[
+            'jenis_barang' => 'required|max:255',
+            'harga' => 'required',
+            'keterangan' => 'required'
+        ];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $pesan=[
+            'jenis_barang.required'=>'Jenis Barang harus diisi',
+            'harga.required'=>'Harga harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            $barangUpdate=Barang::where('id_barang',$request->input('id_barang'))
+            ->update(
+                [
+                    'jenis_barang' => $request->input('jenis_barang'),
+                    'harga' => $request->input('harga'),
+                    'keterangan' => $request->input('keterangan')
+                ]);
+
+
+            $data=array(
+                'success'=>$barangUpdate,
+                'pesan'=>'Data berhasil di Update'
+            );
+            return $data;
+
+        }
     }
 
     public function destroy($id)
