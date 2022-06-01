@@ -128,4 +128,9 @@ class PackingController extends Controller
         );
         return $data;
     }
+
+    public function data_packing(){
+        $packings = Packing::all();
+        return $packings;
+    }
 }

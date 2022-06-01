@@ -15,6 +15,7 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id('id_transaksi');
+            $table->string('no_resi');
             $table->foreignId('id_pengirim');
             $table->foreignId('id_penerima');
             $table->foreignId('id_destinasi');
@@ -27,9 +28,10 @@ class CreateTransaksisTable extends Migration
             $table->text('deskripsi');
             $table->text('instruksi');
             $table->string('biaya_barang');
-            $table->string('diskon');
+            $table->string('diskon')->nullable();
             $table->string('biaya_pengiriman');
             $table->string('status_pengiriman');
+            $table->float('jumlah');
             $table->timestamps();    
         });
     }

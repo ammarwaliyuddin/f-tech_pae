@@ -11,6 +11,7 @@ use App\Http\Controllers\KotaController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UserController;
 
 use App\Models\Packing;
@@ -86,6 +87,10 @@ Route::prefix('datadestinasi')->group(function () {
 });
 
 Route::resource('transaksi', TransaksiController::class);
+
+Route::get('tracking', [TrackingController::class,'index']);
+Route::get('tracking-list', [TrackingController::class,'list']);
+
 
 Route::prefix('api')->group(function () {
     Route::get('data-barang', [BarangController::class,'data_barang']);

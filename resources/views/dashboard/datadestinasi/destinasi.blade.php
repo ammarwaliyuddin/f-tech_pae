@@ -108,8 +108,8 @@
                         <input type="text" id="kota_destinasi" name="kota_destinasi" class="form-control w-full mt-2" placeholder="Kota Destinasi">
                     </div>
                     <div class="col-span-12">
-                        <label for="kota_destinasi" class="form-label">Nama Kecamatan</label>
-                        <input type="text" id="kota_destinasi" name="kota_destinasi" class="form-control w-full mt-2" placeholder="Kota Destinasi">
+                        <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
+                        <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2" placeholder="Kota Destinasi">
                     </div>
                     <div class="col-span-12">
                         <label for="kode_destinasi" class="form-label">Kode Destinasi</label>
@@ -282,6 +282,7 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
+                    console.log(data)
                     modal.show('#success-saved'); 
                     showData();
                 }

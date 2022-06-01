@@ -644,7 +644,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="side-menu-light-inbox.html" class="side-menu">
+                        <a href="{{URL::to('tracking')}}" class="side-menu {{ Request::path() == 'tracking' ? 'side-menu--active' : '' }}">
                             <div class="side-menu__icon"> <i data-feather="map-pin"></i> </div>
                             <div class="side-menu__title"> Tracking </div>
                         </a>
