@@ -96,8 +96,8 @@
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12">
-                        <label for="disposisi" class="form-label">Disposisi</label>
-                        <input type="text" id="disposisi" name="disposisi" class="form-control w-full mt-2" placeholder="Disposisi">
+                        <label for="nama_disposisi" class="form-label">Nama Disposisi</label>
+                        <input type="text" id="nama_disposisi" name="nama_disposisi" class="form-control w-full mt-2" placeholder="Nama Disposisi">
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -114,6 +114,41 @@
     </div>
 </div>
 <!-- END: Add Item Modal -->
+
+<!-- BEGIN: Add Edit Modal -->
+<div id="update-item-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-medium text-base mr-auto">
+                    Edit Disposisi
+                </h2>
+            </div>
+            <form  method="post" id="form_edit" onsubmit="return false;" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+
+                    <input type="hidden" class="id_disposisi" id="id_disposisi" name="id_disposisi" >
+
+                    <div class="col-span-12">
+                        <label for="nama_disposisi" class="form-label">Nama Disposisi</label>
+                        <input type="text" id="nama_disposisi" name="nama_disposisi" class="form-control w-full mt-2 nama_disposisi" >
+                    </div>
+                    <div class="col-span-12">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea id="keterangan" class="form-control w-full mt-2 keterangan" name="keterangan" placeholder="keterangan"></textarea>
+                    </div>
+                
+                </div>
+                <div class="modal-footer text-right">
+                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END: Edit Item Modal -->
     
 <!-- BEGIN: Modal Content -->
 <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
@@ -243,6 +278,49 @@
             })
 
     });
+
+
+    $(document).ready(function(){        
+        showData(); 
+
+    });
+
+    $('#myTabel').on('click', '#btn-edit', function() {
+
+const id_disposisi = $(this).data('id_disposisi');
+const disposisi = $(this).data('disposisi');
+const keterangan = $(this).data('ket');
+
+$('.id_disposisi').val(id_disposisi);
+$('.nama_disposisi').val(disposisi);
+$('.keterangan').val(keterangan);
+modal.show('#update-item-modal');   
+});
+
+$(document).on("submit","#form_edit",function(e){
+
+var id = $('#id_disposisi').val();
+var data = new FormData(this);
+
+if($("#form_edit")[0].checkValidity()) {
+    //updateAllMessageForms();
+    e.preventDefault();
+    $.ajax({
+        url         : "{{URL::to('datamaster/disposisi-update')}}",
+        type        : 'POST',
+        data        : data,
+        dataType    : 'JSON',
+        contentType : false,
+        cache       : false,
+        processData : false,
+        success: function(data) {
+            modal.show('#success-saved'); 
+            showData();
+        }      
+    });
+}
+
+});
 
 
     $(document).ready(function(){        

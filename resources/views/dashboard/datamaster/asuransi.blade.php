@@ -123,6 +123,48 @@
 </div>
 <!-- END: Add Item Modal -->
 
+<!-- BEGIN: Add Edit Modal -->
+<div id="update-item-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-medium text-base mr-auto">
+                    Edit Asuransi
+                </h2>
+            </div>
+            <form  method="post" id="form_edit" onsubmit="return false;" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+
+                    <input type="hidden" class="id_asuransi" id="id_asuransi" name="id_asuransi" >
+
+                    <div class="col-span-12">
+                        <label for="nama_asuransi" class="form-label">Nama Asuransi</label>
+                        <input type="text" id="nama_asuransi" name="nama_asuransi" class="form-control w-full mt-2 nama_asuransi" >
+                    </div>
+                    <div class="col-span-12">
+                        <label for="biaya" class="form-label">Biaya</label>
+                        <div class="input-group mt-2">
+                            <div id="biaya" class="input-group-text">Rp.</div>
+                            <input type="text" class="form-control w-full biaya" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea id="keterangan" class="form-control w-full mt-2 keterangan" name="keterangan" placeholder="keterangan"></textarea>
+                    </div>
+                
+                </div>
+                <div class="modal-footer text-right">
+                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END: Edit Item Modal -->
+
 <!-- BEGIN: Modal Content -->
 <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
     <div class="modal-dialog">
@@ -249,6 +291,51 @@
                     });
                 }
             })
+
+    });
+
+    $('#myTabel').on('click', '#btn-edit', function() {
+
+const id_asuransi = $(this).data('id_asuransi');
+const asuransi = $(this).data('asuransi');
+const biaya = $(this).data('biaya');
+const keterangan = $(this).data('ket');
+
+$('.id_asuransi').val(id_asuransi);
+$('.nama_asuransi').val(asuransi);
+$('.biaya').val(biaya);
+$('.keterangan').val(keterangan);
+modal.show('#update-item-modal');   
+});
+
+$(document).on("submit","#form_edit",function(e){
+
+var id = $('#id_asuransi').val();
+var data = new FormData(this);
+
+if($("#form_edit")[0].checkValidity()) {
+    //updateAllMessageForms();
+    e.preventDefault();
+    $.ajax({
+        url         : "{{URL::to('datamaster/asuransi-update')}}",
+        type        : 'POST',
+        data        : data,
+        dataType    : 'JSON',
+        contentType : false,
+        cache       : false,
+        processData : false,
+        success: function(data) {
+            modal.show('#success-saved'); 
+            showData();
+        }      
+    });
+}
+
+});
+
+
+    $(document).ready(function(){        
+        showData(); 
 
     });
 

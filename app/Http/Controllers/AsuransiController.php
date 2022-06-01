@@ -62,18 +62,49 @@ class AsuransiController extends Controller
         
     }
     
-
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rules=[
+            'nama_asuransi' => 'required|max:255',
+            'biaya' => 'required',
+            'keterangan' => 'required'
+        ];
+        $pesan=[
+            'nama_asuransi.required'=>'Nama Asuransi harus diisi',
+            'biaya.required'=>'Biaya harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            $asuransiUpdate=Asuransi::where('id_asuransi',$request->input('id_asuransi'))
+            ->update(
+                [
+                    'nama_asuransi' => $request->input('nama_asuransi'),
+                    'biaya' => $request->input('biaya'),
+                    'keterangan' => $request->input('keterangan')
+                ]);
+
+
+            $data=array(
+                'success'=>$asuransiUpdate,
+                'pesan'=>'Data berhasil di Update'
+            );
+            return $data;
+
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $asuransi = Asuransi::where('id_asuransi',$id);
