@@ -16,14 +16,45 @@ class TransaksiController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama_kota' => 'required|max:255',
-            'kode_kota' => 'required',
-            'keterangan' => 'required'
-        ]);
-        $show = Transaksi::create($validatedData);
-   
-        return redirect('/transaksi')->with('success', 'Game is successfully saved');
+        $rules=[
+            'pengirim' => 'required|max:255'
+        ];
+
+        $pesan=[
+            'pengirim.required'=>'Jenis Barang harus diisi'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+      
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            // $show = Barang::create();
+            $transaksi=new Transaksi();
+            $transaksi->id_pengirim = $request->input('pengirim');
+            $transaksi->id_penerima = $request->input('pengirim');
+            $transaksi->id_destinasi = $request->input('pengirim');
+            $transaksi->id_packing = $request->input('pengirim');
+            $transaksi->id_service = $request->input('pengirim');
+            $transaksi->id_asuransi = $request->input('pengirim');
+            // $transaksi->tanggal = $request->input('pengirim');
+            $transaksi = $transaksi->save();
+
+            $data=array(
+                'success'=> $transaksi,
+                'pesan'=>'Data berhasil dikirim'
+            );
+            return $data;
+
+        }
     }
 
     

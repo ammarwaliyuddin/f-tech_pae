@@ -9,15 +9,15 @@ class CreateTrackingsTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
         Schema::create('trackings', function (Blueprint $table) {
-            $table->id('id_tracking');
+            $table->foreignId('id_transaksi');
             $table->string('status_pengiriman');
-            $table->foreignId('disposisi');
-            $table->string('keterangan');
+            $table->foreignId('id_disposisi');
+            $table->string('keterangan')->nullable();
         });
     }
 

@@ -105,4 +105,9 @@ class DestinasiController extends Controller
         );
         return $data;
     }
+
+    public function data_destinasi(){
+        $destinasis = destinasi::all();
+        return $destinasis;
+    }
 }

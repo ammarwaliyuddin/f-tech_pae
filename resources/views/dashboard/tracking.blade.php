@@ -1,25 +1,12 @@
 @extends('layouts.layout')
 @section('content')
-        
+      
 
 <h2 class="intro-y text-lg font-medium mt-10">
-    Data Packing
+    Data Tracking
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <a  href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Packing</a>
-        <div class="dropdown">
-            <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
-                <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
-            </button>
-            <div class="dropdown-menu w-20">
-                <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </a>
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
-                </div>
-            </div>
-        </div>
         <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-gray-700 dark:text-gray-300">
@@ -28,22 +15,21 @@
             </div>
         </div>
     </div>
+    
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visibl table-responsive">
         
-        <table class="table table-report -mt-2" id="myTabel">
+        <table class="table table-report -mt-2">
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Packing</th>
-                    <th class="text-center whitespace-nowrap">Biaya</th>
-                    <th class="text-center whitespace-nowrap">Keterangan</th>
+                    <th class="text-center whitespace-nowrap">No Resi</th>
+                    <th class="text-center whitespace-nowrap">Disposisi</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
-            <tbody>
-                <tbody id="showData"></tbody>
-            </tbody>
+            <tbody id="showData"></tbody>
+           
         </table>
     </div>
     <!-- END: Data List -->
@@ -76,114 +62,39 @@
         </select>
     </div>
     <!-- END: Pagination -->
-</div>
-
- <!-- BEGIN: Add Item Modal -->
- <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="font-medium text-base mr-auto">
-                    Tambah Packing
-                </h2>
-            </div>
-
-            <form method="post" id="form_tambah" onsubmit="return false;" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                    <div class="col-span-12">
-                        <label for="nama_packing" class="form-label">Nama Packing</label>
-                        <input type="text" id="nama_packing" name="nama_packing" class="form-control w-full mt-2" placeholder="Nama Packing">
-                    </div>
-                    <div class="col-span-12">
-                        <label for="biaya" class="form-label">Biaya</label>
-                        <div class="input-group mt-2">
-                            <div id="biaya" class="input-group-text">Rp.</div>
-                            <input type="text" class="form-control w-full" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
+    <!-- BEGIN: Delete Confirmation Modal -->
+    <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="p-5 text-center">
+                        <i data-feather="x-circle" class="w-16 h-16 text-theme-6 mx-auto mt-3"></i> 
+                        <div class="text-3xl mt-5">Are you sure?</div>
+                        <div class="text-gray-600 mt-2">
+                            Do you really want to delete these records? 
+                            <br>
+                            This process cannot be undone.
                         </div>
                     </div>
-                    <div class="col-span-12">
-                        <label for="keterangan" class="form-label">Keterangan</label>
-                        <textarea id="keterangan" class="form-control w-full mt-2" name="keterangan" placeholder="keterangan"></textarea>
+                    <div class="px-5 pb-8 text-center">
+                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
+                        <button type="button" class="btn btn-danger w-24">Delete</button>
                     </div>
-                
                 </div>
-                <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
-                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- END: Add Item Modal -->
-<!-- BEGIN: Modal Content -->
-<div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body p-0">
-                <div class="p-5 text-center"> <i data-feather="check-circle" class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
-                    <div class="text-3xl mt-5">Berhasil Tersimpan!</div>
-                    <div class="text-gray-600 mt-2">Data Anda tersimpan!</div>
-                </div>
-                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
             </div>
         </div>
     </div>
-</div> <!-- END: Modal Content -->
-
-<!-- BEGIN: Add Edit Modal -->
-<div id="update-item-modal" class="modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="font-medium text-base mr-auto">
-                    Edit Packing
-                </h2>
-            </div>
-            <form  method="post" id="form_edit" onsubmit="return false;" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-
-                    <input type="hidden" class="id_packing" id="id_packing" name="id_packing" >
-
-                    <div class="col-span-12">
-                        <label for="nama_packing" class="form-label">Nama Packing</label>
-                        <input type="text" id="nama_packing" name="nama_packing" class="form-control w-full mt-2 nama_packing" >
-                    </div>
-                    <div class="col-span-12">
-                        <label for="biaya" class="form-label">Biaya</label>
-                        <div class="input-group mt-2">
-                            <div id="biaya" class="input-group-text">Rp.</div>
-                            <input type="text" class="form-control w-full biaya" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
-                        </div>
-                    </div>
-                    <div class="col-span-12">
-                        <label for="keterangan" class="form-label">Keterangan</label>
-                        <textarea id="keterangan" class="form-control w-full mt-2 keterangan" name="keterangan" placeholder="keterangan"></textarea>
-                    </div>
-                
-                </div>
-                <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
-                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- END: Edit Item Modal -->
+    <!-- END: Delete Confirmation Modal -->
+</div>   
         
 @stop
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
     function showData(){
         $.ajax({
-            url:"{{URL::to('datamaster/packing-list')}}",
+            url:"{{URL::to('tracking-list')}}",
             type:"GET",
-            data:'data',
             // beforeSend:function(){
             //     $("#showData").after().empty().html(`<tr>
             //         <td colspan="5">
@@ -224,7 +135,7 @@
             //updateAllMessageForms();
             e.preventDefault();
             $.ajax({
-                url         : "{{route('packing.store')}}",
+                url         : "{{route('transaksi.store')}}",
                 type        : 'post',
                 data        : data,
                 dataType    : 'JSON',
@@ -326,12 +237,10 @@
         }
 
     });
-    
 
 
     $(document).ready(function(){        
         showData(); 
-
     });
 
     

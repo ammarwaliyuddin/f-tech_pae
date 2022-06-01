@@ -11,6 +11,7 @@ use App\Http\Controllers\KotaController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KeuanganController;
 
@@ -86,11 +87,11 @@ Route::prefix('datadestinasi')->group(function () {
     Route::post('destinasi-update', [DestinasiController::class,'update']);
 });
 
-// Route::prefix('transaksi') ->group(function () {
-//     Route::resource('transaksi', TransaksiController::class);
-// });
+Route::resource('transaksi', TransaksiController::class);
 
-Route::resource('/transaksi', TransaksiController::class);
+Route::get('tracking', [TrackingController::class,'index']);
+Route::get('tracking-list', [TrackingController::class,'list']);
+
 
 Route::resource('/keuangan', KeuanganController::class);
 
@@ -100,6 +101,7 @@ Route::prefix('api')->group(function () {
     Route::get('data-service', [ServiceController::class,'data_service']);
     Route::get('data-asuransi', [AsuransiController::class,'data_asuransi']);
     Route::get('data-disposisi', [DisposisiController::class,'data_disposisi']);
+    Route::get('data-destinasi', [DestinasiController::class,'data_destinasi']);
 });
 
 

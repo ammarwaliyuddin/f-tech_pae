@@ -63,7 +63,6 @@ class BarangController extends Controller
         }
         
     }
-
     
     public function update(Request $request)
     {
@@ -107,7 +106,6 @@ class BarangController extends Controller
             return $data;
 
         }
-    }
 
     public function destroy($id)
     {
@@ -121,7 +119,11 @@ class BarangController extends Controller
             'pesan'=> $pesan
         );
         return $data;
-
-        
     }
+
+    public function data_barang(){
+        $barangs = Barang::all();
+        return $barangs;
+    }
+
 }
