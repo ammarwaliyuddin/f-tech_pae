@@ -63,23 +63,6 @@ class KotaController extends Controller
         
     }
 
-    
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -110,5 +93,10 @@ class KotaController extends Controller
             'pesan'=> $pesan
         );
         return $data;
+    }
+
+    public function data_kota(){
+        $kota = Kota::all();
+        return $kota;
     }
 }

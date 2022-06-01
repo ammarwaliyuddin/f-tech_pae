@@ -449,7 +449,7 @@
                 <label for="disposisi" class="form-label">Disposisi</label>
                 <select id="disposisi" class="form-select" name="disposisi">`;
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_disposisi+"'>"+b.disposisi+"</option>";
+                        el+="<option value='"+b.id_disposisi+"'>"+b.nama_disposisi+"</option>";
                     })
                 el+="</select>";
 

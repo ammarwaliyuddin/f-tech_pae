@@ -31,12 +31,7 @@
     
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
        
-    @endif
         <table class="table table-report -mt-2" id="myTabel">
             <thead>
                 <tr>
@@ -101,9 +96,11 @@
                         <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
                         <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2" placeholder="Nama Kecamatan">
                     </div>
-                    <div class="col-span-12">
+                    <div class="col-span-12 remote-data-kota">
                         <label for="nama_kota" class="form-label">Nama Kota</label>
-                        <input type="text" id="nama_kota" name="nama_kota" class="form-control w-full mt-2" placeholder="Nama Kota">
+                        <select id="nama_kota" class="form-select w-full mt-2" name="nama_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -317,46 +314,65 @@
 
     $('#myTabel').on('click', '#btn-edit', function() {
 
-const id_kecamatan = $(this).data('id_kecamatan');
-const kecamatan = $(this).data('kecamatan');
-const nama_kota = $(this).data('nama_kota');
-const keterangan = $(this).data('ket');
+        const id_kecamatan = $(this).data('id_kecamatan');
+        const kecamatan = $(this).data('kecamatan');
+        const nama_kota = $(this).data('nama_kota');
+        const keterangan = $(this).data('ket');
 
-$('.id_kecamatan').val(id_kecamatan);
-$('.nama_kecamatan').val(kecamatan);
-$('.nama_kota').val(nama_kota);
-$('.keterangan').val(keterangan);
-modal.show('#update-item-modal');   
-});
-
-$(document).on("submit","#form_edit",function(e){
-
-var id = $('#id_kecamatan').val();
-var data = new FormData(this);
-
-if($("#form_edit")[0].checkValidity()) {
-    //updateAllMessageForms();
-    e.preventDefault();
-    $.ajax({
-        url         : "{{URL::to('datamaster/kecamatan-update')}}",
-        type        : 'POST',
-        data        : data,
-        dataType    : 'JSON',
-        contentType : false,
-        cache       : false,
-        processData : false,
-        success: function(data) {
-            modal.show('#success-saved'); 
-            showData();
-        }      
+        $('.id_kecamatan').val(id_kecamatan);
+        $('.nama_kecamatan').val(kecamatan);
+        $('.nama_kota').val(nama_kota);
+        $('.keterangan').val(keterangan);
+        modal.show('#update-item-modal');   
     });
-}
 
-});
+    $(document).on("submit","#form_edit",function(e){
+
+        var id = $('#id_kecamatan').val();
+        var data = new FormData(this);
+
+        if($("#form_edit")[0].checkValidity()) {
+            //updateAllMessageForms();
+            e.preventDefault();
+            $.ajax({
+                url         : "{{URL::to('datamaster/kecamatan-update')}}",
+                type        : 'POST',
+                data        : data,
+                dataType    : 'JSON',
+                contentType : false,
+                cache       : false,
+                processData : false,
+                success: function(data) {
+                    modal.show('#success-saved'); 
+                    showData();
+                }      
+            });
+        }
+    });
+
+    function getNamaKota(){
+        $.ajax({
+            url:"{{URL::to('api/data-kota')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                let el = `
+                <label for="nama_kota" class="form-label">Nama Kota</label>
+                <select id="nama_kota" class="form-select w-full mt-2" name="nama_kota">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_nama_kota+"'>"+b.nama_kota+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-kota").empty().html(el);
+            }
+        })
+    }
 
 
     $(document).ready(function(){        
         showData(); 
+        getNamaKota();
 
     });
 

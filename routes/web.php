@@ -103,6 +103,8 @@ Route::prefix('api')->group(function () {
     Route::get('data-disposisi', [DisposisiController::class,'data_disposisi']);
     Route::get('data-destinasi', [DestinasiController::class,'data_destinasi']);
     Route::get('data-user', [UserController::class,'data_user']);
+    Route::get('data-kota', [KotaController::class,'data_kota']);
+    Route::get('data-kecamatan', [KecamatanController::class,'data_kecamatan']);
 });
 
 

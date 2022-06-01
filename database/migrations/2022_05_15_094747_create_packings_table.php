@@ -17,7 +17,7 @@ class CreatePackingsTable extends Migration
             $table->id('id_packing');
             $table->string('nama_packing');
             $table->string('biaya');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

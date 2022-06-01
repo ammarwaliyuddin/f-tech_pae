@@ -126,4 +126,10 @@ class KecamatanController extends Controller
         );
         return $data;
     }
+
+    public function data_kecamatan(Request $request){
+        $id_kota = $request->input('id_kota_destinasi');
+        $kecamatans = Kecamatan::where('id_kota',$id_kota)->get();
+        return $kecamatans;
+    }
 }

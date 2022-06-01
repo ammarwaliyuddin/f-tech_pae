@@ -106,7 +106,8 @@ class BarangController extends Controller
             return $data;
 
         }
-
+    }
+    
     public function destroy($id)
     {
         $barang = Barang::where('id_barang',$id);
