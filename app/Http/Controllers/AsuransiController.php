@@ -118,4 +118,8 @@ class AsuransiController extends Controller
         );
         return $data;
     }
+    public function data_asuransi(){
+        $asuransis = Asuransi::all();
+        return $asuransis;
+    }
 }

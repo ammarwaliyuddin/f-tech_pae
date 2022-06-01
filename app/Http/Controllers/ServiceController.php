@@ -124,4 +124,8 @@ class ServiceController extends Controller
         );
         return $data;
     }
+    public function data_service(){
+        $services = Service::all();
+        return $services;
+    }
 }

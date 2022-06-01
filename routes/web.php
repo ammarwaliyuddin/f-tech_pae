@@ -91,4 +91,12 @@ Route::prefix('datadestinasi')->group(function () {
 
 Route::resource('/transaksi', TransaksiController::class);
 
+Route::prefix('api')->group(function () {
+    Route::get('data-barang', [BarangController::class,'data_barang']);
+    Route::get('data-packing', [PackingController::class,'data_packing']);
+    Route::get('data-service', [ServiceController::class,'data_service']);
+    Route::get('data-asuransi', [AsuransiController::class,'data_asuransi']);
+    Route::get('data-disposisi', [DisposisiController::class,'data_disposisi']);
+});
+
 

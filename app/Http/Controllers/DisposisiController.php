@@ -117,4 +117,8 @@ class DisposisiController extends Controller
         );
         return $data;
     }
+    public function data_disposisi(){
+        $disposisis = disposisi::all();
+        return $disposisis;
+    }
 }
