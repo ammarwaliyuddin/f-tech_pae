@@ -11,6 +11,7 @@ use App\Http\Controllers\KotaController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\UserController;
 
 use App\Models\Packing;
 
@@ -31,14 +32,19 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/datapelanggan/level', function () {
-    return view('dashboard.datapelanggan.level');
+Route::prefix('datapelanggan')->group(function () {
+    // user
+    Route::resource('user', UserController::class);
+    Route::get('user-list', [UserController::class,'list']);
+    Route::post('user-update', [UserController::class,'update']);
+
 });
 
 Route::prefix('datamaster')->group(function () {
     // barang
     Route::resource('barang', BarangController::class);
     Route::get('barang-list', [BarangController::class,'list']);
+    Route::post('barang-update', [BarangController::class,'update']);
 
     // service
     Route::resource('service', ServiceController::class);
