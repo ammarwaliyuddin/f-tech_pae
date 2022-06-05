@@ -610,6 +610,12 @@
                                     <div class="side-menu__title"> Disposisi </div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{URL::to('datamaster/status')}}" class="side-menu {{ Request::path() == 'datamaster/status' ? 'side-menu--active' : '' }}">                                   
+                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Status Pengiriman </div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     {{-- Data Pelanggan --}}

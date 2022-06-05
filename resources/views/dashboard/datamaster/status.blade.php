@@ -3,11 +3,11 @@
         
 
 <h2 class="intro-y text-lg font-medium mt-10">
-    Data Disposisi
+    Data Status Pengiriman
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <a  href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Disposisi</a>
+        <a  href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Status Pengiriman</a>
         <div class="dropdown">
             <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
@@ -40,7 +40,8 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Disposisi</th>
+                    <th class="whitespace-nowrap">Kode Status</th>
+                    <th class="text-center whitespace-nowrap">Nama Status</th>
                     <th class="text-center whitespace-nowrap">Keterangan</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
@@ -88,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="font-medium text-base mr-auto">
-                    Tambah Disposisi
+                    Tambah Status Pengiriman
                 </h2>
             </div>
 
@@ -96,8 +97,12 @@
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12">
-                        <label for="nama_disposisi" class="form-label">Nama Disposisi</label>
-                        <input type="text" id="nama_disposisi" name="nama_disposisi" class="form-control w-full mt-2" placeholder="Nama Disposisi">
+                        <label for="kode_status" class="form-label">Kode Status</label>
+                        <input type="text" id="kode_status" name="kode_status" class="form-control w-full mt-2" placeholder="Kode Status">
+                    </div>
+                    <div class="col-s~2">
+                        <label for="nama_status" class="form-label">Nama Status</label>
+                        <input type="text" id="nama_status" name="nama_status" class="form-control w-full mt-2" placeholder="Nama Status">
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -121,18 +126,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="font-medium text-base mr-auto">
-                    Edit Disposisi
+                    Edit Status Pengiriman
                 </h2>
             </div>
             <form  method="post" id="form_edit" onsubmit="return false;" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
 
-                    <input type="hidden" class="id_disposisi" id="id_disposisi" name="id_disposisi" >
+                    <input type="hidden" class="id_status" id="id_status" name="id_status" >
 
                     <div class="col-span-12">
-                        <label for="nama_disposisi" class="form-label">Nama Disposisi</label>
-                        <input type="text" id="nama_disposisi" name="nama_disposisi" class="form-control w-full mt-2 nama_disposisi" >
+                        <label for="kode_status" class="form-label">Kode Status</label>
+                        <input type="text" id="kode_status" name="kode_status" class="form-control w-full mt-2 kode_status" >
+                    </div>
+                    <div class="col-span-12">
+                        <label for="nama_status" class="form-label">Nama Status</label>
+                        <input type="text" id="nama_status" name="nama_status" class="form-control w-full mt-2 nama_status" >
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -149,7 +158,7 @@
     </div>
 </div>
 <!-- END: Edit Item Modal -->
-    
+
 <!-- BEGIN: Modal Content -->
 <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
     <div class="modal-dialog">
@@ -163,7 +172,35 @@
             </div>
         </div>
     </div>
-</div> <!-- END: Modal Content -->    
+</div> <!-- END: Modal Content -->
+
+
+
+{{-- <div class="overflow-y-auto flex justify-center items-center" style="height: 100vh;position: fixed;z-index: 10000000;background: rgba(0,0,0,.6509803921568628);margin-top: 0px;margin-left: 0px;padding-left: 0px;z-index: 10000;width: 100vw;top: 0;left: 0;"> 
+    <div class="flex justify-center items-center">
+                        
+        <svg width="20" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+            <defs>
+                <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+                    <stop stop-color="rgb(45, 55, 72)" stop-opacity="0" offset="0%"></stop>
+                    <stop stop-color="rgb(45, 55, 72)" stop-opacity=".631" offset="63.146%"></stop>
+                    <stop stop-color="rgb(45, 55, 72)" offset="100%"></stop>
+                </linearGradient>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(1 1)">
+                    <path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" stroke-width="3">
+                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite"></animateTransform>
+                    </path>
+                    <circle fill="rgb(45, 55, 72)" cx="36" cy="18" r="1">
+                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite"></animateTransform>
+                    </circle>
+                </g>
+            </g>
+        </svg>
+        </div>
+</div> --}}
+ 
 
 @stop
 @section('script')
@@ -172,7 +209,7 @@
     
     function showData(){
         $.ajax({
-            url:"{{URL::to('datamaster/disposisi-list')}}",
+            url:"{{URL::to('datamaster/status-list')}}",
             type:"GET",
             data:'data',
             // beforeSend:function(){
@@ -215,7 +252,7 @@
             //updateAllMessageForms();
             e.preventDefault();
             $.ajax({
-                url         : "{{route('disposisi.store')}}",
+                url         : "{{route('status.store')}}",
                 type        : 'post',
                 data        : data,
                 dataType    : 'JSON',
@@ -254,7 +291,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url         : "{{URL::to('datamaster/disposisi')}}/"+id,
+                        url         : "{{URL::to('datamaster/status')}}/"+id,
                         type        : 'delete',
                         contentType : false,
                         cache       : false,
@@ -279,34 +316,30 @@
 
     });
 
-
-    $(document).ready(function(){        
-        showData(); 
-
-    });
-
     $('#myTabel').on('click', '#btn-edit', function() {
 
-const id_disposisi = $(this).data('id_disposisi');
-const nama_disposisi = $(this).data('nama_disposisi');
+const id_status = $(this).data('id_status');
+const kode_status = $(this).data('kode_status');
+const nama_status = $(this).data('nama_status');
 const keterangan = $(this).data('keterangan');
 
-$('.id_disposisi').val(id_disposisi);
-$('.nama_disposisi').val(nama_disposisi);
+$('.id_status').val(id_status);
+$('.kode_status').val(kode_status);
+$('.nama_status').val(nama_status);
 $('.keterangan').val(keterangan);
 modal.show('#update-item-modal');   
 });
 
 $(document).on("submit","#form_edit",function(e){
 
-var id = $('#id_disposisi').val();
+var id = $('#id_status').val();
 var data = new FormData(this);
 
 if($("#form_edit")[0].checkValidity()) {
     //updateAllMessageForms();
     e.preventDefault();
     $.ajax({
-        url         : "{{URL::to('datamaster/disposisi-update')}}",
+        url         : "{{URL::to('datamaster/status-update')}}",
         type        : 'POST',
         data        : data,
         dataType    : 'JSON',

@@ -3,33 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Barang;
+use App\Models\Level;
 
-class BarangController extends Controller
+class LevelController extends Controller
 {
     public function index()
     { 
         
-        return view('dashboard.datamaster.barang');
+        return view('dashboard.datapelanggan.level');
     }
 
     public function list(){     
-        $barangs = Barang::all();
+        $levels = Level::all();
         
-        return view('dashboard.datamaster.view.list_barang',compact('barangs'));
+        return view('dashboard.datapelanggan.view.list_level',compact('levels'));
     }
 
 
     public function store(Request $request)
     {
         $rules=[
-            'jenis_barang' => 'required|max:255',
-            'harga' => 'required'
+            'nama_level' => 'required|max:255',
+            'keterangan' => 'required'
         ];
 
         $pesan=[
-            'jenis_barang.required'=>'Jenis Barang harus diisi',
-            'harga.required'=>'Harga harus diisi'
+            'nama_level.required'=>'Nama Level harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -45,15 +45,14 @@ class BarangController extends Controller
             return $data;
         }else{
            
-            // $show = Barang::create();
-            $barang=new Barang();
-            $barang->jenis_barang = $request->input('jenis_barang');
-            $barang->harga = $request->input('harga');
-            $barang->keterangan = $request->input('keterangan');
-            $barang = $barang->save();
+            // $show = Level::create();
+            $level=new Level();
+            $level->nama_level = $request->input('nama_level');
+            $level->keterangan = $request->input('keterangan');
+            $level = $level->save();
 
             $data=array(
-                'success'=> $barang,
+                'success'=> $level,
                 'pesan'=>'Data berhasil dikirim'
             );
             return $data;
@@ -61,17 +60,18 @@ class BarangController extends Controller
         }
         
     }
+
     
     public function update(Request $request)
     {
         $rules=[
-            'jenis_barang' => 'required|max:255',
-            'harga' => 'required'
+            'nama_level' => 'required|max:255',
+            'keterangan' => 'required'
         ];
 
         $pesan=[
-            'jenis_barang.required'=>'Jenis Barang harus diisi',
-            'harga.required'=>'Harga harus diisi'
+            'nama_level.required'=>'Nama Level harus diisi',
+            'keterangan.required'=>'keterangan harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -86,41 +86,39 @@ class BarangController extends Controller
             return $data;
         }else{
            
-            $barangUpdate=Barang::where('id_barang',$request->input('id_barang'))
+            $levelUpdate=Level::where('id_level',$request->input('id_level'))
             ->update(
                 [
-                    'jenis_barang' => $request->input('jenis_barang'),
-                    'harga' => $request->input('harga'),
+                    'nama_level' => $request->input('nama_level'),
                     'keterangan' => $request->input('keterangan')
                 ]);
 
 
             $data=array(
-                'success'=>$barangUpdate,
+                'success'=>$levelUpdate,
                 'pesan'=>'Data berhasil di Update'
             );
             return $data;
 
         }
     }
-    
+
     public function destroy($id)
     {
-        $barang = Barang::where('id_barang',$id);
-        $barang->delete();
+        $level = Level::where('id_level',$id);
+        $level->delete();
 
-        $pesan = ($barang)?'Data berhasil Dihapus':'Ada Kesalahan';
+        $pesan = ($level)?'Data berhasil Dihapus':'Ada Kesalahan';
 
         $data=array(
-            'success'=> $barang,
+            'success'=> $level,
             'pesan'=> $pesan
         );
         return $data;
-    }
 
-    public function data_barang(){
-        $barangs = Barang::all();
-        return $barangs;
     }
-
+    public function data_level(){
+        $levels = Level::all();
+        return $levels;
+    }
 }

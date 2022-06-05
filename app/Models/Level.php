@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Asuransi extends Model
+class Level extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['nama_asuransi', 'biaya'];
+    protected $fillable = ['nama_level']; 
 }

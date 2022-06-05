@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->id('id_service');
             $table->string('nama_service');
             $table->string('biaya');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

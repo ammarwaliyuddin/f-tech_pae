@@ -17,7 +17,7 @@ class CreateAsuransisTable extends Migration
             $table->id('id_asuransi');
             $table->string('nama_asuransi');
             $table->string('biaya');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
