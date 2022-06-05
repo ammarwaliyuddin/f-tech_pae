@@ -23,14 +23,11 @@ class KotaController extends Controller
     {
         $rules=[
             'nama_kota' => 'required|max:255',
-            'kode_kota' => 'required',
-            'keterangan' => 'required'
-        ];
+            'kode_kota' => 'required'
 
         $pesan=[
             'nama_kota.required'=>'Nama Kota harus diisi',
-            'kode_kota.required'=>'Kode Kota harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'kode_kota.required'=>'Kode Kota harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -70,9 +67,47 @@ class KotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $rules=[
+            'nama_kota' => 'required|max:255',
+            'kode_kota' => 'required'
+        ];
+
+        $pesan=[
+            'nama_kota.required'=>'Nama Kota harus diisi',
+            'kode_kota.required'=>'Kode Kota harus diisi'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
+
+        if($validasi->fails()){
+            $data=array(
+                'success' =>false,
+                'pesan'   =>'Validasi Gagal',
+                'error'   =>$validasi->errors()->all()
+            );
+
+            return $data;
+        }else{
+           
+            $kotaUpdate=Kota::where('id_kota',$request->input('id_kota'))
+            ->update(
+                [
+                    'nama_kota' => $request->input('nama_kota'),
+                    'kode_kota' => $request->input('kode_kota'),
+                    'keterangan' => $request->input('keterangan')
+                ]);
+
+
+            $data=array(
+                'success'=>$kotaUpdate,
+                'pesan'=>'Data berhasil di Update'
+            );
+            return $data;
+
+        }
     }
 
     /**
