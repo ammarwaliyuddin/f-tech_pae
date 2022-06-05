@@ -109,7 +109,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
                 </div>
             </form>
@@ -137,9 +137,11 @@
                         <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
                         <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2 nama_kecamatan" >
                     </div>
-                    <div class="col-span-12">
-                        <label for="nama_kota" class="form-label">Nama Kota</label>
-                        <input type="text" id="nama_kota" name="nama_kota" class="form-control w-full mt-2 nama_kota" >
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -148,7 +150,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
                 </div>
             </form>
@@ -321,12 +323,13 @@
 
         const id_kecamatan = $(this).data('id_kecamatan');
         const kecamatan = $(this).data('kecamatan');
-        const nama_kota = $(this).data('nama_kota');
+        const id_kota = $(this).data('id_kota');
         const keterangan = $(this).data('ket');
 
         $('.id_kecamatan').val(id_kecamatan);
         $('.nama_kecamatan').val(kecamatan);
-        $('.nama_kota').val(nama_kota);
+        $('.id_kota').val(id_kota);
+        $('#id_kota').trigger('change');
         $('.keterangan').val(keterangan);
         modal.show('#update-item-modal');   
     });
@@ -363,7 +366,7 @@
                 console.log(result);
                 let el = `
                 <label for="id_kota" class="form-label">Nama Kota</label>
-                <select id="id_kota" class="form-select w-full mt-2" name="id_kota">`;
+                <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">`;
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
