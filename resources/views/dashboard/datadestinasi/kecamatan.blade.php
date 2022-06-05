@@ -97,8 +97,8 @@
                         <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2" placeholder="Nama Kecamatan">
                     </div>
                     <div class="col-span-12 remote-data-kota">
-                        <label for="nama_kota" class="form-label">Nama Kota</label>
-                        <select id="nama_kota" class="form-select w-full mt-2" name="nama_kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2" name="id_kota">
                             <option>Loading ...</option>
                         </select>
                     </div>
@@ -256,7 +256,12 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    modal.show('#success-saved'); 
+                    console.log(data)
+                    if(data.success){
+                        modal.show('#success-saved'); 
+                    }else{
+                        console.log('eror')
+                    }       
                     showData();
                 }
                         
@@ -357,10 +362,10 @@
             success:function(result){
                 console.log(result);
                 let el = `
-                <label for="nama_kota" class="form-label">Nama Kota</label>
-                <select id="nama_kota" class="form-select w-full mt-2" name="nama_kota">`;
+                <label for="id_kota" class="form-label">Nama Kota</label>
+                <select id="id_kota" class="form-select w-full mt-2" name="id_kota">`;
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_nama_kota+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 

@@ -9,5 +9,9 @@ class Kecamatan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_kecamatan','nama_kota', 'keterangan' ]; 
+    protected $fillable = ['nama_kecamatan','id_kota' ];
+    
+    public function kota(){
+        return $this->hasOne(Kota::class,'id_kota','id_kota');
+    }
 }

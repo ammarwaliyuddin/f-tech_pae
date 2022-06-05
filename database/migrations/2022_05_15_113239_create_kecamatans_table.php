@@ -17,7 +17,7 @@ class CreateKecamatansTable extends Migration
             $table->id('id_kecamatan');
             $table->foreignId('id_kota');
             $table->string('nama_kecamatan');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

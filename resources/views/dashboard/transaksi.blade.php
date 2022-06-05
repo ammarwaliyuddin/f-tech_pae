@@ -22,10 +22,11 @@
                     <option>Loading ...</option>
                 </select>
             </div>
-            <div class="intro-y col-span-12 lg:col-span-4 remote-data-destinasi">
-                <label for="destinasi" class="form-label">Destinasi</label>
-                <select id="destinasi" class="form-select" name="destinasi">
-                    <option>Loading ...</option>
+            <div class="intro-y col-span-12 lg:col-span-4 ">
+                <label for="update-profile-form-3" class="form-label">Postal Code</label>
+                <select id="update-profile-form-3" data-search="true" class="tail-select w-full">
+                    <option value="1">018906 - 1 STRAITS BOULEVARD SINGA...</option>
+                    <option value="2">018910 - 5A MARINA GARDENS DRIVE...</option>
                 </select>
             </div>
             <div class="intro-y col-span-12 lg:col-span-4 remote-data-barang">
@@ -463,13 +464,24 @@
             type:"GET",
             success:function(result){
                 console.log(result);
+                // <label for="update-profile-form-3" class="form-label">Postal Code</label>
+                // <select id="update-profile-form-3" data-search="true" class="tail-select w-full">
+                // </select>
+                
                 let el = `
-                <label for="destinasi" class="form-label">Destinasi</label>
-                <select id="destinasi" class="form-select" name="destinasi">`;
-                    $.each(result,function(a,b){
-                        el+="<option value='"+b.id_destinasi+"' data-harga='"+b.harga+"''>"+b.kode_destinasi+"</option>";
-                    })
-                el+="</select>";
+                <label for="update-profile-form-3" class="form-label">Postal Code</label>
+                                                    <select id="update-profile-form-3" data-search="true" class="tail-select w-full">
+                                                        <option value="1">018906 - 1 STRAITS BOULEVARD SINGA...</option>
+                                                        <option value="2">018910 - 5A MARINA GARDENS DRIVE...</option>
+                                                        
+                                                    </select>`;
+                // <label for="destinasi" class="form-label">Destinasi</label>
+                // <select id="destinasi" class="tail-select w-full" name="destinasi" data-search="true">`;
+                //     $.each(result,function(a,b){
+                //         el+="<option value='"+b.id_destinasi+"' data-harga='"+b.harga+"''>"+b.kode_destinasi+"</option>";
+                //         // el+="<option value='"+b.id_destinasi+"' data-harga='"+b.harga+"''>"+b.kode_destinasi+"</option>";
+                //     })
+                // el+="</select>";
 
                 $(".remote-data-destinasi").empty().html(el);
             }

@@ -23,14 +23,12 @@ class KotaController extends Controller
     {
         $rules=[
             'nama_kota' => 'required|max:255',
-            'kode_kota' => 'required',
-            'keterangan' => 'required'
+            'kode_kota' => 'required'
         ];
 
         $pesan=[
             'nama_kota.required'=>'Nama Kota harus diisi',
-            'kode_kota.required'=>'Kode Kota harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'kode_kota.required'=>'Kode Kota harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);

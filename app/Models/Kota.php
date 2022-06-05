@@ -9,5 +9,5 @@ class Kota extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_kota','kode_kota', 'keterangan' ]; 
+    protected $fillable = ['nama_kota','kode_kota' ]; 
 }

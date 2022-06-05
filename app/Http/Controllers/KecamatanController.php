@@ -14,7 +14,6 @@ class KecamatanController extends Controller
 
     public function list(){     
         $kecamatans = Kecamatan::all();
-        
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
     }
 
@@ -22,14 +21,12 @@ class KecamatanController extends Controller
     {
         $rules=[
             'nama_kecamatan' => 'required|max:255',
-            'nama_kota' => 'required',
-            'keterangan' => 'required'
+            'id_kota' => 'required'
         ];
 
         $pesan=[
             'nama_kecamatan.required'=>'Nama Kecamatan harus diisi',
-            'nama_kota.required'=>'Nama Kota harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'id_kota.required'=>'Nama Kota harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -48,7 +45,7 @@ class KecamatanController extends Controller
             // $show = Kecamatan::create();
            $kecamatan=new Kecamatan();
            $kecamatan->nama_kecamatan = $request->input('nama_kecamatan');
-           $kecamatan->nama_kota = $request->input('nama_kota');
+           $kecamatan->id_kota = $request->input('id_kota');
            $kecamatan->keterangan = $request->input('keterangan');
            $kecamatan =$kecamatan->save();
 

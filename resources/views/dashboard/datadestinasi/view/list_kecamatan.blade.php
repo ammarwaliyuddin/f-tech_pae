@@ -10,7 +10,7 @@
                         <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_kecamatan }}</a> 
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_kota }}</a> 
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->kota->nama_kota }}</a> 
                     </td>
                     <td class="w-40 text-center">
                         {{ $item->keterangan }}
