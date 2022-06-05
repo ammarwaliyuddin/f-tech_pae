@@ -22,12 +22,10 @@ class DisposisiController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'nama_disposisi' => 'required|max:255',
-            'keterangan' => 'required'
+            'nama_disposisi' => 'required|max:255'
         ];
         $pesan=[
-            'nama_disposisi.required'=>'Nama Service harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'nama_disposisi.required'=>'Nama Service harus diisi'
         ];
         $validasi=\Validator::make($request->all(),$rules,$pesan);
       
@@ -61,12 +59,10 @@ class DisposisiController extends Controller
     public function update(Request $request)
     {
         $rules=[
-            'nama_disposisi' => 'required|max:255',
-            'keterangan' => 'required'
+            'nama_disposisi' => 'required|max:255'
         ];
         $pesan=[
-            'nama_disposisi.required'=>'Nama Disposisi harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'nama_disposisi.required'=>'Nama Disposisi harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);

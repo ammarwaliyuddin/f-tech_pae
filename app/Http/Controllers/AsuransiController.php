@@ -23,13 +23,11 @@ class AsuransiController extends Controller
     {
         $rules=[
             'nama_asuransi' => 'required|max:255',
-            'biaya' => 'required',
-            'keterangan' => 'required'
+            'biaya' => 'required'
         ];
         $pesan=[
             'nama_asuransi.required'=>'Nama Asuransi harus diisi',
-            'biaya.required'=>'Biaya harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'biaya.required'=>'Biaya harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -66,13 +64,11 @@ class AsuransiController extends Controller
     {
         $rules=[
             'nama_asuransi' => 'required|max:255',
-            'biaya' => 'required',
-            'keterangan' => 'required'
+            'biaya' => 'required'
         ];
         $pesan=[
             'nama_asuransi.required'=>'Nama Asuransi harus diisi',
-            'biaya.required'=>'Biaya harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'biaya.required'=>'Biaya harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);

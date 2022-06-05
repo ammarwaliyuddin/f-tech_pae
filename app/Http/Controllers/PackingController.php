@@ -22,14 +22,12 @@ class PackingController extends Controller
     {
         $rules=[
             'nama_packing' => 'required|max:255',
-            'biaya' => 'required',
-            'keterangan' => 'required'
+            'biaya' => 'required'
         ];
 
         $pesan=[
             'nama_packing.required'=>'Nama Packing harus diisi',
-            'biaya.required'=>'Biaya harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'biaya.required'=>'Biaya harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -74,14 +72,12 @@ class PackingController extends Controller
 
         $rules=[
             'nama_packing' => 'required|max:255',
-            'biaya' => 'required',
-            'keterangan' => 'required'
+            'biaya' => 'required'
         ];
 
         $pesan=[
             'nama_packing.required'=>'Nama Packing harus diisi',
-            'biaya.required'=>'Biaya harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'biaya.required'=>'Biaya harus diisi'
         ];
 
 

@@ -22,13 +22,11 @@ class ServiceController extends Controller
     {
         $rules=[
             'nama_service' => 'required|max:255',
-            'biaya' => 'required',
-            'keterangan' => 'required'
+            'biaya' => 'required'
         ];
         $pesan=[
             'nama_service.required'=>'Nama Service harus diisi',
-            'biaya.required'=>'Biaya harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'biaya.required'=>'Biaya harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -66,13 +64,11 @@ class ServiceController extends Controller
     {
         $rules=[
             'nama_service' => 'required|max:255',
-            'biaya' => 'required',
-            'keterangan' => 'required'
+            'biaya' => 'required'
         ];
         $pesan=[
             'nama_service.required'=>'Nama Service harus diisi',
-            'biaya.required'=>'Biaya harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'biaya.required'=>'Biaya harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);

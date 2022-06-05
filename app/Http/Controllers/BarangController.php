@@ -24,14 +24,12 @@ class BarangController extends Controller
     {
         $rules=[
             'jenis_barang' => 'required|max:255',
-            'harga' => 'required',
-            'keterangan' => 'required'
+            'harga' => 'required'
         ];
 
         $pesan=[
             'jenis_barang.required'=>'Jenis Barang harus diisi',
-            'harga.required'=>'Harga harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'harga.required'=>'Harga harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -68,14 +66,12 @@ class BarangController extends Controller
     {
         $rules=[
             'jenis_barang' => 'required|max:255',
-            'harga' => 'required',
-            'keterangan' => 'required'
+            'harga' => 'required'
         ];
 
         $pesan=[
             'jenis_barang.required'=>'Jenis Barang harus diisi',
-            'harga.required'=>'Harga harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'harga.required'=>'Harga harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
