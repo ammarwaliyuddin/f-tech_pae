@@ -66,7 +66,7 @@ Route::prefix('datamaster')->group(function () {
     // disposisi
     Route::resource('disposisi', DisposisiController::class);
     Route::get('disposisi-list', [DisposisiController::class,'list']);
-    Route::post('disposisi-update', [AsuransiController::class,'update']);
+    Route::post('disposisi-update', [DisposisiController::class,'update']);
 
 });
 
