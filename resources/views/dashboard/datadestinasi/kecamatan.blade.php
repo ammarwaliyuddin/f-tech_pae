@@ -172,6 +172,21 @@
             </div>
         </div>
     </div>
+</div> 
+<!-- END: Modal Content -->
+ <!-- BEGIN: Modal Content -->
+ <div id="unsuccess-saved" class="modal " tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="p-5 text-center"> <i data-feather="x-circle" class="w-16 h-16 text-theme-12 mx-auto mt-3"></i>
+                    <div class="text-3xl mt-5 ">Tidak Tersimpan!</div>
+                    <div class="text-gray-600 mt-2 pesan"></div>
+                </div>
+                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
+            </div>
+        </div>
+    </div>
 </div> <!-- END: Modal Content -->
 
 {{-- <div class="overflow-y-auto flex justify-center items-center" style="height: 100vh;position: fixed;z-index: 10000000;background: rgba(0,0,0,.6509803921568628);margin-top: 0px;margin-left: 0px;padding-left: 0px;z-index: 10000;width: 100vw;top: 0;left: 0;"> 
@@ -343,7 +358,7 @@
             //updateAllMessageForms();
             e.preventDefault();
             $.ajax({
-                url         : "{{URL::to('datamaster/kecamatan-update')}}",
+                url         : "{{URL::to('datadestinasi/kecamatan-update')}}",
                 type        : 'POST',
                 data        : data,
                 dataType    : 'JSON',
@@ -351,8 +366,14 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    modal.show('#success-saved'); 
-                    showData();
+                    if(data.success){
+                        modal.show('#success-saved'); 
+                        showData();
+                    }else{
+                        let pesan= `<div class="text-gray-600 mt-2 pesan">${data.error}</div>`
+                        $(".pesan").empty().html(pesan);
+                        modal.show('#unsuccess-saved'); 
+                    }  
                 }      
             });
         }
