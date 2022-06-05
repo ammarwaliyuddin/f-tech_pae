@@ -109,7 +109,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
                 </div>
             </form>
@@ -139,7 +139,7 @@
                     </div>
                     <div class="col-span-12 remote-data-kota">
                         <label for="id_kota" class="form-label">Nama Kota</label>
-                        <select id="id_kota" class="form-select w-full mt-2" name="id_kota">
+                        <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">
                             <option>Loading ...</option>
                         </select>
                     </div>
@@ -150,7 +150,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
                 </div>
             </form>
@@ -167,6 +167,21 @@
                 <div class="p-5 text-center"> <i data-feather="check-circle" class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
                     <div class="text-3xl mt-5">Berhasil Tersimpan!</div>
                     <div class="text-gray-600 mt-2">Data Anda tersimpan!</div>
+                </div>
+                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<!-- END: Modal Content -->
+ <!-- BEGIN: Modal Content -->
+ <div id="unsuccess-saved" class="modal " tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="p-5 text-center"> <i data-feather="x-circle" class="w-16 h-16 text-theme-12 mx-auto mt-3"></i>
+                    <div class="text-3xl mt-5 ">Tidak Tersimpan!</div>
+                    <div class="text-gray-600 mt-2 pesan"></div>
                 </div>
                 <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
             </div>
@@ -318,12 +333,13 @@
 
         const id_kecamatan = $(this).data('id_kecamatan');
         const kecamatan = $(this).data('kecamatan');
-        const nama_kota = $(this).data('nama_kota');
+        const id_kota = $(this).data('id_kota');
         const keterangan = $(this).data('ket');
 
         $('.id_kecamatan').val(id_kecamatan);
         $('.nama_kecamatan').val(kecamatan);
-        $('.nama_kota').val(nama_kota);
+        $('.id_kota').val(id_kota);
+        $('#id_kota').trigger('change');
         $('.keterangan').val(keterangan);
         modal.show('#update-item-modal');   
     });
@@ -337,7 +353,7 @@
             //updateAllMessageForms();
             e.preventDefault();
             $.ajax({
-                url         : "{{URL::to('datamaster/kecamatan-update')}}",
+                url         : "{{URL::to('datadestinasi/kecamatan-update')}}",
                 type        : 'POST',
                 data        : data,
                 dataType    : 'JSON',
@@ -345,8 +361,14 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    modal.show('#success-saved'); 
-                    showData();
+                    if(data.success){
+                        modal.show('#success-saved'); 
+                        showData();
+                    }else{
+                        let pesan= `<div class="text-gray-600 mt-2 pesan">${data.error}</div>`
+                        $(".pesan").empty().html(pesan);
+                        modal.show('#unsuccess-saved'); 
+                    }  
                 }      
             });
         }
@@ -361,7 +383,7 @@
                 console.log('nama_kecamatan');
                 let el = `
                 <label for="id_kota" class="form-label">Nama Kota</label>
-                <select id="id_kota" class="form-select w-full mt-2" name="id_kota">`;
+                <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">`;
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })

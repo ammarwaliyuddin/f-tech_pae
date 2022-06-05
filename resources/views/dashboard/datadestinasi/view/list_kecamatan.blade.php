@@ -25,5 +25,7 @@
 
         </div>
     </td>
+    
 </tr>
+
 @endforeach
