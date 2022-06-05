@@ -3,11 +3,11 @@
         
 
 <h2 class="intro-y text-lg font-medium mt-10">
-    Data Level
+    Data Status Pengiriman
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <a  href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Level</a>
+        <a  href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Status Pengiriman</a>
         <div class="dropdown">
             <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
@@ -40,8 +40,9 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Nama Level</th>
-                    <th class="whitespace-nowrap">Keterangan</th>
+                    <th class="whitespace-nowrap">Kode Status</th>
+                    <th class="text-center whitespace-nowrap">Nama Status</th>
+                    <th class="text-center whitespace-nowrap">Keterangan</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -88,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="font-medium text-base mr-auto">
-                    Tambah Level
+                    Tambah Status Pengiriman
                 </h2>
             </div>
 
@@ -96,13 +97,18 @@
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12">
-                        <label for="nama_level" class="form-label">Nama Level</label>
-                        <input type="text" id="nama_level" name="nama_level" class="form-control w-full mt-2" placeholder="Nama User">
+                        <label for="kode_status" class="form-label">Kode Status</label>
+                        <input type="text" id="kode_status" name="kode_status" class="form-control w-full mt-2" placeholder="Kode Status">
+                    </div>
+                    <div class="col-s~2">
+                        <label for="nama_status" class="form-label">Nama Status</label>
+                        <input type="text" id="nama_status" name="nama_status" class="form-control w-full mt-2" placeholder="Nama Status">
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <textarea id="keterangan" class="form-control w-full mt-2" name="keterangan" placeholder="keterangan"></textarea>
                     </div>
+                
                 </div>
                 <div class="modal-footer text-right">
                     <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
@@ -120,18 +126,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="font-medium text-base mr-auto">
-                    Edit Level
+                    Edit Status Pengiriman
                 </h2>
             </div>
             <form  method="post" id="form_edit" onsubmit="return false;" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
 
-                    <input type="hidden" class="id_level" id="id_level" name="id_level" >
+                    <input type="hidden" class="id_status" id="id_status" name="id_status" >
 
                     <div class="col-span-12">
-                        <label for="nama_level" class="form-label">Nama Level</label>
-                        <input type="text" id="nama_level" name="nama_level" class="form-control w-full mt-2 nama_level" >
+                        <label for="kode_status" class="form-label">Kode Status</label>
+                        <input type="text" id="kode_status" name="kode_status" class="form-control w-full mt-2 kode_status" >
+                    </div>
+                    <div class="col-span-12">
+                        <label for="nama_status" class="form-label">Nama Status</label>
+                        <input type="text" id="nama_status" name="nama_status" class="form-control w-full mt-2 nama_status" >
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -199,7 +209,7 @@
     
     function showData(){
         $.ajax({
-            url:"{{URL::to('datapelanggan/level-list')}}",
+            url:"{{URL::to('datamaster/status-list')}}",
             type:"GET",
             data:'data',
             // beforeSend:function(){
@@ -242,7 +252,7 @@
             //updateAllMessageForms();
             e.preventDefault();
             $.ajax({
-                url         : "{{route('level.store')}}",
+                url         : "{{route('status.store')}}",
                 type        : 'post',
                 data        : data,
                 dataType    : 'JSON',
@@ -281,7 +291,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url         : "{{URL::to('datapelanggan/level')}}/"+id,
+                        url         : "{{URL::to('datamaster/status')}}/"+id,
                         type        : 'delete',
                         contentType : false,
                         cache       : false,
@@ -308,40 +318,42 @@
 
     $('#myTabel').on('click', '#btn-edit', function() {
 
-    const id_level = $(this).data('id_level');
-    const nama_level = $(this).data('nama_level');
-    const keterangan = $(this).data('keterangan');
+const id_status = $(this).data('id_status');
+const kode_status = $(this).data('kode_status');
+const nama_status = $(this).data('nama_status');
+const keterangan = $(this).data('keterangan');
 
-    $('.id_level').val(id_level);
-    $('.nama_level').val(nama_level);
-    $('.keterangan').val(keterangan);
-    modal.show('#update-item-modal');   
+$('.id_status').val(id_status);
+$('.kode_status').val(kode_status);
+$('.nama_status').val(nama_status);
+$('.keterangan').val(keterangan);
+modal.show('#update-item-modal');   
+});
+
+$(document).on("submit","#form_edit",function(e){
+
+var id = $('#id_status').val();
+var data = new FormData(this);
+
+if($("#form_edit")[0].checkValidity()) {
+    //updateAllMessageForms();
+    e.preventDefault();
+    $.ajax({
+        url         : "{{URL::to('datamaster/status-update')}}",
+        type        : 'POST',
+        data        : data,
+        dataType    : 'JSON',
+        contentType : false,
+        cache       : false,
+        processData : false,
+        success: function(data) {
+            modal.show('#success-saved'); 
+            showData();
+        }      
     });
+}
 
-    $(document).on("submit","#form_edit",function(e){
-
-    var id = $('#id_level').val();
-    var data = new FormData(this);
-
-    if($("#form_edit")[0].checkValidity()) {
-        //updateAllMessageForms();
-        e.preventDefault();
-        $.ajax({
-            url         : "{{URL::to('datapelanggan/level-update')}}",
-            type        : 'POST',
-            data        : data,
-            dataType    : 'JSON',
-            contentType : false,
-            cache       : false,
-            processData : false,
-            success: function(data) {
-                modal.show('#success-saved'); 
-                showData();
-            }      
-        });
-    }
-
-    });
+});
 
 
     $(document).ready(function(){        

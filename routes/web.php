@@ -14,6 +14,8 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\LevelController;
 
 use App\Models\Packing;
 
@@ -39,6 +41,11 @@ Route::prefix('datapelanggan')->group(function () {
     Route::resource('user', UserController::class);
     Route::get('user-list', [UserController::class,'list']);
     Route::post('user-update', [UserController::class,'update']);
+    
+    // level
+    Route::resource('level', LevelController::class);
+    Route::get('level-list', [LevelController::class,'list']);
+    Route::post('level-update', [LevelController::class,'update']);
 
 });
 
@@ -68,6 +75,10 @@ Route::prefix('datamaster')->group(function () {
     Route::get('disposisi-list', [DisposisiController::class,'list']);
     Route::post('disposisi-update', [DisposisiController::class,'update']);
 
+    // status pengiriman
+    Route::resource('status', StatusController::class);
+    Route::get('status-list', [StatusController::class,'list']);
+    Route::post('status-update', [StatusController::class,'update']);
 });
 
 Route::prefix('datadestinasi')->group(function () {
@@ -105,6 +116,8 @@ Route::prefix('api')->group(function () {
     Route::get('data-user', [UserController::class,'data_user']);
     Route::get('data-kota', [KotaController::class,'data_kota']);
     Route::get('data-kecamatan', [KecamatanController::class,'data_kecamatan']);
+    Route::get('data-status', [StatusController::class,'data_status']);
+    Route::get('data-level', [LevelController::class,'data_level']);
 });
 
 

@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLevelsTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +14,11 @@ class CreateLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('levels', function (Blueprint $table) {
-            $table->id('id_level');
-            $table->string('nama_level');
-            $table->string('keterangan')->nullable();
+        Schema::create('statuses', function (Blueprint $table) {
+            $table->id('id_status');
+            $table->string('kode_status');
+            $table->string('nama_status');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('statuses');
     }
 }
