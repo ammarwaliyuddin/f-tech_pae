@@ -10,21 +10,31 @@
     <form method="post" id="form_tambah" onsubmit="return false;" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-12 gap-4 p-5">
-            <div class="intro-y col-span-12 lg:col-span-4 remote-data-pengirim">
+            <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="pengirim" class="form-label">Pengirim</label>
-                <select id="pengirim" class="form-select" name="pengirim">
-                    <option>Loading ...</option>
-                </select>
+                <div class="input-group">
+                    <select id="pengirim" class="form-select rounded-r-none remote-data-pengirim" name="pengirim">
+                        <option>Loading ...</option>
+                    </select>
+                    <a  type="button" data-toggle="modal" data-target="#add-user-modal" class="btn p-0 input-group-text">
+                        <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
+                    </a>
+                </div>
             </div>
-            <div class="intro-y col-span-12 lg:col-span-4 remote-data-penerima">
+            <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="penerima" class="form-label">Penerima</label>
-                <select id="penerima" class="form-select" name="penerima">
-                    <option>Loading ...</option>
-                </select>
+                <div class="input-group">
+                    <select id="penerima" class="form-select rounded-r-none remote-data-penerima" name="penerima">
+                        <option>Loading ...</option>
+                    </select>
+                    <a  type="button" data-toggle="modal" data-target="#add-user-modal" class="btn p-0 input-group-text">
+                        <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
+                    </a>
+                </div>
             </div>
             <div class="intro-y col-span-12 lg:col-span-4 ">
-                <label for="update-profile-form-3" class="form-label">Postal Code</label>
-                <select id="update-profile-form-3" data-search="true" class="tail-select w-full">
+                <label for="destinasi" class="form-label">Postal Code</label>
+                <select id="destinasi" data-search="true" class="tail-select w-full">
                     <option value="1">018906 - 1 STRAITS BOULEVARD SINGA...</option>
                     <option value="2">018910 - 5A MARINA GARDENS DRIVE...</option>
                 </select>
@@ -213,7 +223,76 @@
         </div>
     </div>
     <!-- END: Delete Confirmation Modal -->
+    <!-- BEGIN: Add user Modal -->
+    <div id="add-user-modal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">
+                        Tambah User
+                    </h2>
+                </div>
+
+                <form method="post" id="form-add-user" onsubmit="return false;" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12">
+                            <label for="nama_user" class="form-label">Nama User</label>
+                            <input type="text" id="nama_user" name="nama_user" class="form-control w-full mt-2" placeholder="Nama User">
+                        </div>
+                        <div class="col-span-12">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control w-full mt-2" placeholder="Password">
+                        </div>
+                        <div class="col-span-12">
+                            <label for="level" class="form-label">Level</label>
+                            <input type="text" id="level" name="level" class="form-control w-full mt-2" placeholder="Level">
+                        </div>
+                        <div class="col-span-12">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" id="alamat" name="alamat" class="form-control w-full mt-2" placeholder="Alamat">
+                        </div>
+                        <div class="col-span-12">
+                            <label for="hp" class="form-label">HP</label>
+                            <input type="text" id="hp" name="hp" class="form-control w-full mt-2" placeholder="HP">
+                        </div>
+                        <div class="col-span-12">
+                            <label for="kota" class="form-label">Kota</label>
+                            <textarea id="kota" class="form-control w-full mt-2" name="kota" placeholder="Kota"></textarea>
+                        </div>
+                        <div class="col-span-12">
+                            <label for="kecamatan" class="form-label">Kecamatan</label>
+                            <textarea id="kecamatan" class="form-control w-full mt-2" name="kecamatan" placeholder="Kecamatan"></textarea>
+                        </div>
+                    
+                    </div>
+                    <div class="modal-footer text-right">
+                        <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                        <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END: Add Item Modal -->
+     <!-- BEGIN: Modal Content -->
+    <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="p-5 text-center"> <i data-feather="check-circle" class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Berhasil Tersimpan!</div>
+                        <div class="text-gray-600 mt-2">Data Anda tersimpan!</div>
+                    </div>
+                    <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- END: Modal Content -->
 </div>   
+
+
         
 @stop
 @section('script')
@@ -367,6 +446,30 @@
 
     });
 
+    $(document).on("submit","#form-add-user",function(e){
+        var data = new FormData(this);
+        
+        if($("#form-add-user")[0].checkValidity()) {
+            //updateAllMessageForms();
+            e.preventDefault();
+            $.ajax({
+                url         : "{{route('user.store')}}",
+                type        : 'post',
+                data        : data,
+                dataType    : 'JSON',
+                contentType : false,
+                cache       : false,
+                processData : false,
+                success: function(data) {
+                    modal.show('#success-saved'); 
+                    getPengirim();
+                    getPenerima();
+                }
+                        
+            });
+        }
+    });
+
     function getBarang(){
         $.ajax({
             url:"{{URL::to('api/data-barang')}}",
@@ -494,12 +597,11 @@
             success:function(result){
                 console.log(result);
                 let el = `
-                <label for="pengirim" class="form-label">Pengirim</label>
-                <select id="pengirim" class="form-select" name="pengirim">`;
+                <select id="pengirim" class="form-select rounded-r-none remote-data-pengirim" name="pengirim">`;
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
                     })
-                el+="</select>";
+                el+=`</select> `;
 
                 $(".remote-data-pengirim").empty().html(el);
             }
@@ -512,8 +614,8 @@
             success:function(result){
                 console.log(result);
                 let el = `
-                <label for="penerima" class="form-label">Penerima</label>
-                <select id="penerima" class="form-select" name="penerima">`;
+                <select id="penerima" class="form-select rounded-r-none remote-data-penerima" name="penerima">
+                `;
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
                     })
