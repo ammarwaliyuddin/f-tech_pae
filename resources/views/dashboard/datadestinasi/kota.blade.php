@@ -23,7 +23,7 @@
         <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" placeholder="Search...">
+                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
@@ -214,12 +214,23 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
+
+    // search
+    $(document).on("keyup","#search-data",function(e){
+		showData();		
+        
+	})
     
     function showData(){
+       
+        data={
+            searching:  $('#search-data').val()
+		}
+
         $.ajax({
             url:"{{URL::to('datadestinasi/kota-list')}}",
             type:"GET",
-            data:'data',
+            data: data,
             // beforeSend:function(){
             //     $("#showData").after().empty().html(`<tr>
             //         <td colspan="5">
@@ -331,42 +342,43 @@
     });
     $('#myTabel').on('click', '#btn-edit', function() {
 
-const id_kota = $(this).data('id_kota');
-const kota = $(this).data('kota');
-const kode_kota = $(this).data('kode_kota');
-const keterangan = $(this).data('ket');
+        const id_kota = $(this).data('id_kota');
+        const kota = $(this).data('kota');
+        const kode_kota = $(this).data('kode_kota');
+        const keterangan = $(this).data('ket');
 
-$('.id_kota').val(id_kota);
-$('.nama_kota').val(kota);
-$('.kode_kota').val(kode_kota);
-$('.keterangan').val(keterangan);
-modal.show('#update-item-modal');   
-});
-
-$(document).on("submit","#form_edit",function(e){
-
-var id = $('#id_kota').val();
-var data = new FormData(this);
-
-if($("#form_edit")[0].checkValidity()) {
-    //updateAllMessageForms();
-    e.preventDefault();
-    $.ajax({
-        url         : "{{URL::to('datadestinasi/kota-update')}}",
-        type        : 'POST',
-        data        : data,
-        dataType    : 'JSON',
-        contentType : false,
-        cache       : false,
-        processData : false,
-        success: function(data) {
-            modal.show('#success-saved'); 
-            showData();
-        }      
+        $('.id_kota').val(id_kota);
+        $('.nama_kota').val(kota);
+        $('.kode_kota').val(kode_kota);
+        $('.keterangan').val(keterangan);
+        modal.show('#update-item-modal');   
     });
-}
 
-});
+    $(document).on("submit","#form_edit",function(e){
+
+    var id = $('#id_kota').val();
+    var data = new FormData(this);
+
+    if($("#form_edit")[0].checkValidity()) {
+        //updateAllMessageForms();
+        e.preventDefault();
+        $.ajax({
+            url         : "{{URL::to('datadestinasi/kota-update')}}",
+            type        : 'POST',
+            data        : data,
+            dataType    : 'JSON',
+            contentType : false,
+            cache       : false,
+            processData : false,
+            success: function(data) {
+                modal.show('#success-saved'); 
+                showData();
+            }      
+        });
+    }
+
+    });
+
 
     $(document).ready(function(){        
         showData(); 

@@ -12,8 +12,11 @@ class KotaController extends Controller
         return view('dashboard.datadestinasi.kota');
     }
 
-    public function list(){     
-        $kotas = Kota::all();
+    public function list(Request $request){   
+        
+        $searching = $request->input('searching');
+        
+        $kotas = empty($searching) ? Kota::all() : Kota::where('nama_kota','like','%'.$searching.'%')->get();
         
         return view('dashboard.datadestinasi.view.list_kota',compact('kotas'));
     }
