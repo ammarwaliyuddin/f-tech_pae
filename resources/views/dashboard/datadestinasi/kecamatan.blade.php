@@ -97,8 +97,8 @@
                         <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2" placeholder="Nama Kecamatan">
                     </div>
                     <div class="col-span-12 remote-data-kota">
-                        <label for="nama_kota" class="form-label">Nama Kota</label>
-                        <select id="nama_kota" class="form-select w-full mt-2" name="nama_kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2" name="id_kota">
                             <option>Loading ...</option>
                         </select>
                     </div>
@@ -138,8 +138,8 @@
                         <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2 nama_kecamatan" >
                     </div>
                     <div class="col-span-12">
-                        <label for="nama_kota" class="form-label">Nama Kota</label>
-                        <input type="text" id="nama_kota" name="nama_kota" class="form-control w-full mt-2 nama_kota" >
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <input type="text" id="id_kota" name="id_kota" class="form-control w-full mt-2 id_kota" >
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -356,11 +356,12 @@
             type:"GET",
             success:function(result){
                 console.log(result);
+                console.log('nama_kecamatan');
                 let el = `
-                <label for="nama_kota" class="form-label">Nama Kota</label>
-                <select id="nama_kota" class="form-select w-full mt-2" name="nama_kota">`;
+                <label for="id_kota" class="form-label">Nama Kota</label>
+                <select id="id_kota" class="form-select w-full mt-2" name="id_kota">`;
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_nama_kota+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 

@@ -22,15 +22,17 @@ class KecamatanController extends Controller
     {
         $rules=[
             'nama_kecamatan' => 'required|max:255',
-            'nama_kota' => 'required',
+            'id_kota' => 'required',
             'keterangan' => 'required'
         ];
 
         $pesan=[
             'nama_kecamatan.required'=>'Nama Kecamatan harus diisi',
-            'nama_kota.required'=>'Nama Kota harus diisi',
+            'id_kota.required'=>'Nama Kota harus diisi',
             'keterangan.required'=>'Keterangan harus diisi'
         ];
+
+        // dd($request->all());
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
       
@@ -48,7 +50,7 @@ class KecamatanController extends Controller
             // $show = Kecamatan::create();
            $kecamatan=new Kecamatan();
            $kecamatan->nama_kecamatan = $request->input('nama_kecamatan');
-           $kecamatan->nama_kota = $request->input('nama_kota');
+           $kecamatan->id_kota = $request->input('id_kota');
            $kecamatan->keterangan = $request->input('keterangan');
            $kecamatan =$kecamatan->save();
 
@@ -67,13 +69,13 @@ class KecamatanController extends Controller
     {
         $rules=[
             'nama_kecamatan' => 'required|max:255',
-            'nama_kota' => 'required',
+            'id_kota' => 'required',
             'keterangan' => 'required'
         ];
 
         $pesan=[
             'nama_kecamatan.required'=>'Nama Kecamatan harus diisi',
-            'nama_kota.required'=>'Nama Kota harus diisi',
+            'id_kota.required'=>'Nama Kota harus diisi',
             'keterangan.required'=>'Keterangan harus diisi'
         ];
 
@@ -93,7 +95,7 @@ class KecamatanController extends Controller
             ->update(
                 [
                     'nama_kecamatan' => $request->input('nama_kecamatan'),
-                    'nama_kota' => $request->input('nama_kota'),
+                    'id_kota' => $request->input('id_kota'),
                     'keterangan' => $request->input('keterangan')
                 ]);
 
