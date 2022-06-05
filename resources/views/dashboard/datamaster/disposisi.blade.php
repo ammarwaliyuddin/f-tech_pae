@@ -288,11 +288,11 @@
     $('#myTabel').on('click', '#btn-edit', function() {
 
 const id_disposisi = $(this).data('id_disposisi');
-const disposisi = $(this).data('disposisi');
-const keterangan = $(this).data('ket');
+const nama_disposisi = $(this).data('nama_disposisi');
+const keterangan = $(this).data('keterangan');
 
 $('.id_disposisi').val(id_disposisi);
-$('.nama_disposisi').val(disposisi);
+$('.nama_disposisi').val(nama_disposisi);
 $('.keterangan').val(keterangan);
 modal.show('#update-item-modal');   
 });
