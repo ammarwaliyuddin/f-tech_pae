@@ -18,7 +18,7 @@ class CreateKotasTable extends Migration
             $table->id('id_kota');
             $table->string('nama_kota');
             $table->string('kode_kota');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
