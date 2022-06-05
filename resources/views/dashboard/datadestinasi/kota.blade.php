@@ -31,12 +31,7 @@
     
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
        
-    @endif
         <table class="table table-report -mt-2" id="myTabel">
             <thead>
                 <tr>
@@ -85,7 +80,7 @@
 
 
  <!-- BEGIN: Add Item Modal -->
- <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
+ <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -112,7 +107,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
                 </div>
             </form>
@@ -168,6 +163,20 @@
                 <div class="p-5 text-center"> <i data-feather="check-circle" class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
                     <div class="text-3xl mt-5">Berhasil Tersimpan!</div>
                     <div class="text-gray-600 mt-2">Data Anda tersimpan!</div>
+                </div>
+                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- END: Modal Content -->
+ <!-- BEGIN: Modal Content -->
+ <div id="unsuccess-saved" class="modal " tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="p-5 text-center"> <i data-feather="x-circle" class="w-16 h-16 text-theme-12 mx-auto mt-3"></i>
+                    <div class="text-3xl mt-5 ">Tidak Tersimpan!</div>
+                    <div class="text-gray-600 mt-2 pesan"></div>
                 </div>
                 <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
             </div>
@@ -259,8 +268,14 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    modal.show('#success-saved'); 
-                    showData();
+                    if(data.success){
+                        modal.show('#success-saved'); 
+                        showData();
+                    }else{
+                        let pesan= `<div class="text-gray-600 mt-2 pesan">${data.error}</div>`
+                        $(".pesan").empty().html(pesan);
+                        modal.show('#unsuccess-saved'); 
+                    }    
                 }
                         
             });

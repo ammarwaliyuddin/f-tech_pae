@@ -256,7 +256,12 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    modal.show('#success-saved'); 
+                    console.log(data)
+                    if(data.success){
+                        modal.show('#success-saved'); 
+                    }else{
+                        console.log('eror')
+                    }       
                     showData();
                 }
                         

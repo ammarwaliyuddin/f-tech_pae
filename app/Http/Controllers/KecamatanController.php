@@ -14,7 +14,6 @@ class KecamatanController extends Controller
 
     public function list(){     
         $kecamatans = Kecamatan::all();
-        
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
     }
 
@@ -22,14 +21,12 @@ class KecamatanController extends Controller
     {
         $rules=[
             'nama_kecamatan' => 'required|max:255',
-            'id_kota' => 'required',
-            'keterangan' => 'required'
+            'id_kota' => 'required'
         ];
 
         $pesan=[
             'nama_kecamatan.required'=>'Nama Kecamatan harus diisi',
-            'id_kota.required'=>'Nama Kota harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'id_kota.required'=>'Nama Kota harus diisi'
         ];
 
         // dd($request->all());
