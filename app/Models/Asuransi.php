@@ -9,5 +9,5 @@ class Asuransi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_asuransi', 'biaya', 'keterangan'];
+    protected $fillable = ['nama_asuransi', 'biaya'];
 }

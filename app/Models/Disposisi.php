@@ -9,5 +9,5 @@ class Disposisi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_disposisi', 'keterangan'];
+    protected $fillable = ['nama_disposisi'];
 }
