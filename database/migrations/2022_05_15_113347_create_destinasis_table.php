@@ -18,6 +18,7 @@ class CreateDestinasisTable extends Migration
             $table->foreignId('id_kota_origin');
             $table->foreignId('id_kota_destinasi');
             $table->foreignId('id_kecamatan');
+            $table->foreignId('id_service');
             $table->string('kode_destinasi');
             $table->string('harga');
             $table->timestamps();
