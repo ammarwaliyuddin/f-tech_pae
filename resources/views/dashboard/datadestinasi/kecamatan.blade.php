@@ -137,9 +137,11 @@
                         <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
                         <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2 nama_kecamatan" >
                     </div>
-                    <div class="col-span-12">
+                    <div class="col-span-12 remote-data-kota">
                         <label for="id_kota" class="form-label">Nama Kota</label>
-                        <input type="text" id="id_kota" name="id_kota" class="form-control w-full mt-2 id_kota" >
+                        <select id="id_kota" class="form-select w-full mt-2" name="id_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -256,12 +258,7 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    console.log(data)
-                    if(data.success){
-                        modal.show('#success-saved'); 
-                    }else{
-                        console.log('eror')
-                    }       
+                    modal.show('#success-saved'); 
                     showData();
                 }
                         
