@@ -46,7 +46,6 @@ class ServiceController extends Controller
             // $show = Service::create();
            $service=new Service();
            $service->nama_service = $request->input('nama_service');
-           $service->keterangan = $request->input('keterangan');
            $service =$service->save();
 
             $data=array(
@@ -85,7 +84,6 @@ class ServiceController extends Controller
             ->update(
                 [
                     'nama_service' => $request->input('nama_service'),
-                    'keterangan' => $request->input('keterangan')
                 ]);
 
 
