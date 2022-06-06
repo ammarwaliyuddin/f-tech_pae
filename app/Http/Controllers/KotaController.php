@@ -16,7 +16,7 @@ class KotaController extends Controller
         
         $searching = $request->input('searching');
         
-        $kotas = empty($searching) ? Kota::all() : Kota::where('nama_kota','like','%'.$searching.'%')->get();
+        $kotas = empty($searching) ? Kota::latest()->paginate(2) : Kota::where('nama_kota','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datadestinasi.view.list_kota',compact('kotas'));
     }

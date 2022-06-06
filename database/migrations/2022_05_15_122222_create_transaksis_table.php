@@ -22,7 +22,8 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('id_packing');
             $table->foreignId('id_service');
             $table->foreignId('id_asuransi');
-            $table->dateTime('tanggal');
+            $table->string('alamat_pengirim');
+            $table->string('alamat_penerima');
             $table->integer('qty');
             $table->integer('berat');
             $table->text('deskripsi');

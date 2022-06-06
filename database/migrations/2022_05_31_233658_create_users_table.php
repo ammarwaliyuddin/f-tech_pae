@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('level');
             $table->string('alamat');
             $table->string('hp');
-            $table->string('kota');
+            $table->foreignId('id_kota');
             $table->string('kecamatan');
             $table->timestamps();
         });
