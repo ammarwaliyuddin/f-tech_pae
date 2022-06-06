@@ -20,64 +20,20 @@
                 </div>
             </div>
         </div>
-        <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
-        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
+        {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
+        <div class="w-full sm:w-auto mt-3 sm:mt-0 ml-auto">
+            <div class="w-100 sm:w-56 relative text-gray-700 dark:text-gray-300">
+                <input type="text" class="form-control w-100 sm:w-56  box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
     </div>
     
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-       
-        <table class="table table-report -mt-2" id="myTabel">
-            <thead>
-                <tr>
-                    <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Nama Kecamatan</th>
-                    <th class="whitespace-nowrap">Nama Kota</th>
-                    <th class="text-center whitespace-nowrap">Keterangan</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody id="showData"></tbody>
-        </table>
-        
-    </div>
-    <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-        <ul class="pagination">
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-            </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li> <a class="pagination__link pagination__link--active" href="">1</a> </li>
-            <li> <a class="pagination__link " href="">2</a> </li>
-            <li> <a class="pagination__link" href="">3</a> </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-            </li>
-        </ul>
-        <select class="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-        </select>
-    </div>
-    <!-- END: Pagination -->
-</div>
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
 
+    </div>
+</div>
 
  <!-- BEGIN: Add Item Modal -->
  <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -292,7 +248,7 @@
         }
     });
 
-    $('#myTabel').on('click', '#btn-delete', function(e) {
+    $('#showData').on('click', '#btn-delete', function(e) {
         var id = $(this).data('id');
 
         const swalWithTailwindpButtons = Swal.mixin({
@@ -340,7 +296,7 @@
 
     });
 
-    $('#myTabel').on('click', '#btn-edit', function() {
+    $('#showData').on('click', '#btn-edit', function() {
 
         const id_kecamatan = $(this).data('id_kecamatan');
         const kecamatan = $(this).data('kecamatan');
@@ -404,7 +360,26 @@
             }
         })
     }
+    $('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
 
+        $.ajax({
+            url:"{{URL::to('datadestinasi/kecamatan-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    });
 
     $(document).ready(function(){        
         showData(); 
