@@ -23,7 +23,7 @@
         <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" placeholder="Search...">
+                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
@@ -37,52 +37,11 @@
     @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
        
     @endif
-        <table class="table table-report -mt-2" id="myTabel">
-            <thead>
-                <tr>
-                    <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Kota Origin</th>
-                    <th class="whitespace-nowrap">Kota Destinasi</th>
-                    <th class="whitespace-nowrap">Nama Kecamatan</th>
-                    <th class="whitespace-nowrap">Kode Destinasi</th>
-                    <th class="text-center whitespace-nowrap">Harga</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody id="showData"></tbody>
-        </table>
-        
+
+        <!-- BEGIN: Data List -->
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
+
     </div>
-    <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-        <ul class="pagination">
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-            </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li> <a class="pagination__link pagination__link--active" href="">1</a> </li>
-            <li> <a class="pagination__link " href="">2</a> </li>
-            <li> <a class="pagination__link" href="">3</a> </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-            </li>
-        </ul>
-        <select class="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-        </select>
-    </div>
-    <!-- END: Pagination -->
 </div>
 
 
@@ -100,14 +59,14 @@
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12 remote-data-kota">
-                        <label for="kota_origin" class="form-label">Kota Origin</label>
-                        <select id="kota_origin" class="form-select w-full mt-2" name="kota_origin">
+                        <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                        <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kota_destinasi">
-                        <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                        <select id="kota_destinasi" class="form-select w-full mt-2" name="kota_destinasi">
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                        <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">
                             <option>Loading ...</option>
                         </select>
                     </div>
@@ -117,7 +76,12 @@
                             <option>Loading ...</option>
                         </select>
                     </div>
-
+                    <div class="col-span-12 remote-data-service">
+                        <label for="id_service" class="form-label">Service</label>
+                        <select id="id_service" class="form-select w-full mt-2" name="id_service">
+                            <option>Loading ...</option>
+                        </select>
+                    </div>
                     <div class="col-span-12">
                         <label for="kode_destinasi" class="form-label">Kode Destinasi</label>
                         <input type="text" id="kode_destinasi" name="kode_destinasi" class="form-control w-full mt-2" placeholder="Kode Destinasi">
@@ -132,7 +96,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
                 </div>
             </form>
@@ -196,17 +160,29 @@
 
                     <input type="hidden" class="id_destinasi" id="id_destinasi" name="id_destinasi" >
 
-                    <div class="col-span-12">
-                        <label for="kota_origin" class="form-label">Kota Origin</label>
-                        <input type="text" id="kota_origin" name="kota_origin" class="form-control w-full mt-2 kota_origin" >
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                        <select id="id_kota_origin" class="form-select w-full mt-2 id_kota_origin" name="id_kota_origin">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                        <input type="text" id="kota_destinasi" name="kota_destinasi" class="form-control w-full mt-2 kota_destinasi" >
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                        <select id="id_kota_destinasi" class="form-select w-full mt-2 id_kota_destinasi" name="id_kota_destinasi">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
-                        <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2 nama_kecamatan" >
+                    <div class="col-span-12 remote-data-kecamatan">
+                        <label for="id_kecamatan" class="form-label">Kecamatan Destinasi</label>
+                        <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">
+                            <option>Loading ...</option>
+                        </select>
+                    </div>
+                    <div class="col-span-12 remote-data-service">
+                        <label for="id_service" class="form-label">Service</label>
+                        <select id="id_service" class="form-select w-full mt-2 id_service" name="id_service">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="kode_destinasi" class="form-label">Kode Destinasi</label>
@@ -236,11 +212,22 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
+     // search
+     $(document).on("keyup","#search-data",function(e){
+		showData();		
+        
+	})
+
     function showData(){
+
+        data={
+            searching:  $('#search-data').val()
+		}
+
         $.ajax({
             url:"{{URL::to('datadestinasi/destinasi-list')}}",
             type:"GET",
-            data:'data',
+            data:data,
             // beforeSend:function(){
             //     $("#showData").after().empty().html(`<tr>
             //         <td colspan="5">
@@ -298,7 +285,7 @@
         }
     });
 
-    $('#myTabel').on('click', '#btn-delete', function(e) {
+    $('#showData').on('click', '#btn-delete', function(e) {
         var id = $(this).data('id');
 
         const swalWithTailwindpButtons = Swal.mixin({
@@ -346,20 +333,22 @@
 
     });
 
-    $('#myTabel').on('click', '#btn-edit', function() {
+    $('#showData').on('click', '#btn-edit', function() {
 
         const id_destinasi = $(this).data('id_destinasi');
-        const origin = $(this).data('origin');
-        const destinasi = $(this).data('destinasi');
-        const kecamatan = $(this).data('kecamatan');
-        const kode = $(this).data('kode');
+        const id_kota_origin = $(this).data('id_kota_origin');
+        const id_kota_destinasi = $(this).data('id_kota_destinasi');
+        const id_kecamatan = $(this).data('id_kecamatan');
+        const id_service = $(this).data('id_service');
+        const kode_destinasi = $(this).data('kode_destinasi');
         const harga = $(this).data('harga');
 
         $('.id_destinasi').val(id_destinasi);
-        $('.kota_origin').val(origin);
-        $('.kota_destinasi').val(destinasi);
-        $('.nama_kecamatan').val(kecamatan);
-        $('.kode_destinasi').val(kode);
+        $('.id_kota_origin').val(id_kota_origin);
+        $('.id_kota_destinasi').val(id_kota_destinasi);
+        $('.id_kecamatan').val(id_kecamatan);
+        $('.id_service').val(id_service);
+        $('.kode_destinasi').val(kode_destinasi);
         $('.harga').val(harga);
         modal.show('#update-item-modal');   
     });
@@ -389,18 +378,40 @@
 
     });
 
-    function getNamaKota(){
+    $('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datadestinasi/destinasi-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    })
+
+    function getNamaKotaOrigin(){
         $.ajax({
             url:"{{URL::to('api/data-kota')}}",
             type:"GET",
             success:function(result){
-                console.log(result);
+                // console.log(result);
+                console.log('nama_kota');
                 let el = `
-                <label for="nama_kota_origin" class="form-label">Kota Origin</label>
-                <select id="nama_kota_origin" class="form-select w-full mt-2" name="nama_kota_origin">`;
+                <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">`;
                 el+="<option value=''>-- Pilih Kota Origin --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_nama_kota+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota_origin+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -408,18 +419,20 @@
             }
         })
     }
+    
     function getNamaKotaDestinasi(){
         $.ajax({
             url:"{{URL::to('api/data-kota')}}",
             type:"GET",
             success:function(result){
                 // console.log(result);
+                console.log('nama_kota');
                 let el = `
-                <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                <select id="kota_destinasi" class="form-select w-full mt-2" name="kota_destinasi">`;
+                <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">`;
                 el+="<option value=''>-- Pilih Kota Destinasi --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota_destinasi+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -427,6 +440,28 @@
             }
         })
     }
+
+    function getNamaService(){
+        $.ajax({
+            url:"{{URL::to('api/data-service')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_service');
+                let el = `
+                <label for="id_service" class="form-label">Service</label>
+                <select id="id_service" class="form-select w-full mt-2" name="id_service">`;
+                el+="<option value=''>-- Pilih Service --</option>";
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_service+"'>"+b.nama_service+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-service").empty().html(el);
+            }
+        })
+    }
+
     function getKecamatan(id_kota_destinasi){
         $.ajax({
             url:"{{URL::to('api/data-kecamatan')}}",
@@ -446,7 +481,10 @@
             }
         })
     }
-    $(document).on("change","#kota_destinasi",function(){
+
+   
+
+    $(document).on("change","#id_kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
         getKecamatan(id_kota_destinasi);
@@ -462,8 +500,9 @@
 
     $(document).ready(function(){        
         showData(); 
-        getNamaKota();
+        getNamaKotaOrigin();
         getNamaKotaDestinasi();
+        getNamaService();
 
     });
 
