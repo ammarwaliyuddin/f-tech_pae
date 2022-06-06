@@ -176,12 +176,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
-    // search
-    $(document).on("keyup","#search-data",function(e){
+     // search
+     $(document).on("keyup","#search-data",function(e){
 		showData();		
         
 	})
-    
+
     function showData(){
 
         data={
@@ -341,6 +341,27 @@
         }
     });
 
+    $('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datadestinasi/kecamatan-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    })
+
     function getNamaKota(){
         $.ajax({
             url:"{{URL::to('api/data-kota')}}",
@@ -380,6 +401,7 @@
             }
         })
     });
+
 
     $(document).ready(function(){        
         showData(); 

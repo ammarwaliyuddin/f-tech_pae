@@ -12,6 +12,7 @@
         <!-- BEGIN: CSS Assets-->
         {{-- <link rel="stylesheet" href="{{ asset('css/main.css')}}" /> --}}
         <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
+        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -644,10 +645,30 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{URL::to('transaksi')}}" class="side-menu {{ Request::path() == 'transaksi' ? 'side-menu--active' : '' }}">
+                        <a href="javascript:;" class="side-menu {{  Request::path() =="transaksi/".Request::segment(2) ? 'side-menu--active' : '' }}">                            
                             <div class="side-menu__icon"> <i data-feather="truck"></i> </div>
-                            <div class="side-menu__title"> Transaksi </div>
+                            <div class="side-menu__title">
+                                Transaksi
+                                <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+                            </div>
                         </a>
+                        <ul class="">
+                            <li>
+                                <a href="{{URL::to('transaksi/add')}}" class="side-menu {{ Request::path() == 'transaksi/add' ? 'side-menu--active' : '' }}">                                   
+                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Tambah Transaksi </div>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="{{URL::to('transaksi/lists')}}" class="side-menu {{ Request::path() == 'transaksi/lists' ? 'side-menu--active' : '' }}">                                   
+                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> List Transaksi </div>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                       
                     </li>
                     <li>
                         <a href="{{URL::to('tracking')}}" class="side-menu {{ Request::path() == 'tracking' ? 'side-menu--active' : '' }}">
@@ -720,9 +741,12 @@
             <!-- END: Content -->
         </div>
         <!-- BEGIN: JS Assets-->
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        {{-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script> --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        {{-- <script src="{{asset('js/app.js')}}"></script> --}}
         <script src="{{asset('js/script.js')}}"></script>
+        {{-- <script src="{{asset('js/tail-select.js')}}"></script> --}}
+ 
         <!-- END: JS Assets-->
         <script>
              const modal = {
@@ -746,6 +770,8 @@
                 }
             }
         </script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+     
         @yield('script')
         
     </body>

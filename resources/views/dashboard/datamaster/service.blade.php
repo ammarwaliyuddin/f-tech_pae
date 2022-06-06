@@ -151,14 +151,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
-     // search
-     $(document).on("keyup","#search-data",function(e){
+    $(document).on("keyup","#search-data",function(e){
 		showData();		
         
 	})
-    
+
     function showData(){
-       
+
         data={
             searching:  $('#search-data').val()
 		}
@@ -326,7 +325,7 @@ $('#showData').on('click', '.pagination a', function(e) {
                 $("#showData").empty().html(result);
             }
         })
-    });
+    })
 
     $(document).ready(function(){        
         showData(); 

@@ -9,5 +9,5 @@ class Destinasi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['kota_origin','kota_destinasi', 'nama_kecamatan' , 'kode_destinasi' , 'harga' ];
+    protected $fillable = ['id_kota_origin','id_service','id_kota_destinasi', 'id_kecamatan' , 'kode_destinasi' , 'harga' ];
 }

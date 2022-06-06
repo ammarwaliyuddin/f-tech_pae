@@ -159,4 +159,8 @@ class UserController extends Controller
         $users = User::all();
         return $users;
     }
+    public function data_alamatUser(Request $request){
+        $users = User::where('id_user',$request->input('id_user'))->first();
+        return $users;
+    }
 }

@@ -13,6 +13,7 @@ class ServiceController extends Controller
     }
 
     public function list(Request $request){     
+
         $searching = $request->input('searching');
         
         $services = empty($searching) ? Service::latest()->paginate(2) : Service::where('nama_service','like','%'.$searching.'%')->paginate(2);
@@ -23,12 +24,10 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'nama_service' => 'required|max:255',
-            'biaya' => 'required'
+            'nama_service' => 'required|max:255'
         ];
         $pesan=[
-            'nama_service.required'=>'Nama Service harus diisi',
-            'biaya.required'=>'Biaya harus diisi'
+            'nama_service.required'=>'Nama Service harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -47,7 +46,6 @@ class ServiceController extends Controller
             // $show = Service::create();
            $service=new Service();
            $service->nama_service = $request->input('nama_service');
-           $service->biaya = $request->input('biaya');
            $service->keterangan = $request->input('keterangan');
            $service =$service->save();
 
@@ -65,12 +63,10 @@ class ServiceController extends Controller
     public function update(Request $request)
     {
         $rules=[
-            'nama_service' => 'required|max:255',
-            'biaya' => 'required'
+            'nama_service' => 'required|max:255'
         ];
         $pesan=[
-            'nama_service.required'=>'Nama Service harus diisi',
-            'biaya.required'=>'Biaya harus diisi'
+            'nama_service.required'=>'Nama Service harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -89,7 +85,6 @@ class ServiceController extends Controller
             ->update(
                 [
                     'nama_service' => $request->input('nama_service'),
-                    'biaya' => $request->input('biaya'),
                     'keterangan' => $request->input('keterangan')
                 ]);
 
@@ -123,7 +118,7 @@ class ServiceController extends Controller
         return $data;
     }
     public function data_service(){
-        $services = Service::all();
-        return $services;
+        $service = Service::all();
+        return $service;
     }
 }

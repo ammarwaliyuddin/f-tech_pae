@@ -49,14 +49,14 @@
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12 remote-data-kota">
-                        <label for="kota_origin" class="form-label">Kota Origin</label>
-                        <select id="kota_origin" class="form-select w-full mt-2" name="kota_origin">
+                        <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                        <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
                     <div class="col-span-12 remote-data-kota_destinasi">
-                        <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                        <select id="kota_destinasi" class="form-select w-full mt-2" name="kota_destinasi">
+                        <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                        <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">
                             <option>Loading ...</option>
                         </select>
                     </div>
@@ -66,7 +66,12 @@
                             <option>Loading ...</option>
                         </select>
                     </div>
-
+                    <div class="col-span-12 remote-data-service">
+                        <label for="id_service" class="form-label">Service</label>
+                        <select id="id_service" class="form-select w-full mt-2" name="id_service">
+                            <option>Loading ...</option>
+                        </select>
+                    </div>
                     <div class="col-span-12">
                         <label for="kode_destinasi" class="form-label">Kode Destinasi</label>
                         <input type="text" id="kode_destinasi" name="kode_destinasi" class="form-control w-full mt-2" placeholder="Kode Destinasi">
@@ -145,17 +150,29 @@
 
                     <input type="hidden" class="id_destinasi" id="id_destinasi" name="id_destinasi" >
 
-                    <div class="col-span-12">
-                        <label for="kota_origin" class="form-label">Kota Origin</label>
-                        <input type="text" id="kota_origin" name="kota_origin" class="form-control w-full mt-2 kota_origin" >
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                        <select id="id_kota_origin" class="form-select w-full mt-2 id_kota_origin" name="id_kota_origin">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                        <input type="text" id="kota_destinasi" name="kota_destinasi" class="form-control w-full mt-2 kota_destinasi" >
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                        <select id="id_kota_destinasi" class="form-select w-full mt-2 id_kota_destinasi" name="id_kota_destinasi">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="nama_kecamatan" class="form-label">Nama Kecamatan</label>
-                        <input type="text" id="nama_kecamatan" name="nama_kecamatan" class="form-control w-full mt-2 nama_kecamatan" >
+                    <div class="col-span-12 remote-data-kecamatan">
+                        <label for="id_kecamatan" class="form-label">Kecamatan Destinasi</label>
+                        <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">
+                            <option>Loading ...</option>
+                        </select>
+                    </div>
+                    <div class="col-span-12 remote-data-service">
+                        <label for="id_service" class="form-label">Service</label>
+                        <select id="id_service" class="form-select w-full mt-2 id_service" name="id_service">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="kode_destinasi" class="form-label">Kode Destinasi</label>
@@ -185,12 +202,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
-    // search
-    $(document).on("keyup","#search-data",function(e){
+     // search
+     $(document).on("keyup","#search-data",function(e){
 		showData();		
         
 	})
-    
+
     function showData(){
 
         data={
@@ -309,17 +326,19 @@
     $('#showData').on('click', '#btn-edit', function() {
 
         const id_destinasi = $(this).data('id_destinasi');
-        const kota_origin = $(this).data('kota_origin');
-        const kota_destinasi = $(this).data('kota_destinasi');
-        const nama_kecamatan = $(this).data('nama_kecamatan');
-        const kode_destinasi = $(this).data('kode');
+        const id_kota_origin = $(this).data('id_kota_origin');
+        const id_kota_destinasi = $(this).data('id_kota_destinasi');
+        const id_kecamatan = $(this).data('id_kecamatan');
+        const id_service = $(this).data('id_service');
+        const kode_destinasi = $(this).data('kode_destinasi');
         const harga = $(this).data('harga');
 
         $('.id_destinasi').val(id_destinasi);
-        $('.kota_origin').val(origin);
-        $('.kota_destinasi').val(destinasi);
-        $('.nama_kecamatan').val(kecamatan);
-        $('.kode_destinasi').val(kode);
+        $('.id_kota_origin').val(id_kota_origin);
+        $('.id_kota_destinasi').val(id_kota_destinasi);
+        $('.id_kecamatan').val(id_kecamatan);
+        $('.id_service').val(id_service);
+        $('.kode_destinasi').val(kode_destinasi);
         $('.harga').val(harga);
         modal.show('#update-item-modal');   
     });
@@ -349,18 +368,39 @@
 
     });
 
-    function getNamaKota(){
+    $('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datadestinasi/destinasi-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    })
+
+    function getNamaKotaOrigin(){
         $.ajax({
             url:"{{URL::to('api/data-kota')}}",
             type:"GET",
             success:function(result){
-                console.log(result);
+                
                 let el = `
-                <label for="nama_kota_origin" class="form-label">Kota Origin</label>
-                <select id="nama_kota_origin" class="form-select w-full mt-2" name="nama_kota_origin">`;
+                <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">`;
                 el+="<option value=''>-- Pilih Kota Origin --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_nama_kota+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -368,15 +408,17 @@
             }
         })
     }
+    
     function getNamaKotaDestinasi(){
         $.ajax({
             url:"{{URL::to('api/data-kota')}}",
             type:"GET",
             success:function(result){
                 // console.log(result);
+                console.log('nama_kota');
                 let el = `
-                <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                <select id="kota_destinasi" class="form-select w-full mt-2" name="kota_destinasi">`;
+                <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">`;
                 el+="<option value=''>-- Pilih Kota Destinasi --</option>";
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
@@ -387,6 +429,27 @@
             }
         })
     }
+
+    function getNamaService(){
+        $.ajax({
+            url:"{{URL::to('api/data-service')}}",
+            type:"GET",
+            success:function(result){
+                
+                let el = `
+                <label for="id_service" class="form-label">Service</label>
+                <select id="id_service" class="form-select w-full mt-2" name="id_service">`;
+                el+="<option value=''>-- Pilih Service --</option>";
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_service+"'>"+b.nama_service+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-service").empty().html(el);
+            }
+        })
+    }
+
     function getKecamatan(id_kota_destinasi){
         $.ajax({
             url:"{{URL::to('api/data-kecamatan')}}",
@@ -406,9 +469,10 @@
             }
         })
     }
-    $(document).on("change","#kota_destinasi",function(){
+    $(document).on("change","#id_kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
+        console.log(id_kota_destinasi);
         getKecamatan(id_kota_destinasi);
       
     //   var harga_barang = $(this).find(':selected').data('harga_barang');
@@ -442,8 +506,9 @@
 
     $(document).ready(function(){        
         showData(); 
-        getNamaKota();
+        getNamaKotaOrigin();
         getNamaKotaDestinasi();
+        getNamaService();
 
     });
 
