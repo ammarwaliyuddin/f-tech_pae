@@ -273,11 +273,11 @@
     $('#showData').on('click', '#btn-edit', function() {
 
 const id_service = $(this).data('id_service');
-const service = $(this).data('service');
-const keterangan = $(this).data('ket');
+const nama_service = $(this).data('nama_service');
+const keterangan = $(this).data('keterangan');
 
 $('.id_service').val(id_service);
-$('.nama_service').val(service);
+$('.nama_service').val(nama_service);
 $('.keterangan').val(keterangan);
 modal.show('#update-item-modal');   
 });
