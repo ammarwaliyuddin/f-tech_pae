@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Keuangan;
+use App\Models\Transaksi;
 
 class KeuanganController extends Controller
 {
     public function index(){
-        $keuangans = Keuangan::all();
+        $keuangans = Transaksi::all();
         
         return view('dashboard.keuangan',compact('keuangans'));
     }
@@ -20,7 +20,7 @@ class KeuanganController extends Controller
             'pengirim' => 'required',
             'total' => 'required'
         ]);
-        $show = Keuangan::create($validatedData);
+        $show = Transaksi::create($validatedData);
     
         return redirect('/keuangan')->with('success', 'Game is successfully saved');
     }

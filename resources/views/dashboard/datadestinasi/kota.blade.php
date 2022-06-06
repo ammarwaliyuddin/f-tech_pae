@@ -103,7 +103,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
                 </div>
             </form>
@@ -250,7 +250,7 @@
         }
     });
 
-    $('#myTabel').on('click', '#btn-delete', function(e) {
+    $('#showData').on('click', '#btn-delete', function(e) {
         var id = $(this).data('id');
 
         const swalWithTailwindpButtons = Swal.mixin({
@@ -297,7 +297,7 @@
             })
 
     });
-    $('#myTabel').on('click', '#btn-edit', function() {
+    $('#showData').on('click', '#btn-edit', function() {
 
         const id_kota = $(this).data('id_kota');
         const kota = $(this).data('kota');
@@ -335,6 +335,7 @@
     }
 
     });
+    
     $('#showData').on('click', '.pagination a', function(e) {
         e.preventDefault();
         var url = $(this).attr('href'),

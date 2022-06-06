@@ -1,4 +1,26 @@
-@php
+
+<!-- BEGIN: Data List -->
+<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+    @if( empty($kecamatans->total()))
+    <div class="alert alert-warning  show mb-2 text-center" role="alert">DATA MASIH KOSONG</div> 
+        @php
+            return
+        @endphp
+    @endif
+        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+            
+                <table class="table table-report -mt-2" id="myTabel">
+                    <thead>
+                        <tr>
+                            <th class="whitespace-nowrap">No</th>
+                            <th class="whitespace-nowrap">Nama Kecamatan</th>
+                            <th class="whitespace-nowrap">Nama Kota</th>
+                            <th class="text-center whitespace-nowrap">Keterangan</th>
+                            <th class="text-center whitespace-nowrap">ACTIONS</th>
+                        </tr>
+                    </thead>
+                <tbody>       
+                @php
                 $no = 1;
                 @endphp
                 @foreach ($kecamatans as $item)
@@ -29,3 +51,10 @@
 </tr>
 
 @endforeach
+
+                </tbody>
+                </table>
+        </div>
+        <!-- END: Data List -->
+
+{{$kecamatans->links()}} 

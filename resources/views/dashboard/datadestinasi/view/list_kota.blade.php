@@ -7,28 +7,28 @@
             return
         @endphp
     @endif
-    
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
     <table class="table table-report -mt-2" id="myTabel">
         <thead>
             <tr>
                 <th class="whitespace-nowrap">No</th>
-                <th class="whitespace-nowrap">Nama Kota</th>
+                <th class="text-center whitespace-nowrap">Nama Kota</th>
                 <th class="text-center whitespace-nowrap">Kode Kota</th>
                 <th class="text-center whitespace-nowrap">Keterangan</th>
                 <th class="text-center whitespace-nowrap">ACTIONS</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody>
             @php
                 $no = 1;
                 @endphp
                 @foreach ($kotas as $item)
                 <tr class="intro-x">
-                    <td class="w-40">
-                        <a href="" class="font-medium whitespace-nowrap">{{ $no++ }}</a> 
+                    <td class="w-1">
+                        {{ $no++ }}</a> 
                     </td>
-                    <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_kota }}</a> 
+                    <td class="w-40 text-center">
+                        {{ $item->nama_kota }}</a> 
                     </td>
                     <td class="w-40 text-center">
                         {{ $item->kode_kota }}
