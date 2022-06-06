@@ -103,7 +103,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
                 </div>
             </form>
@@ -341,6 +341,7 @@
     }
 
     });
+    
     $('#showData').on('click', '.pagination a', function(e) {
         e.preventDefault();
         var url = $(this).attr('href'),

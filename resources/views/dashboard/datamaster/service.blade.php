@@ -29,58 +29,9 @@
         </div>
     </div>
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
-       
-    @endif
-        <table class="table table-report -mt-2" id="myTabel">
-            <thead>
-                <tr>
-                    <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Nama Service</th>
-                    <th class="text-center whitespace-nowrap">Biaya</th>
-                    <th class="text-center whitespace-nowrap">Keterangan</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tbody id="showData"></tbody>
-            </tbody>
-        </table>
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
+
     </div>
-    <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-        <ul class="pagination">
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-            </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li> <a class="pagination__link" href="">1</a> </li>
-            <li> <a class="pagination__link pagination__link--active" href="">2</a> </li>
-            <li> <a class="pagination__link" href="">3</a> </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-            </li>
-        </ul>
-        <select class="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-        </select>
-    </div>
-    <!-- END: Pagination -->
 </div>
 
  <!-- BEGIN: Add Item Modal -->
@@ -99,13 +50,6 @@
                     <div class="col-span-12">
                         <label for="nama_service" class="form-label">Nama Service</label>
                         <input type="text" id="nama_service" name="nama_service" class="form-control w-full mt-2" placeholder="Nama Service">
-                    </div>
-                    <div class="col-span-12">
-                        <label for="biaya" class="form-label">Biaya</label>
-                        <div class="input-group mt-2">
-                            <div id="biaya" class="input-group-text">Rp.</div>
-                            <input type="text" class="form-control w-full" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
-                        </div>
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -141,13 +85,6 @@
                     <div class="col-span-12">
                         <label for="nama_service" class="form-label">Nama Service</label>
                         <input type="text" id="nama_service" name="nama_service" class="form-control w-full mt-2 nama_service" >
-                    </div>
-                    <div class="col-span-12">
-                        <label for="biaya" class="form-label">Biaya</label>
-                        <div class="input-group mt-2">
-                            <div id="biaya" class="input-group-text">Rp.</div>
-                            <input type="text" class="form-control w-full biaya" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
-                        </div>
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
@@ -213,14 +150,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
-     // search
-     $(document).on("keyup","#search-data",function(e){
+    $(document).on("keyup","#search-data",function(e){
 		showData();		
         
 	})
-    
+
     function showData(){
-       
+
         data={
             searching:  $('#search-data').val()
 		}
@@ -285,7 +221,7 @@
         }
     });
 
-    $('#myTabel').on('click', '#btn-delete', function(e) {
+    $('#showData').on('click', '#btn-delete', function(e) {
         var id = $(this).data('id');
 
         const swalWithTailwindpButtons = Swal.mixin({
@@ -333,16 +269,14 @@
 
     });
 
-    $('#myTabel').on('click', '#btn-edit', function() {
+    $('#showData').on('click', '#btn-edit', function() {
 
 const id_service = $(this).data('id_service');
 const service = $(this).data('service');
-const biaya = $(this).data('biaya');
 const keterangan = $(this).data('ket');
 
 $('.id_service').val(id_service);
 $('.nama_service').val(service);
-$('.biaya').val(biaya);
 $('.keterangan').val(keterangan);
 modal.show('#update-item-modal');   
 });
@@ -372,6 +306,26 @@ if($("#form_edit")[0].checkValidity()) {
 
 });
 
+$('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datamaster/service-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    })
 
     $(document).ready(function(){        
         showData(); 

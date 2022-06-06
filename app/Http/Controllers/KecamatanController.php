@@ -13,11 +13,11 @@ class KecamatanController extends Controller
     }
 
     public function list(Request $request){   
-        
+
         $searching = $request->input('searching');
         
-        $kecamatans = empty($searching) ? Kecamatan::all() : Kecamatan::where('nama_kecamatan','like','%'.$searching.'%')->get();;
-        
+        $kecamatans = empty($searching) ? Kecamatan::latest()->paginate(2) : Kecamatan::where('nama_kecamatan','like','%'.$searching.'%')->paginate(2);
+
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
     }
 
