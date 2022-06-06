@@ -404,8 +404,7 @@
             url:"{{URL::to('api/data-kota')}}",
             type:"GET",
             success:function(result){
-                // console.log(result);
-                console.log('nama_kota');
+                
                 let el = `
                 <label for="id_kota_origin" class="form-label">Kota Origin</label>
                 <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">`;
@@ -432,7 +431,7 @@
                 <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">`;
                 el+="<option value=''>-- Pilih Kota Destinasi --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_kota_destinasi+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -446,8 +445,7 @@
             url:"{{URL::to('api/data-service')}}",
             type:"GET",
             success:function(result){
-                console.log(result);
-                console.log('nama_service');
+                
                 let el = `
                 <label for="id_service" class="form-label">Service</label>
                 <select id="id_service" class="form-select w-full mt-2" name="id_service">`;
@@ -484,6 +482,7 @@
     $(document).on("change","#id_kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
+        console.log(id_kota_destinasi);
         getKecamatan(id_kota_destinasi);
       
     //   var harga_barang = $(this).find(':selected').data('harga_barang');

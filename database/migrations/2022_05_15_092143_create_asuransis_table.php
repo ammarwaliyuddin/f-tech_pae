@@ -16,7 +16,7 @@ class CreateAsuransisTable extends Migration
         Schema::create('asuransis', function (Blueprint $table) {
             $table->id('id_asuransi');
             $table->string('nama_asuransi');
-            $table->string('biaya');
+            $table->string('harga');
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });

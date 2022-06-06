@@ -12,7 +12,13 @@ class TransaksiController extends Controller
     public function index()
     { 
         $transaksis = Transaksi::all();
-        return view('dashboard.transaksi',compact('transaksis'));
+        return view('dashboard.transaksi.add_transaksi',compact('transaksis'));
+    }
+
+    public function lists()
+    { 
+        $transaksis = Transaksi::all();
+        return view('dashboard.transaksi.lists_transaksi',compact('transaksis'));
     }
 
 

@@ -30,7 +30,7 @@ class UserController extends Controller
             'level' => 'required',
             'alamat' => 'required',
             'hp' => 'required',
-            'kota' => 'required',
+            'id_kota' => 'required',
             'kecamatan' => 'required'
         ];
 
@@ -40,7 +40,7 @@ class UserController extends Controller
             'level.required'=>'Level harus diisi',
             'alamat.required'=>'alamat harus diisi',
             'hp.required'=>'hp harus diisi',
-            'kota.required'=>'kota harus diisi',
+            'id_kota.required'=>'id_kota harus diisi',
             'kecamatan.required'=>'kecamatan harus diisi'
         ];
 
@@ -64,7 +64,7 @@ class UserController extends Controller
             $user->level = $request->input('level');
             $user->alamat = $request->input('alamat');
             $user->hp = $request->input('hp');
-            $user->kota = $request->input('kota');
+            $user->id_kota = $request->input('id_kota');
             $user->kecamatan = $request->input('kecamatan');
             $user = $user->save();
 
@@ -151,6 +151,10 @@ class UserController extends Controller
     }
     public function data_user(){
         $users = User::all();
+        return $users;
+    }
+    public function data_alamatUser(Request $request){
+        $users = User::where('id_user',$request->input('id_user'))->first();
         return $users;
     }
 }
