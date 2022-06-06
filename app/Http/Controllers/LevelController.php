@@ -16,7 +16,7 @@ class LevelController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $levels = empty($searching) ? Level::all() : Level::where('nama_level','like','%'.$searching.'%')->get();
+        $levels = empty($searching) ? Level::latest()->paginate(2) : Level::where('nama_level','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datapelanggan.view.list_level',compact('levels'));
     }

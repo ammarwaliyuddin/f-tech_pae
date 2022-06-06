@@ -16,7 +16,7 @@ class UserController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $users = empty($searching) ? User::all() : User::where('nama_user','like','%'.$searching.'%')->get();
+        $users = empty($searching) ? User::latest()->paginate(2) : User::where('nama_user','like','%'.$searching.'%')->paginate(2);
            
         return view('dashboard.datapelanggan.view.list_user',compact('users'));
     }
@@ -26,22 +26,24 @@ class UserController extends Controller
     {
         $rules=[
             'nama_user' => 'required|max:255',
+            'email' => 'required',
             'password' => 'required',
-            'level' => 'required',
+            'id_level' => 'required',
             'alamat' => 'required',
             'hp' => 'required',
-            'kota' => 'required',
-            'kecamatan' => 'required'
+            'id_kota' => 'required',
+            'id_kecamatan' => 'required'
         ];
 
         $pesan=[
             'nama_user.required'=>'Nama User harus diisi',
+            'email.required'=>'Email User harus diisi',
             'password.required'=>'Password harus diisi',
-            'level.required'=>'Level harus diisi',
+            'id_level.required'=>'Id Level harus diisi',
             'alamat.required'=>'alamat harus diisi',
             'hp.required'=>'hp harus diisi',
-            'kota.required'=>'kota harus diisi',
-            'kecamatan.required'=>'kecamatan harus diisi'
+            'id_kota.required'=>'Id kota harus diisi',
+            'id_kecamatan.required'=>'Id kecamatan harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -60,12 +62,13 @@ class UserController extends Controller
             // $show = User::create();
             $user=new User();
             $user->nama_user = $request->input('nama_user');
+            $user->email = $request->input('email');
             $user->password = $request->input('password');
-            $user->level = $request->input('level');
+            $user->id_level = $request->input('id_level');
             $user->alamat = $request->input('alamat');
             $user->hp = $request->input('hp');
-            $user->kota = $request->input('kota');
-            $user->kecamatan = $request->input('kecamatan');
+            $user->id_kota = $request->input('id_kota');
+            $user->id_kecamatan = $request->input('id_kecamatan');
             $user = $user->save();
 
             $data=array(
@@ -83,22 +86,24 @@ class UserController extends Controller
     {
         $rules=[
             'nama_user' => 'required|max:255',
+            'email' => 'required',
             'password' => 'required',
-            'level' => 'required',
+            'id_level' => 'required',
             'alamat' => 'required',
             'hp' => 'required',
-            'kota' => 'required',
-            'kecamatan' => 'required'
+            'id_kota' => 'required',
+            'id_kecamatan' => 'required'
         ];
 
         $pesan=[
             'nama_user.required'=>'Nama User harus diisi',
+            'email.required'=>'Email User harus diisi',
             'password.required'=>'Password harus diisi',
-            'level.required'=>'Level harus diisi',
+            'id_level.required'=>'Id Level harus diisi',
             'alamat.required'=>'alamat harus diisi',
             'hp.required'=>'hp harus diisi',
-            'kota.required'=>'kota harus diisi',
-            'kecamatan.required'=>'kecamatan harus diisi'
+            'id_kota.required'=>'Id kota harus diisi',
+            'id_kecamatan.required'=>'Id kecamatan harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -117,12 +122,13 @@ class UserController extends Controller
             ->update(
                 [
                     'nama_user' => $request->input('nama_user'),
+                    'email' => $request->input('email'),
                     'password' => $request->input('password'),
-                    'level' => $request->input('level'),
+                    'id_level' => $request->input('id_level'),
                     'alamat' => $request->input('alamat'),
                     'hp' => $request->input('hp'),
-                    'kota' => $request->input('kota'),
-                    'kecamatan' => $request->input('kecamatan')
+                    'id_kota' => $request->input('id_kota'),
+                    'id_kecamatan' => $request->input('id_kecamatan')
                 ]);
 
 

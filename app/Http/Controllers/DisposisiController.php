@@ -15,7 +15,7 @@ class DisposisiController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $disposisis = empty($searching) ? Disposisi::all() : Disposisi::where('nama_disposisi','like','%'.$searching.'%')->get();
+        $disposisis = empty($searching) ? Disposisi::latest()->paginate(2) : Disposisi::where('nama_disposisi','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datamaster.view.list_disposisi',compact('disposisis'));
     }
