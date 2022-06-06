@@ -12,8 +12,10 @@ class StatusController extends Controller
         return view('dashboard.datamaster.status');
     }
 
-    public function list(){     
-        $statuss = Status::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
+        
+        $statuss = empty($searching) ? Status::all() : Status::where('kode_status','like','%'.$searching.'%')->get();
         
         return view('dashboard.datamaster.view.list_status',compact('statuss'));
     }

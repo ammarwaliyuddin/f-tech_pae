@@ -13,8 +13,11 @@ class DestinasiController extends Controller
         return view('dashboard.datadestinasi.destinasi');
     }
 
-    public function list(){     
-        $destinasis = Destinasi::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
+        
+        $destinasis = empty($searching) ? Destinasi::all() : Destinasi::where('Kota_origin','like','%'.$searching.'%')->get();
+        
         return view('dashboard.datadestinasi.view.list_destinasi',compact('destinasis'));
     }
 

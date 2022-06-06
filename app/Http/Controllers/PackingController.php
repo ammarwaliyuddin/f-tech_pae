@@ -12,8 +12,11 @@ class PackingController extends Controller
         return view('dashboard.datamaster.packing');
     }
 
-    public function list(){     
-        $packings = Packing::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
+        
+        $packings = empty($searching) ? Packing::all() : Packing::where('nama_packing','like','%'.$searching.'%')->get();
+        
         
         return view('dashboard.datamaster.view.list_packing',compact('packings'));
     }

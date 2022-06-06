@@ -13,8 +13,10 @@ class LevelController extends Controller
         return view('dashboard.datapelanggan.level');
     }
 
-    public function list(){     
-        $levels = Level::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
+        
+        $levels = empty($searching) ? Level::all() : Level::where('nama_level','like','%'.$searching.'%')->get();
         
         return view('dashboard.datapelanggan.view.list_level',compact('levels'));
     }

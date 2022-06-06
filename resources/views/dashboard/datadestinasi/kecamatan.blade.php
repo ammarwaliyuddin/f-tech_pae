@@ -192,7 +192,7 @@
         $.ajax({
             url:"{{URL::to('datadestinasi/kecamatan-list')}}",
             type:"GET",
-            data: data,
+            data:data,
             // beforeSend:function(){
             //     $("#showData").after().empty().html(`<tr>
             //         <td colspan="5">
