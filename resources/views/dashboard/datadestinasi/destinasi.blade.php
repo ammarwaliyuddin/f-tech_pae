@@ -20,24 +20,26 @@
                 </div>
             </div>
         </div>
-        <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
-        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
+         {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
+         <div class="w-full sm:w-auto mt-3 sm:mt-0 ml-auto">
+            <div class="w-100 sm:w-56 relative text-gray-700 dark:text-gray-300">
+                <input type="text" class="form-control w-100 sm:w-56  box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
     </div>
     
     <!-- BEGIN: Data List -->
+<<<<<<< HEAD
     
 
         <!-- BEGIN: Data List -->
+=======
+>>>>>>> 64ef2b6b084b4ed4e771c27c3b95f383c916af23
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
 
     </div>
 </div>
-
 
  <!-- BEGIN: Add Item Modal -->
  <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -58,7 +60,7 @@
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota_destinasi">
                         <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
                         <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">
                             <option>Loading ...</option>
@@ -398,14 +400,13 @@
             url:"{{URL::to('api/data-kota')}}",
             type:"GET",
             success:function(result){
-                // console.log(result);
-                console.log('nama_kota');
+                
                 let el = `
                 <label for="id_kota_origin" class="form-label">Kota Origin</label>
                 <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">`;
                 el+="<option value=''>-- Pilih Kota Origin --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_kota_origin+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -426,7 +427,7 @@
                 <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">`;
                 el+="<option value=''>-- Pilih Kota Destinasi --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_kota_destinasi+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -440,8 +441,7 @@
             url:"{{URL::to('api/data-service')}}",
             type:"GET",
             success:function(result){
-                console.log(result);
-                console.log('nama_service');
+                
                 let el = `
                 <label for="id_service" class="form-label">Service</label>
                 <select id="id_service" class="form-select w-full mt-2" name="id_service">`;
@@ -475,9 +475,10 @@
             }
         })
     }
-    $(document).on("change","#kota_destinasi",function(){
+    $(document).on("change","#id_kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
+        console.log(id_kota_destinasi);
         getKecamatan(id_kota_destinasi);
       
     //   var harga_barang = $(this).find(':selected').data('harga_barang');
@@ -487,6 +488,26 @@
     //   console.log(harga_barang,asuransi,harga_barang*asuransi)
     //   calcBarang(harga_barang,asuransi);
   })
+  $('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datadestinasi/destinasi-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    });
 
 
     $(document).ready(function(){        

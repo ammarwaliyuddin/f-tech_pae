@@ -16,8 +16,7 @@ class DestinasiController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $destinasis = empty($searching) ? Destinasi::latest()->paginate(2) : Destinasi::where('id_kota_origin','like','%'.$searching.'%')->paginate(2);
-        
+        $destinasis = empty($searching) ? Destinasi::latest()->paginate(2) : Destinasi::where('kota_origin','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datadestinasi.view.list_destinasi',compact('destinasis'));
     }
@@ -30,17 +29,17 @@ class DestinasiController extends Controller
             'id_kota_origin' => 'required|max:255',
             'id_kota_destinasi' => 'required',
             'id_kecamatan' => 'required',
-            'id_service' => 'required',
             'kode_destinasi' => 'required',
+            'id_service'=>'required',
             'harga' => 'required'
         ];
 
         $pesan=[
             'id_kota_origin.required'=>'Kota Origin harus diisi',
             'id_kota_destinasi.required'=>'Kota Destinasi harus diisi',
-            'id_kecamatan.required'=>'Nama Kecamatan harus diisi',
-            'id_service.required'=>'Nama Service harus diisi',
+            'id_kecamatan.required'=> 'Kecamatan harus diisi',
             'kode_destinasi.required'=>'Kode Destinasi harus diisi',
+            'id_service.required'=>'Jenis Service harus diisi',
             'harga.required'=>'harga harus diisi'
         ];
 
@@ -62,8 +61,8 @@ class DestinasiController extends Controller
            $destinasi->id_kota_origin = $request->input('id_kota_origin');
            $destinasi->id_kota_destinasi = $request->input('id_kota_destinasi');
            $destinasi->id_kecamatan = $request->input('id_kecamatan');
-           $destinasi->id_service = $request->input('id_service');
            $destinasi->kode_destinasi = $request->input('kode_destinasi');
+           $destinasi->id_service = $request->input('id_service');
            $destinasi->harga = $request->input('harga');
            
            $destinasi =$destinasi->save();

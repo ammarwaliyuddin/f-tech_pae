@@ -24,15 +24,15 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('id_asuransi');
             $table->string('alamat_pengirim');
             $table->string('alamat_penerima');
-            $table->integer('qty');
+            $table->integer('jumlah');
             $table->integer('berat');
             $table->text('deskripsi');
             $table->text('instruksi');
             $table->string('biaya_barang');
-            $table->string('diskon')->nullable();
             $table->string('biaya_pengiriman');
-            $table->string('status_pengiriman');
-            $table->float('jumlah');
+            $table->string('diskon')->nullable();
+            $table->foreignId('id_status_pengiriman');
+            $table->float('total');
             $table->timestamps();    
         });
     }

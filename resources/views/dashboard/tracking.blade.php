@@ -91,10 +91,22 @@
 @section('script')
 <script>
     
+     // search
+     $(document).on("keyup","#search-data",function(e){
+		showData();		
+        
+	})
+    
     function showData(){
+
+        data={
+            searching:  $('#search-data').val()
+		}
+
         $.ajax({
             url:"{{URL::to('tracking-list')}}",
             type:"GET",
+            data:data,
             // beforeSend:function(){
             //     $("#showData").after().empty().html(`<tr>
             //         <td colspan="5">

@@ -104,7 +104,14 @@ Route::prefix('datadestinasi')->group(function () {
     Route::post('destinasi-update', [DestinasiController::class,'update']);
 });
 
-Route::resource('transaksi', TransaksiController::class);
+Route::prefix('transaksi')->group(function () {
+    // user
+    Route::get('add', [TransaksiController::class,'index']);
+    Route::get('lists', [TransaksiController::class,'lists']);
+
+});
+
+
 
 Route::get('tracking', [TrackingController::class,'index']);
 Route::get('tracking-list', [TrackingController::class,'list']);
@@ -124,6 +131,9 @@ Route::prefix('api')->group(function () {
     Route::get('data-kecamatan', [KecamatanController::class,'data_kecamatan']);
     Route::get('data-status', [StatusController::class,'data_status']);
     Route::get('data-level', [LevelController::class,'data_level']);
+    
+    Route::get('data-alamatUser', [UserController::class,'data_alamatUser']);
+
 });
 
 

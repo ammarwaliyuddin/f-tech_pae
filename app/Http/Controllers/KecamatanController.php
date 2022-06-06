@@ -17,7 +17,6 @@ class KecamatanController extends Controller
         $searching = $request->input('searching');
         
         $kecamatans = empty($searching) ? Kecamatan::latest()->paginate(2) : Kecamatan::where('nama_kecamatan','like','%'.$searching.'%')->paginate(2);
-
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
     }
 

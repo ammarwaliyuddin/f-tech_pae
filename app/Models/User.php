@@ -10,6 +10,5 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_user', 'email' , 'password', 'level' , 'alamat' , 'hp' , 'id_kota' , 'kecamatan'];
-    // protected $table= 'users';
+    protected $fillable = ['nama_user', 'email', 'password', 'id_level' , 'alamat' , 'hp' , 'id_kota' , 'id_kecamatan'];
 }

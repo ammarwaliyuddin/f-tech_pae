@@ -64,8 +64,8 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
-                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
+                    <button data-dismiss="modal" type="button" onclick="resetAddForm()" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button type="submit" data-dismiss="modal"  class="btn btn-primary w-24">Tambah</button>
                 </div>
             </form>
         </div>
@@ -172,6 +172,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
 
+    // Reset Add form
+    function resetAddForm(){
+        $("#form_tambah").trigger("reset");
+    }
+
     // search
     $(document).on("keyup","#search-data",function(e){
 		showData();		
@@ -223,6 +228,7 @@
 
     $(document).on("submit","#form_tambah",function(e){
         var data = new FormData(this);
+        resetAddForm();
         
         if($("#form_tambah")[0].checkValidity()) {
             //updateAllMessageForms();
@@ -355,7 +361,7 @@
                 $("#showData").empty().html(result);
             }
         })
-    })
+    });
 
 
     $(document).ready(function(){        

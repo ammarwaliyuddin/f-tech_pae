@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('nama_user');
             $table->string('email');
             $table->string('password');
-            $table->string('level');
+            $table->foreignId('id_level');
             $table->string('alamat');
             $table->string('hp');
-            $table->string('id_kota');
-            $table->string('kecamatan');
+            $table->foreignId('id_kota');
+            $table->foreignId('id_kecamatan');
             $table->timestamps();
         });
     }
