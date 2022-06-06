@@ -7,7 +7,6 @@
             return
         @endphp
     @endif
-<<<<<<< HEAD
 
     <table class="table table-report -mt-2" id="myTabel">
         <thead>
@@ -21,38 +20,19 @@
         </thead>
         <tbody>
             @php
-=======
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            
-                <table class="table table-report -mt-2" id="myTabel">
-                    <thead>
-                        <tr>
-                            <th class="whitespace-nowrap">No</th>
-                            <th class="whitespace-nowrap">Nama Kecamatan</th>
-                            <th class="whitespace-nowrap">Nama Kota</th>
-                            <th class="text-center whitespace-nowrap">Keterangan</th>
-                            <th class="text-center whitespace-nowrap">ACTIONS</th>
-                        </tr>
-                    </thead>
-                <tbody>       
-                @php
->>>>>>> 2022ebd5ac94b18843ae35179d2825819a84f15f
                 $no = 1;
                 @endphp
                 @foreach ($kecamatans as $item)
                 <tr class="intro-x">
                     <td class="w-1"> {{ $no++ }}
                     </td>
-                    <td 
-                        class="text-center">{{ $no++ }}
-                    </td>
-                    <td>
+                    <td class="text-center">
                         {{ $item->nama_kecamatan }}
                     </td>
-                    <td>
+                    <td class="text-center">
                         {{ $item->kota->nama_kota }} 
                     </td>
-                    <td class="w-40 text-center">
+                    <td class="text-center">
                         {{ $item->keterangan }}
                     </td>
     
@@ -70,16 +50,7 @@
     </tbody>
 </table>
 
-<<<<<<< HEAD
 </div>
 <!-- END: Data List -->
-=======
-@endforeach
-
-                </tbody>
-                </table>
-        </div>
-        <!-- END: Data List -->
->>>>>>> 2022ebd5ac94b18843ae35179d2825819a84f15f
 
 {{$kecamatans->links()}} 

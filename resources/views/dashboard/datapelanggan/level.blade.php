@@ -52,7 +52,7 @@
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12">
                         <label for="nama_level" class="form-label">Nama Level</label>
-                        <input type="text" id="nama_level" name="nama_level" class="form-control w-full mt-2" placeholder="Nama User">
+                        <input type="text" id="nama_level" name="nama_level" class="form-control w-full mt-2" placeholder="Nama Level">
                     </div>
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>

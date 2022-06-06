@@ -25,13 +25,10 @@ class LevelController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'nama_level' => 'required|max:255',
-            'keterangan' => 'required'
+            'nama_level' => 'required|max:255'
         ];
-
         $pesan=[
-            'nama_level.required'=>'Nama Level harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'nama_level.required'=>'Nama Level harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -67,13 +64,11 @@ class LevelController extends Controller
     public function update(Request $request)
     {
         $rules=[
-            'nama_level' => 'required|max:255',
-            'keterangan' => 'required'
+            'nama_level' => 'required|max:255'
         ];
 
         $pesan=[
-            'nama_level.required'=>'Nama Level harus diisi',
-            'keterangan.required'=>'keterangan harus diisi'
+            'nama_level.required'=>'Nama Level harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
