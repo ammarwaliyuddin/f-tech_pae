@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\LoginController;
 
 use App\Models\Packing;
 
@@ -34,7 +35,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+// Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
+// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::prefix('datapelanggan')->group(function () {
     // user

@@ -1,4 +1,28 @@
-@php
+
+<!-- BEGIN: Data List -->
+<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+    @if( empty($destinasis->total()))
+    <div class="alert alert-warning  show mb-2 text-center" role="alert">DATA MASIH KOSONG</div> 
+        @php
+            return
+        @endphp
+    @endif
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+    <table class="table table-report -mt-2" id="myTabel">
+        <thead>
+            <tr>
+                <th class="whitespace-nowrap">No</th>
+                <th class="text-center whitespace-nowrap">Kota Origin</th>
+                <th class="text-center whitespace-nowrap">Kota Destinasi</th>
+                <th class="text-center whitespace-nowrap">Kecamatan</th>
+                <th class="text-center whitespace-nowrap">Service</th>
+                <th class="text-center whitespace-nowrap">Service</th>
+                <th class="text-center whitespace-nowrap">Kode Destinasi</th>
+                <th class="text-center whitespace-nowrap">ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+                @php
                 $no = 1;
                 @endphp
                 @foreach ($destinasis as $item)
@@ -7,13 +31,16 @@
                         <a href="" class="font-medium whitespace-nowrap">{{ $no++ }}</a> 
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->kota_origin }}</a> 
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->id_kota_origin }}</a> 
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->kota_destinasi }}</a> 
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->id_kota_destinasi }}</a> 
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->nama_kecamatan }}</a> 
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->id_kecamatan }}</a> 
+                    </td>
+                    <td>
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->id_service }}</a> 
                     </td>
                     <td>
                         <a href="" class="font-medium whitespace-nowrap">{{ $item->kode_destinasi }}</a> 
@@ -33,3 +60,10 @@
     </td>
 </tr>
 @endforeach
+</tbody>
+</table>
+
+</div>
+<!-- END: Data List -->
+
+{{$destinasis->links()}} 

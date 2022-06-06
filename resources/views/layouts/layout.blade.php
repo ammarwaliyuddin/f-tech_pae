@@ -698,20 +698,44 @@
                         <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white">
                             <div class="p-4 border-b border-theme-27 dark:border-dark-3">
                                 <div class="font-medium">Johnny Depp</div>
-                                <div class="text-xs text-theme-28 mt-0.5 dark:text-gray-600">Backend Engineer</div>
+                                {{-- <div class="font-medium">{{ auth()->user()->nama_user }}</div> --}}
+                               
                             </div>
-                            <div class="p-2">
+                            {{-- <div class="p-2">
                                 <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
                                 <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
                                 <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
                                 <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
-                            </div>
-                            <div class="p-2 border-t border-theme-27 dark:border-dark-3">
+                            </div> --}}
+                            {{-- <div class="p-2 border-t border-theme-27 dark:border-dark-3">
                                 <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
-                            </div>
+                            </div> --}}
+                            <form action="/logout" method="post">
+                                @csrf 
+                                <button type="submit" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"><i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout</button>
+                            </form>
+                            {{-- <div class="p-2 border-t border-theme-27 dark:border-dark-3">
+                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                            </div> --}}
+                            
                         </div>
                     </div>
                 </div>
+
+                <ul class="navbar-nav ms-auto">
+                    @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Welcome back , {{ auth()->user()->nama_user }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                      </li>
+                    @endauth
+                </ul>
                 <!-- END: Account Menu -->
             </div>
             <!-- END: Top Bar -->

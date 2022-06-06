@@ -30,13 +30,7 @@
     </div>
     
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
-       
-    @endif
+    
 
         <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
@@ -481,10 +475,7 @@
             }
         })
     }
-
-   
-
-    $(document).on("change","#id_kota_destinasi",function(){
+    $(document).on("change","#kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
         getKecamatan(id_kota_destinasi);
