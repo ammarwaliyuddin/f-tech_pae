@@ -12,8 +12,12 @@ class KecamatanController extends Controller
         return view('dashboard.datadestinasi.kecamatan');
     }
 
-    public function list(){     
-        $kecamatans = Kecamatan::all();
+    public function list(Request $request){   
+        
+        $searching = $request->input('searching');
+        
+        $kecamatans = empty($searching) ? Kecamatan::all() : Kecamatan::where('nama_kecamatan','like','%'.$searching.'%')->get();;
+        
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
     }
 

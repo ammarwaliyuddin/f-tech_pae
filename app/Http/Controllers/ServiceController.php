@@ -12,8 +12,10 @@ class ServiceController extends Controller
         return view('dashboard.datamaster.service');
     }
 
-    public function list(){     
-        $services = Service::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
+        
+        $services = empty($searching) ? Service::all() : Service::where('nama_service','like','%'.$searching.'%')->get();
         
         return view('dashboard.datamaster.view.list_service',compact('services'));
     }

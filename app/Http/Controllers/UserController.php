@@ -13,9 +13,11 @@ class UserController extends Controller
         return view('dashboard.datapelanggan.user');
     }
 
-    public function list(){     
-        $users = User::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
         
+        $users = empty($searching) ? User::all() : User::where('nama_user','like','%'.$searching.'%')->get();
+           
         return view('dashboard.datapelanggan.view.list_user',compact('users'));
     }
 

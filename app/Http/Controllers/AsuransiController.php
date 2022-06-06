@@ -12,8 +12,10 @@ class AsuransiController extends Controller
         return view('dashboard.datamaster.asuransi');
     }
 
-    public function list(){     
-        $asuransis = Asuransi::all();
+    public function list(Request $request){     
+        $searching = $request->input('searching');
+        
+        $asuransis = empty($searching) ? Asuransi::all() : Asuransi::where('nama_asuransi','like','%'.$searching.'%')->get();
         
         return view('dashboard.datamaster.view.list_asuransi',compact('asuransis'));
     }

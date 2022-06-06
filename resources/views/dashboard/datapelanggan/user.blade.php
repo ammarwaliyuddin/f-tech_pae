@@ -23,7 +23,7 @@
         <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" placeholder="Search...">
+                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
@@ -126,7 +126,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
                 </div>
             </form>
@@ -196,7 +196,7 @@
                 
                 </div>
                 <div class="modal-footer text-right">
-                    <button data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
                     <button type="submit" data-dismiss="modal" class="btn btn-primary w-24" id="btn-update">Update</button>
                 </div>
             </form>
@@ -236,11 +236,22 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.17/dist/sweetalert2.all.min.js"></script>
 <script>
     
+    // search
+    $(document).on("keyup","#search-data",function(e){
+		showData();		
+        
+	})
+    
     function showData(){
+       
+        data={
+            searching:  $('#search-data').val()
+		}
+
         $.ajax({
             url:"{{URL::to('datapelanggan/user-list')}}",
             type:"GET",
-            data:'data',
+            data:data,
             // beforeSend:function(){
             //     $("#showData").after().empty().html(`<tr>
             //         <td colspan="5">
