@@ -100,14 +100,14 @@
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                     <div class="col-span-12 remote-data-kota">
-                        <label for="kota_origin" class="form-label">Kota Origin</label>
-                        <select id="kota_origin" class="form-select w-full mt-2" name="kota_origin">
+                        <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                        <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
                     <div class="col-span-12 remote-data-kota_destinasi">
-                        <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                        <select id="kota_destinasi" class="form-select w-full mt-2" name="kota_destinasi">
+                        <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                        <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">
                             <option>Loading ...</option>
                         </select>
                     </div>
@@ -407,11 +407,11 @@
             success:function(result){
                 console.log(result);
                 let el = `
-                <label for="nama_kota_origin" class="form-label">Kota Origin</label>
-                <select id="nama_kota_origin" class="form-select w-full mt-2" name="nama_kota_origin">`;
+                <label for="id_kota_origin" class="form-label">Kota Origin</label>
+                <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">`;
                 el+="<option value=''>-- Pilih Kota Origin --</option>";
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_nama_kota+"'>"+b.nama_kota+"</option>";
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
                     })
                 el+="</select>";
 
@@ -426,8 +426,8 @@
             success:function(result){
                 // console.log(result);
                 let el = `
-                <label for="kota_destinasi" class="form-label">Kota Destinasi</label>
-                <select id="kota_destinasi" class="form-select w-full mt-2" name="kota_destinasi">`;
+                <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
+                <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">`;
                 el+="<option value=''>-- Pilih Kota Destinasi --</option>";
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
@@ -457,7 +457,7 @@
             }
         })
     }
-    $(document).on("change","#kota_destinasi",function(){
+    $(document).on("change","#id_kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
         getKecamatan(id_kota_destinasi);
