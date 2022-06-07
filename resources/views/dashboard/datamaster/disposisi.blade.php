@@ -56,9 +56,11 @@
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <textarea id="keterangan" class="form-control w-full mt-2" name="keterangan" placeholder="keterangan"></textarea>
                     </div>
-                    <div class="col-span-12">
-                        <label for="id_user" class="form-label">Id User</label>
-                        <textarea id="id_user" class="form-control w-full mt-2" name="id_user" placeholder="Id User"></textarea>
+                    <div class="col-span-12 remote-data-user">
+                        <label for="id_user" class="form-label">Nama User</label>
+                        <select id="id_user" class="form-select w-full mt-2" name="id_user">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 
                 </div>
@@ -95,9 +97,11 @@
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <textarea id="keterangan" class="form-control w-full mt-2 keterangan" name="keterangan" placeholder="keterangan"></textarea>
                     </div>
-                    <div class="col-span-12">
-                        <label for="id_user" class="form-label">Id User</label>
-                        <textarea id="id_user" class="form-control w-full mt-2" name="id_user" placeholder="Id User"></textarea>
+                    <div class="col-span-12 remote-data-user">
+                        <label for="id_user" class="form-label">Nama User</label>
+                        <select id="id_user" class="form-select w-full mt-2 id_user" name="id_user">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer text-right">
@@ -294,6 +298,27 @@ if($("#form_edit")[0].checkValidity()) {
 }
 
 });
+
+function getNamaUser(){
+        $.ajax({
+            url:"{{URL::to('api/data-user')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_user');
+                let el = `
+                <label for="id_user" class="form-label">Nama User</label>
+                <select id="id_user" class="form-select w-full mt-2 id_user" name="id_user">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-user").empty().html(el);
+            }
+        })
+    }
+
 $('#showData').on('click', '.pagination a', function(e) {
         e.preventDefault();
         var url = $(this).attr('href'),
@@ -317,6 +342,7 @@ $('#showData').on('click', '.pagination a', function(e) {
 
     $(document).ready(function(){        
         showData(); 
+        getNamaUser();
 
     });
 

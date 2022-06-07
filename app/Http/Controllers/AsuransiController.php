@@ -25,11 +25,11 @@ class AsuransiController extends Controller
     {
         $rules=[
             'nama_asuransi' => 'required|max:255',
-            'biaya' => 'required'
+            'harga' => 'required'
         ];
         $pesan=[
             'nama_asuransi.required'=>'Nama Asuransi harus diisi',
-            'biaya.required'=>'Biaya harus diisi'
+            'harga.required'=>'Harga harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -48,7 +48,7 @@ class AsuransiController extends Controller
             // $show = Asuransi::create();
            $asuransi=new Asuransi();
            $asuransi->nama_asuransi = $request->input('nama_asuransi');
-           $asuransi->biaya = $request->input('biaya');
+           $asuransi->harga = $request->input('harga');
            $asuransi->keterangan = $request->input('keterangan');
            $asuransi =$asuransi->save();
 
@@ -66,11 +66,11 @@ class AsuransiController extends Controller
     {
         $rules=[
             'nama_asuransi' => 'required|max:255',
-            'biaya' => 'required'
+            'harga' => 'required'
         ];
         $pesan=[
             'nama_asuransi.required'=>'Nama Asuransi harus diisi',
-            'biaya.required'=>'Biaya harus diisi'
+            'harga.required'=>'Harga harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -89,7 +89,7 @@ class AsuransiController extends Controller
             ->update(
                 [
                     'nama_asuransi' => $request->input('nama_asuransi'),
-                    'biaya' => $request->input('biaya'),
+                    'harga' => $request->input('harga'),
                     'keterangan' => $request->input('keterangan')
                 ]);
 

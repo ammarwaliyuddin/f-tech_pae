@@ -381,26 +381,26 @@
             }
         })
     }
-    $('#showData').on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var url = $(this).attr('href'),
-		    page = url.split('page=')[1],
-			data = $('#search').serializeArray();
+    // $('#showData').on('click', '.pagination a', function(e) {
+    //     e.preventDefault();
+    //     var url = $(this).attr('href'),
+	// 	    page = url.split('page=')[1],
+	// 		data = $('#search').serializeArray();
             
-        var data={
-            searching:  $('#search-data').val(),
-            page:page
-		}
+    //     var data={
+    //         searching:  $('#search-data').val(),
+    //         page:page
+	// 	}
 
-        $.ajax({
-            url:"{{URL::to('datadestinasi/kecamatan-list')}}",
-            type:"GET",
-            data: data,
-            success:function(result){
-                $("#showData").empty().html(result);
-            }
-        })
-    });
+    //     $.ajax({
+    //         url:"{{URL::to('datadestinasi/kecamatan-list')}}",
+    //         type:"GET",
+    //         data: data,
+    //         success:function(result){
+    //             $("#showData").empty().html(result);
+    //         }
+    //     })
+    // });
 
 
     $(document).ready(function(){        

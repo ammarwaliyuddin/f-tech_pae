@@ -137,7 +137,7 @@ class DatabaseSeeder extends Seeder
         // Data Asuransi Seeder
         Asuransi::create([
             'nama_asuransi' => 'Asuransi Barang',
-            'biaya' => '0,5',
+            'harga' => '0,5',
             'keterangan' => 'Asuransi Barang'
         ]);
         

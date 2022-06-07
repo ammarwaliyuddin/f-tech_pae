@@ -60,9 +60,11 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="text" id="password" name="password" class="form-control w-full mt-2" placeholder="Password">
                     </div>
-                    <div class="col-span-12">
-                        <label for="level" class="form-label">Level</label>
-                        <input type="text" id="level" name="level" class="form-control w-full mt-2" placeholder="Level">
+                    <div class="col-span-12 remote-data-level">
+                        <label for="id_level" class="form-label">Nama Level</label>
+                        <select id="id_level" class="form-select w-full mt-2" name="id_level">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="alamat" class="form-label">Alamat</label>
@@ -72,13 +74,17 @@
                         <label for="hp" class="form-label">HP</label>
                         <input type="text" id="hp" name="hp" class="form-control w-full mt-2" placeholder="HP">
                     </div>
-                    <div class="col-span-12">
-                        <label for="kota" class="form-label">Kota</label>
-                        <textarea id="kota" class="form-control w-full mt-2" name="kota" placeholder="Kota"></textarea>
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2" name="id_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="kecamatan" class="form-label">Kecamatan</label>
-                        <textarea id="kecamatan" class="form-control w-full mt-2" name="kecamatan" placeholder="Kecamatan"></textarea>
+                    <div class="col-span-12 remote-data-kecamatan-user">
+                        <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                        <select id="id_kecamatan" class="form-select w-full mt-2" name="id_kecamatan">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 
                 </div>
@@ -134,9 +140,11 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="text" id="password" name="password" class="form-control w-full mt-2 password">
                     </div>
-                    <div class="col-span-12">
-                        <label for="level" class="form-label">Level</label>
-                        <input type="text" id="level" name="level" class="form-control w-full mt-2 level">
+                    <div class="col-span-12 remote-data-level">
+                        <label for="id_level" class="form-label">Level</label>
+                        <select id="id_level" class="form-select w-full mt-2 id_level" name="id_level">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="alamat" class="form-label">Alamat</label>
@@ -146,13 +154,17 @@
                         <label for="hp" class="form-label">HP</label>
                         <input type="text" id="hp" name="hp" class="form-control w-full mt-2 hp">
                     </div>
-                    <div class="col-span-12">
-                        <label for="kota" class="form-label">Kota</label>
-                        <input type="text" id="kota" name="kota" class="form-control w-full mt-2 kota">
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="kecamatan" class="form-label">Kecamatan</label>
-                        <input type="text" id="kecamatan" name="kecamatan" class="form-control w-full mt-2 kecamatan">
+                    <div class="col-span-12 remote-data-kecamatan-user">
+                        <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                        <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 
                 </div>
@@ -323,21 +335,21 @@ const id_user = $(this).data('id_user');
 const email = $(this).data('email');
 const nama_user = $(this).data('nama_user');
 const password = $(this).data('password');
-const level = $(this).data('level');
+const id_level = $(this).data('id_level');
 const alamat = $(this).data('alamat');
 const hp = $(this).data('hp');
-const kota = $(this).data('kota');
-const kecamatan = $(this).data('kecamatan');
+const id_kota = $(this).data('id_kota');
+const id_kecamatan = $(this).data('id_kecamatan');
 
 $('.id_user').val(id_user);
 $('.email').val(email);
 $('.nama_user').val(nama_user);
 $('.password').val(password);
-$('.level').val(level);
+$('.id_level').val(id_level);
 $('.alamat').val(alamat);
 $('.hp').val(hp);
-$('.kota').val(kota);
-$('.kecamatan').val(kecamatan);
+$('.id_kota').val(id_kota);
+$('.id_kecamatan').val(id_kecamatan);
 modal.show('#update-item-modal');   
 });
 
@@ -385,8 +397,105 @@ $('#showData').on('click', '.pagination a', function(e) {
             }
         })
     });
+
+    
+
+    // function getNamaKecamatan(){
+    //     $.ajax({
+    //         url:"{{URL::to('api/data-kecamatan')}}",
+    //         type:"GET",
+    //         success:function(result){
+    //             console.log(result);
+    //             console.log('nama_kecamatan');
+    //             let el = `
+    //             <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+    //             <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">`;
+    //                 $.each(result,function(a,b){
+    //                     el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
+    //                 })
+    //             el+="</select>";
+
+    //             $(".remote-data-kecamatan").empty().html(el);
+    //         }
+    //     })
+    // }
+
+    function getNamaKota(){
+        $.ajax({
+            url:"{{URL::to('api/data-kota')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_kota');
+                let el = `
+                <label for="id_kota" class="form-label">Nama Kota</label>
+                <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-kota").empty().html(el);
+            }
+        })
+    }
+    function getNamaLevel(){
+        $.ajax({
+            url:"{{URL::to('api/data-level')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_level');
+                let el = `
+                <label for="id_level" class="form-label">Nama Level</label>
+                <select id="id_level" class="form-select w-full mt-2 id_level" name="id_level">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_level+"'>"+b.nama_level+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-level").empty().html(el);
+            }
+        })
+    }
+
+    function getKecamatan(id_kota){
+        $.ajax({
+            url:"{{URL::to('api/data-kecamatan-user')}}",
+            type:"GET",
+            data:{'id_kota':id_kota},
+            success:function(result){
+                console.log(result);
+                let el = `
+                <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                <select id="id_kecamatan" class="form-select w-full mt-2" name="id_kecamatan">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-kecamatan-user").empty().html(el);
+            }
+        })
+    }
+    $(document).on("click","#id_kota",function(){
+        
+        let id_kota = $(this).val()
+        console.log(id_kota);
+        getKecamatan(id_kota);
+      
+    //   var harga_barang = $(this).find(':selected').data('harga_barang');
+
+    //   let element = document.getElementById("asuransi");
+    //   let asuransi  = element.options[element.selectedIndex].getAttribute("data-asuransi");
+    //   console.log(harga_barang,asuransi,harga_barang*asuransi)
+    //   calcBarang(harga_barang,asuransi);
+  })
+
     $(document).ready(function(){        
-        showData(); 
+        showData();
+        getNamaKota();
+        getNamaLevel();
 
     });
 

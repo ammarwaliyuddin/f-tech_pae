@@ -54,10 +54,10 @@
                         <input type="text" id="nama_asuransi" name="nama_asuransi" class="form-control w-full mt-2" placeholder="Nama Asuransi">
                     </div>
                     <div class="col-span-12">
-                        <label for="biaya" class="form-label">Biaya</label>
+                        <label for="harga" class="form-label">Harga</label>
                         <div class="input-group mt-2">
-                            <div id="biaya" class="input-group-text">%</div>
-                            <input type="text" class="form-control w-full" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="%">
+                            <div id="harga" class="input-group-text">%</div>
+                            <input type="text" class="form-control w-full" id="harga" name="harga" placeholder="Harga" aria-describedby="%">
                         </div>
                     </div>
                     <div class="col-span-12">
@@ -96,10 +96,10 @@
                         <input type="text" id="nama_asuransi" name="nama_asuransi" class="form-control w-full mt-2 nama_asuransi" >
                     </div>
                     <div class="col-span-12">
-                        <label for="biaya" class="form-label">Biaya</label>
+                        <label for="harga" class="form-label">Harga</label>
                         <div class="input-group mt-2">
-                            <div id="biaya" class="input-group-text">Rp.</div>
-                            <input type="text" class="form-control w-full biaya" id="biaya" name="biaya" placeholder="Biaya" aria-describedby="Rp.">
+                            <div id="harga" class="input-group-text">%</div>
+                            <input type="text" id="harga" name="harga" class="form-control w-full harga">
                         </div>
                     </div>
                     <div class="col-span-12">
@@ -263,12 +263,12 @@
 
 const id_asuransi = $(this).data('id_asuransi');
 const asuransi = $(this).data('asuransi');
-const biaya = $(this).data('biaya');
+const harga = $(this).data('harga');
 const keterangan = $(this).data('ket');
 
 $('.id_asuransi').val(id_asuransi);
 $('.nama_asuransi').val(asuransi);
-$('.biaya').val(biaya);
+$('.harga').val(harga);
 $('.keterangan').val(keterangan);
 modal.show('#update-item-modal');   
 });

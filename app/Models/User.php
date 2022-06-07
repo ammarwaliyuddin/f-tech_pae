@@ -11,4 +11,14 @@ class User extends Model
     use HasFactory;
 
     protected $fillable = ['nama_user', 'email', 'password', 'id_level' , 'alamat' , 'hp' , 'id_kota' , 'id_kecamatan'];
+
+    public function level(){
+        return $this->hasOne(Level::class,'id_level','id_level');
+    }
+    public function kota(){
+        return $this->hasOne(Kota::class,'id_kota','id_kota');
+    }
+    public function kecamatan(){
+        return $this->hasOne(Kecamatan::class,'id_kecamatan','id_kecamatan');
+    }
 }

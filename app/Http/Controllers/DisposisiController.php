@@ -24,10 +24,12 @@ class DisposisiController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'nama_disposisi' => 'required|max:255'
+            'nama_disposisi' => 'required|max:255',
+            'id_user' => 'required'
         ];
         $pesan=[
-            'nama_disposisi.required'=>'Nama Service harus diisi'
+            'nama_disposisi.required'=>'Nama Disposisi harus diisi',
+            'id_user.required'=>'Nama User harus diisi'
         ];
         $validasi=\Validator::make($request->all(),$rules,$pesan);
       
@@ -46,6 +48,7 @@ class DisposisiController extends Controller
            $disposisi=new Disposisi();
            $disposisi->nama_disposisi = $request->input('nama_disposisi');
            $disposisi->keterangan = $request->input('keterangan');
+           $disposisi->id_user = $request->input('id_user');
            $disposisi =$disposisi->save();
 
             $data=array(
@@ -61,12 +64,13 @@ class DisposisiController extends Controller
     public function update(Request $request)
     {
         $rules=[
-            'nama_disposisi' => 'required|max:255'
+            'nama_disposisi' => 'required|max:255',
+            'id_user' => 'required'
         ];
         $pesan=[
-            'nama_disposisi.required'=>'Nama Disposisi harus diisi'
+            'nama_disposisi.required'=>'Nama Disposisi harus diisi',
+            'id_user.required'=>'Nama User harus diisi'
         ];
-
         $validasi=\Validator::make($request->all(),$rules,$pesan);
 
         if($validasi->fails()){
@@ -83,7 +87,8 @@ class DisposisiController extends Controller
             ->update(
                 [
                     'nama_disposisi' => $request->input('nama_disposisi'),
-                    'keterangan' => $request->input('keterangan')
+                    'keterangan' => $request->input('keterangan'),
+                    'id_user' => $request->input('id_user')
                 ]);
 
 

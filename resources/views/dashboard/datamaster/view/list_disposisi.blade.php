@@ -14,7 +14,7 @@
                 <th class="whitespace-nowrap">No</th>
                 <th class="text-center whitespace-nowrap">Nama Disposisi</th>
                 <th class="text-center whitespace-nowrap">Keterangan</th>
-                <th class="text-center whitespace-nowrap">Id User</th>
+                <th class="text-center whitespace-nowrap">Nama User</th>
                 <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -33,7 +33,7 @@
                         {{ $item->keterangan }}
                     </td>
                     <td class="w-40 text-center">
-                        {{ $item->id_user }}
+                        {{ $item->user->nama_user }}
                     </td>
                 <td class="table-report__action w-56">
                     <div class="flex justify-center items-center">

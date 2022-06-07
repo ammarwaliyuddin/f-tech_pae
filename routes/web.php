@@ -129,6 +129,9 @@ Route::prefix('api')->group(function () {
     Route::get('data-user', [UserController::class,'data_user']);
     Route::get('data-kota', [KotaController::class,'data_kota']);
     Route::get('data-kecamatan', [KecamatanController::class,'data_kecamatan']);
+    Route::get('data-kecamatan-list', [KecamatanController::class,'data_kecamatan_list']);
+    Route::get('data-kecamatan-user', [KecamatanController::class,'data_kecamatan_user']);
+    Route::get('data-kecamatan-destinasi', [KecamatanController::class,'data_kecamatan_destinasi']);
     Route::get('data-status', [StatusController::class,'data_status']);
     Route::get('data-level', [LevelController::class,'data_level']);
     
