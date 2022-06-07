@@ -112,8 +112,21 @@ class DestinasiController extends Controller
         return $data;
     }
 
-    public function data_destinasi(){
-        $destinasis = destinasi::all();
-        return $destinasis;
+    public function data_destinasi(Request $request){
+
+        $data = array();
+        $data =Destinasi::select("id_destinasi","kode_destinasi");
+        if($request->has('q')){
+            $search = $request->q;
+            $data =$data->where('kode_destinasi','LIKE',"%$search%");
+        }
+        if($request->has('id_service')){
+            $data =$data->where('id_service',$request->id_service);
+        }
+        $data =$data->get();
+        return response()->json($data);
+
+        // $destinasis = destinasi::all();
+        // return $destinasis;
     }
 }
