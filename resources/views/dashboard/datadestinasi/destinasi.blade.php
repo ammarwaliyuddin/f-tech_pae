@@ -48,13 +48,13 @@
             <form method="post" id="form_tambah" onsubmit="return false;" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota-origin">
                         <label for="id_kota_origin" class="form-label">Kota Origin</label>
                         <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kota_destinasi">
+                    <div class="col-span-12 remote-data-kota-destinasi">
                         <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
                         <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">
                             <option>Loading ...</option>
@@ -150,19 +150,19 @@
 
                     <input type="hidden" class="id_destinasi" id="id_destinasi" name="id_destinasi" >
 
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota-origin">
                         <label for="id_kota_origin" class="form-label">Kota Origin</label>
                         <select id="id_kota_origin" class="form-select w-full mt-2 id_kota_origin" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota-destinasi">
                         <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
                         <select id="id_kota_destinasi" class="form-select w-full mt-2 id_kota_destinasi" name="id_kota_destinasi">
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kecamatan-destinasi">
+                    <div class="col-span-12 remote-data-kecamatan">
                         <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
                         <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">
                             <option>Loading ...</option>
@@ -404,7 +404,7 @@
                     })
                 el+="</select>";
 
-                $(".remote-data-kota").empty().html(el);
+                $(".remote-data-kota-origin").empty().html(el);
             }
         })
     }
@@ -425,7 +425,7 @@
                     })
                 el+="</select>";
 
-                $(".remote-data-kota").empty().html(el);
+                $(".remote-data-kota-destinasi").empty().html(el);
             }
         })
     }
@@ -450,58 +450,58 @@
         })
     }
 
-//     function getKecamatan(id_kota_destinasi){
-//         $.ajax({
-//             url:"{{URL::to('api/data-kecamatan-destinasi')}}",
-//             type:"GET",
-//             data:{'id_kota_destinasi':id_kota_destinasi},
-//             success:function(result){
-//                 console.log(result);
-//                 let el = `
-//                 <label for="id_kecamatan" class="form-label">Kecamatan Destinasi</label>
-//                 <select id="id_kecamatan" class="form-select w-full mt-2" name="id_kecamatan">`;
-//                     $.each(result,function(a,b){
-//                         el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
-//                     })
-//                 el+="</select>";
-
-//                 $(".remote-data-kecamatan-destinasi").empty().html(el);
-//             }
-//         })
-//     }
-//     $(document).on("click","#id_kota_destinasi",function(){
-        
-//         let id_kota_destinasi = $(this).val()
-//         console.log(id_kota_destinasi);
-//         getKecamatan(id_kota_destinasi);
-      
-//     //   var harga_barang = $(this).find(':selected').data('harga_barang');
-
-//     //   let element = document.getElementById("asuransi");
-//     //   let asuransi  = element.options[element.selectedIndex].getAttribute("data-asuransi");
-//     //   console.log(harga_barang,asuransi,harga_barang*asuransi)
-//     //   calcBarang(harga_barang,asuransi);
-//   })
-
-function getNamaKecamatan(){
+    function getKecamatan(id_kota_destinasi){
         $.ajax({
-            url:"{{URL::to('api/data-kecamatan-list')}}",
+            url:"{{URL::to('api/data-kecamatan')}}",
             type:"GET",
+            data:{'id_kota_destinasi':id_kota_destinasi},
             success:function(result){
                 console.log(result);
-                console.log('nama_kecamatan');
                 let el = `
-                <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
-                <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">`;
+                <label for="id_kecamatan" class="form-label">Kecamatan Destinasi</label>
+                <select id="id_kecamatan" class="form-select w-full mt-2" name="id_kecamatan">`;
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
                     })
                 el+="</select>";
 
-                $(".remote-data-kecamatan-destinasi").empty().html(el);
+                $(".remote-data-kecamatan").empty().html(el);
             }
         })
     }
+    $(document).on("click","#id_kota_destinasi",function(){
+        
+        let id_kota_destinasi = $(this).val()
+        console.log(id_kota_destinasi);
+        getKecamatan(id_kota_destinasi);
+      
+    //   var harga_barang = $(this).find(':selected').data('harga_barang');
+
+    //   let element = document.getElementById("asuransi");
+    //   let asuransi  = element.options[element.selectedIndex].getAttribute("data-asuransi");
+    //   console.log(harga_barang,asuransi,harga_barang*asuransi)
+    //   calcBarang(harga_barang,asuransi);
+  })
+
+// function getNamaKecamatan(){
+//         $.ajax({
+//             url:"{{URL::to('api/data-kecamatan')}}",
+//             type:"GET",
+//             success:function(result){
+//                 console.log(result);
+//                 console.log('nama_kecamatan');
+//                 let el = `
+//                 <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+//                 <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">`;
+//                     $.each(result,function(a,b){
+//                         el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
+//                     })
+//                 el+="</select>";
+
+//                 $(".remote-data-kecamatan").empty().html(el);
+//             }
+//         })
+//     }
 
   $('#showData').on('click', '.pagination a', function(e) {
         e.preventDefault();
@@ -530,7 +530,7 @@ function getNamaKecamatan(){
         getNamaKotaOrigin();
         getNamaKotaDestinasi();
         getNamaService();
-        getNamaKecamatan();
+        
 
     });
 
