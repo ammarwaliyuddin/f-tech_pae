@@ -16,7 +16,7 @@ class DestinasiController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $destinasis = empty($searching) ? Destinasi::all() : Destinasi::where('Kota_origin','like','%'.$searching.'%')->get();
+        $destinasis = empty($searching) ? Destinasi::latest()->paginate(2) : Destinasi::where('kota_origin','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datadestinasi.view.list_destinasi',compact('destinasis'));
     }
@@ -80,17 +80,19 @@ class DestinasiController extends Controller
     public function update(Request $request)
     {
         $rules=[
-            'kota_origin' => 'required|max:255',
-            'kota_destinasi' => 'required',
-            'nama_kecamatan' => 'required',
+            'id_kota_origin' => 'required|max:255',
+            'id_kota_destinasi' => 'required',
+            'id_kecamatan' => 'required',
+            'id_service' => 'required',
             'kode_destinasi' => 'required',
             'harga' => 'required'
         ];
 
         $pesan=[
-            'kota_origin.required'=>'Kota Origin harus diisi',
-            'kota_destinasi.required'=>'Kota Destinasi harus diisi',
-            'nama_kecamatan.required'=>'Nama Kecamatan harus diisi',
+            'id_kota_origin.required'=>'Kota Origin harus diisi',
+            'id_kota_destinasi.required'=>'Kota Destinasi harus diisi',
+            'id_kecamatan.required'=>'Nama Kecamatan harus diisi',
+            'id_service.required'=>'Nama Service harus diisi',
             'kode_destinasi.required'=>'Kode Destinasi harus diisi',
             'harga.required'=>'harga harus diisi'
         ];

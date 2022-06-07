@@ -20,67 +20,20 @@
                 </div>
             </div>
         </div>
-        <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
-        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
+        {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
+        <div class="w-full sm:w-auto mt-3 sm:mt-0 ml-auto">
+            <div class="w-100 sm:w-56 relative text-gray-700 dark:text-gray-300">
+                <input type="text" class="form-control w-100 sm:w-56  box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
     </div>
     
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-     
-        <table class="table table-report -mt-2" id="myTabel">
-            <thead>
-                <tr>
-                    <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Nama User</th>
-                    <th class="text-center whitespace-nowrap">Level</th>
-                    <th class="text-center whitespace-nowrap">Alamat</th>
-                    <th class="text-center whitespace-nowrap">HP</th>
-                    <th class="text-center whitespace-nowrap">Kota</th>
-                    <th class="text-center whitespace-nowrap">Kecamatan</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody id="showData"></tbody>
-        </table>
-        
-    </div>
-    <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-        <ul class="pagination">
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-            </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li> <a class="pagination__link pagination__link--active" href="">1</a> </li>
-            <li> <a class="pagination__link " href="">2</a> </li>
-            <li> <a class="pagination__link" href="">3</a> </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-            </li>
-        </ul>
-        <select class="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-        </select>
-    </div>
-    <!-- END: Pagination -->
-</div>
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
 
+    </div>
+</div>
 
  <!-- BEGIN: Add Item Modal -->
  <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -100,12 +53,18 @@
                         <input type="text" id="nama_user" name="nama_user" class="form-control w-full mt-2" placeholder="Nama User">
                     </div>
                     <div class="col-span-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" id="email" name="email" class="form-control w-full mt-2" placeholder="Email">
+                    </div>
+                    <div class="col-span-12">
                         <label for="password" class="form-label">Password</label>
                         <input type="text" id="password" name="password" class="form-control w-full mt-2" placeholder="Password">
                     </div>
-                    <div class="col-span-12">
-                        <label for="level" class="form-label">Level</label>
-                        <input type="text" id="level" name="level" class="form-control w-full mt-2" placeholder="Level">
+                    <div class="col-span-12 remote-data-level">
+                        <label for="id_level" class="form-label">Nama Level</label>
+                        <select id="id_level" class="form-select w-full mt-2" name="id_level">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="alamat" class="form-label">Alamat</label>
@@ -115,13 +74,17 @@
                         <label for="hp" class="form-label">HP</label>
                         <input type="text" id="hp" name="hp" class="form-control w-full mt-2" placeholder="HP">
                     </div>
-                    <div class="col-span-12">
-                        <label for="kota" class="form-label">Kota</label>
-                        <textarea id="kota" class="form-control w-full mt-2" name="kota" placeholder="Kota"></textarea>
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2" name="id_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="kecamatan" class="form-label">Kecamatan</label>
-                        <textarea id="kecamatan" class="form-control w-full mt-2" name="kecamatan" placeholder="Kecamatan"></textarea>
+                    <div class="col-span-12 remote-data-kecamatan-user">
+                        <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                        <select id="id_kecamatan" class="form-select w-full mt-2" name="id_kecamatan">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 
                 </div>
@@ -170,12 +133,18 @@
                         <input type="text" id="nama_user" name="nama_user" class="form-control w-full mt-2 nama_user">
                     </div>
                     <div class="col-span-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" id="email" name="email" class="form-control w-full mt-2 email">
+                    </div>
+                    <div class="col-span-12">
                         <label for="password" class="form-label">Password</label>
                         <input type="text" id="password" name="password" class="form-control w-full mt-2 password">
                     </div>
-                    <div class="col-span-12">
-                        <label for="level" class="form-label">Level</label>
-                        <input type="text" id="level" name="level" class="form-control w-full mt-2 level">
+                    <div class="col-span-12 remote-data-level">
+                        <label for="id_level" class="form-label">Level</label>
+                        <select id="id_level" class="form-select w-full mt-2 id_level" name="id_level">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                     <div class="col-span-12">
                         <label for="alamat" class="form-label">Alamat</label>
@@ -185,13 +154,17 @@
                         <label for="hp" class="form-label">HP</label>
                         <input type="text" id="hp" name="hp" class="form-control w-full mt-2 hp">
                     </div>
-                    <div class="col-span-12">
-                        <label for="kota" class="form-label">Kota</label>
-                        <input type="text" id="kota" name="kota" class="form-control w-full mt-2 kota">
+                    <div class="col-span-12 remote-data-kota">
+                        <label for="id_kota" class="form-label">Nama Kota</label>
+                        <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
-                    <div class="col-span-12">
-                        <label for="kecamatan" class="form-label">Kecamatan</label>
-                        <input type="text" id="kecamatan" name="kecamatan" class="form-control w-full mt-2 kecamatan">
+                    <div class="col-span-12 remote-data-kecamatan-user">
+                        <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                        <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 
                 </div>
@@ -308,7 +281,7 @@
         }
     });
 
-    $('#myTabel').on('click', '#btn-delete', function(e) {
+    $('#showData').on('click', '#btn-delete', function(e) {
         var id = $(this).data('id');
 
         const swalWithTailwindpButtons = Swal.mixin({
@@ -356,25 +329,27 @@
 
     });
 
-    $('#myTabel').on('click', '#btn-edit', function() {
+    $('#showData').on('click', '#btn-edit', function() {
 
 const id_user = $(this).data('id_user');
+const email = $(this).data('email');
 const nama_user = $(this).data('nama_user');
 const password = $(this).data('password');
-const level = $(this).data('level');
+const id_level = $(this).data('id_level');
 const alamat = $(this).data('alamat');
 const hp = $(this).data('hp');
-const kota = $(this).data('kota');
-const kecamatan = $(this).data('kecamatan');
+const id_kota = $(this).data('id_kota');
+const id_kecamatan = $(this).data('id_kecamatan');
 
 $('.id_user').val(id_user);
+$('.email').val(email);
 $('.nama_user').val(nama_user);
 $('.password').val(password);
-$('.level').val(level);
+$('.id_level').val(id_level);
 $('.alamat').val(alamat);
 $('.hp').val(hp);
-$('.kota').val(kota);
-$('.kecamatan').val(kecamatan);
+$('.id_kota').val(id_kota);
+$('.id_kecamatan').val(id_kecamatan);
 modal.show('#update-item-modal');   
 });
 
@@ -402,9 +377,125 @@ if($("#form_edit")[0].checkValidity()) {
 }
 
 });
+$('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datapelanggan/user-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    });
+
+    
+
+    // function getNamaKecamatan(){
+    //     $.ajax({
+    //         url:"{{URL::to('api/data-kecamatan')}}",
+    //         type:"GET",
+    //         success:function(result){
+    //             console.log(result);
+    //             console.log('nama_kecamatan');
+    //             let el = `
+    //             <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+    //             <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">`;
+    //                 $.each(result,function(a,b){
+    //                     el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
+    //                 })
+    //             el+="</select>";
+
+    //             $(".remote-data-kecamatan").empty().html(el);
+    //         }
+    //     })
+    // }
+
+    function getNamaKota(){
+        $.ajax({
+            url:"{{URL::to('api/data-kota')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_kota');
+                let el = `
+                <label for="id_kota" class="form-label">Nama Kota</label>
+                <select id="id_kota" class="form-select w-full mt-2 id_kota" name="id_kota">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_kota+"'>"+b.nama_kota+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-kota").empty().html(el);
+            }
+        })
+    }
+    function getNamaLevel(){
+        $.ajax({
+            url:"{{URL::to('api/data-level')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_level');
+                let el = `
+                <label for="id_level" class="form-label">Nama Level</label>
+                <select id="id_level" class="form-select w-full mt-2 id_level" name="id_level">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_level+"'>"+b.nama_level+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-level").empty().html(el);
+            }
+        })
+    }
+
+    function getKecamatan(id_kota){
+        $.ajax({
+            url:"{{URL::to('api/data-kecamatan-user')}}",
+            type:"GET",
+            data:{'id_kota':id_kota},
+            success:function(result){
+                console.log(result);
+                let el = `
+                <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+                <select id="id_kecamatan" class="form-select w-full mt-2" name="id_kecamatan">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-kecamatan-user").empty().html(el);
+            }
+        })
+    }
+    $(document).on("click","#id_kota",function(){
+        
+        let id_kota = $(this).val()
+        console.log(id_kota);
+        getKecamatan(id_kota);
+      
+    //   var harga_barang = $(this).find(':selected').data('harga_barang');
+
+    //   let element = document.getElementById("asuransi");
+    //   let asuransi  = element.options[element.selectedIndex].getAttribute("data-asuransi");
+    //   console.log(harga_barang,asuransi,harga_barang*asuransi)
+    //   calcBarang(harga_barang,asuransi);
+  })
 
     $(document).ready(function(){        
-        showData(); 
+        showData();
+        getNamaKota();
+        getNamaLevel();
 
     });
 

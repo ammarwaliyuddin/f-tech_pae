@@ -16,7 +16,7 @@ class LevelController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $levels = empty($searching) ? Level::all() : Level::where('nama_level','like','%'.$searching.'%')->get();
+        $levels = empty($searching) ? Level::latest()->paginate(2) : Level::where('nama_level','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datapelanggan.view.list_level',compact('levels'));
     }
@@ -25,13 +25,10 @@ class LevelController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'nama_level' => 'required|max:255',
-            'keterangan' => 'required'
+            'nama_level' => 'required|max:255'
         ];
-
         $pesan=[
-            'nama_level.required'=>'Nama Level harus diisi',
-            'keterangan.required'=>'Keterangan harus diisi'
+            'nama_level.required'=>'Nama Level harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -67,13 +64,11 @@ class LevelController extends Controller
     public function update(Request $request)
     {
         $rules=[
-            'nama_level' => 'required|max:255',
-            'keterangan' => 'required'
+            'nama_level' => 'required|max:255'
         ];
 
         $pesan=[
-            'nama_level.required'=>'Nama Level harus diisi',
-            'keterangan.required'=>'keterangan harus diisi'
+            'nama_level.required'=>'Nama Level harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);

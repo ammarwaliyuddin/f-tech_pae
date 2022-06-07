@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\LoginController;
 
 use App\Models\Packing;
 
@@ -34,7 +35,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+// Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
+// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::prefix('datapelanggan')->group(function () {
     // user
@@ -123,6 +129,9 @@ Route::prefix('api')->group(function () {
     Route::get('data-user', [UserController::class,'data_user']);
     Route::get('data-kota', [KotaController::class,'data_kota']);
     Route::get('data-kecamatan', [KecamatanController::class,'data_kecamatan']);
+    Route::get('data-kecamatan-list', [KecamatanController::class,'data_kecamatan_list']);
+    Route::get('data-kecamatan-user', [KecamatanController::class,'data_kecamatan_user']);
+    Route::get('data-kecamatan-destinasi', [KecamatanController::class,'data_kecamatan_destinasi']);
     Route::get('data-status', [StatusController::class,'data_status']);
     Route::get('data-level', [LevelController::class,'data_level']);
     

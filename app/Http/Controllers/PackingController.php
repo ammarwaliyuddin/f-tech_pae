@@ -15,7 +15,7 @@ class PackingController extends Controller
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $packings = empty($searching) ? Packing::all() : Packing::where('nama_packing','like','%'.$searching.'%')->get();
+        $packings = empty($searching) ? Packing::latest()->paginate(2) : Packing::where('nama_packing','like','%'.$searching.'%')->paginate(2);
         
         
         return view('dashboard.datamaster.view.list_packing',compact('packings'));
@@ -25,12 +25,14 @@ class PackingController extends Controller
     {
         $rules=[
             'nama_packing' => 'required|max:255',
-            'biaya' => 'required'
+            'pengali' => 'required',
+            'keterangan' => 'required'
         ];
 
         $pesan=[
             'nama_packing.required'=>'Nama Packing harus diisi',
-            'biaya.required'=>'Biaya harus diisi'
+            'pengali.required'=>'pengali harus diisi',
+            'keterangan.required'=>'keterangan harus diisi'
         ];
 
         $validasi=\Validator::make($request->all(),$rules,$pesan);
@@ -49,7 +51,7 @@ class PackingController extends Controller
             // $show = Packing::create();
            $packing=new Packing();
            $packing->nama_packing = $request->input('nama_packing');
-           $packing->biaya = $request->input('biaya');
+           $packing->pengali = $request->input('pengali');
            $packing->keterangan = $request->input('keterangan');
            $packing =$packing->save();
 
@@ -75,12 +77,14 @@ class PackingController extends Controller
 
         $rules=[
             'nama_packing' => 'required|max:255',
-            'biaya' => 'required'
+            'pengali' => 'required',
+            'keterangan' => 'required'
         ];
 
         $pesan=[
             'nama_packing.required'=>'Nama Packing harus diisi',
-            'biaya.required'=>'Biaya harus diisi'
+            'pengali.required'=>'Pengali harus diisi',
+            'keterangan.required'=>'Keterangan harus diisi'
         ];
 
 
@@ -100,7 +104,7 @@ class PackingController extends Controller
             ->update(
                 [
                     'nama_packing' => $request->input('nama_packing'),
-                    'biaya' => $request->input('biaya'),
+                    'pengali' => $request->input('pengali'),
                     'keterangan' => $request->input('keterangan')
                 ]);
 

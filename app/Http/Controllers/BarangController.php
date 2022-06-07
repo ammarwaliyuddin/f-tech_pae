@@ -9,14 +9,13 @@ class BarangController extends Controller
 {
     public function index()
     { 
-        
         return view('dashboard.datamaster.barang');
     }
 
     public function list(Request $request){     
         $searching = $request->input('searching');
         
-        $barangs = empty($searching) ? Barang::all() : Barang::where('jenis_barang','like','%'.$searching.'%')->get();
+        $barangs = empty($searching) ? Barang::latest()->paginate(2) : Barang::where('jenis_barang','like','%'.$searching.'%')->paginate(2);
         
         return view('dashboard.datamaster.view.list_barang',compact('barangs'));
     }

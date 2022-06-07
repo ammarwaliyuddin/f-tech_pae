@@ -17,7 +17,6 @@ class KecamatanController extends Controller
         $searching = $request->input('searching');
         
         $kecamatans = empty($searching) ? Kecamatan::latest()->paginate(2) : Kecamatan::where('nama_kecamatan','like','%'.$searching.'%')->paginate(2);
-
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
     }
 
@@ -127,9 +126,23 @@ class KecamatanController extends Controller
         );
         return $data;
     }
+    public function data_kecamatan_list(){
+        $kecamatan = Kecamatan::all();
+        return $kecamatan;
+    }
 
     public function data_kecamatan(Request $request){
         $id_kota = $request->input('id_kota_destinasi');
+        $kecamatans = Kecamatan::where('id_kota',$id_kota)->get();
+        return $kecamatans;
+    }
+    public function data_kecamatan_user(Request $request){
+        $id_kota = $request->input('id_kota');
+        $kecamatans = Kecamatan::where('id_kota',$id_kota)->get();
+        return $kecamatans;
+    }
+    public function data_kecamatan_destinasi(Request $request){
+        $id_kota = $request->input('id_kota');
         $kecamatans = Kecamatan::where('id_kota',$id_kota)->get();
         return $kecamatans;
     }

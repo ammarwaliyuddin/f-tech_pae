@@ -20,66 +20,19 @@
                 </div>
             </div>
         </div>
-        <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
-        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
+         {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
+         <div class="w-full sm:w-auto mt-3 sm:mt-0 ml-auto">
+            <div class="w-100 sm:w-56 relative text-gray-700 dark:text-gray-300">
+                <input type="text" class="form-control w-100 sm:w-56  box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
     </div>
+    
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
-       
-    @endif
-        <table class="table table-report -mt-2" id="myTabel">
-            <thead>
-                <tr>
-                    <th class="whitespace-nowrap">No</th>
-                    <th class="whitespace-nowrap">Disposisi</th>
-                    <th class="text-center whitespace-nowrap">Keterangan</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tbody id="showData"></tbody>
-            </tbody>
-        </table>
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
+
     </div>
-    <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-        <ul class="pagination">
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-left"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-left"></i> </a>
-            </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li> <a class="pagination__link" href="">1</a> </li>
-            <li> <a class="pagination__link pagination__link--active" href="">2</a> </li>
-            <li> <a class="pagination__link" href="">3</a> </li>
-            <li> <a class="pagination__link" href="">...</a> </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevron-right"></i> </a>
-            </li>
-            <li>
-                <a class="pagination__link" href=""> <i class="w-4 h-4" data-feather="chevrons-right"></i> </a>
-            </li>
-        </ul>
-        <select class="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-        </select>
-    </div>
-    <!-- END: Pagination -->
 </div>
 
  <!-- BEGIN: Add Item Modal -->
@@ -102,6 +55,12 @@
                     <div class="col-span-12">
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <textarea id="keterangan" class="form-control w-full mt-2" name="keterangan" placeholder="keterangan"></textarea>
+                    </div>
+                    <div class="col-span-12 remote-data-user">
+                        <label for="id_user" class="form-label">Nama User</label>
+                        <select id="id_user" class="form-select w-full mt-2" name="id_user">
+                            <option>Loading ...</option>
+                        </select>
                     </div>
                 
                 </div>
@@ -138,7 +97,12 @@
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <textarea id="keterangan" class="form-control w-full mt-2 keterangan" name="keterangan" placeholder="keterangan"></textarea>
                     </div>
-                
+                    <div class="col-span-12 remote-data-user">
+                        <label for="id_user" class="form-label">Nama User</label>
+                        <select id="id_user" class="form-select w-full mt-2 id_user" name="id_user">
+                            <option>Loading ...</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer text-right">
                     <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
@@ -242,7 +206,7 @@
         }
     });
 
-    $('#myTabel').on('click', '#btn-delete', function(e) {
+    $('#showData').on('click', '#btn-delete', function(e) {
         var id = $(this).data('id');
 
         const swalWithTailwindpButtons = Swal.mixin({
@@ -257,7 +221,7 @@
             title: 'Apa anda Yakin?',
             text: "Data tidak dapat dikembalikan!",
             icon: 'warning',
-            showCancelButton: true,
+            showCancelButton: true, 
             iconColor: '#d32929',
             confirmButtonText: 'Hapus',
             cancelButtonText: 'Batal',
@@ -296,15 +260,17 @@
 
     });
 
-    $('#myTabel').on('click', '#btn-edit', function() {
+    $('#showData').on('click', '#btn-edit', function() {
 
 const id_disposisi = $(this).data('id_disposisi');
 const nama_disposisi = $(this).data('nama_disposisi');
 const keterangan = $(this).data('keterangan');
+const id_user = $(this).data('id_user');
 
 $('.id_disposisi').val(id_disposisi);
 $('.nama_disposisi').val(nama_disposisi);
 $('.keterangan').val(keterangan);
+$('.id_user').val(id_user);
 modal.show('#update-item-modal');   
 });
 
@@ -333,9 +299,50 @@ if($("#form_edit")[0].checkValidity()) {
 
 });
 
+function getNamaUser(){
+        $.ajax({
+            url:"{{URL::to('api/data-user')}}",
+            type:"GET",
+            success:function(result){
+                console.log(result);
+                console.log('nama_user');
+                let el = `
+                <label for="id_user" class="form-label">Nama User</label>
+                <select id="id_user" class="form-select w-full mt-2 id_user" name="id_user">`;
+                    $.each(result,function(a,b){
+                        el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
+                    })
+                el+="</select>";
+
+                $(".remote-data-user").empty().html(el);
+            }
+        })
+    }
+
+$('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datamaster/disposisi-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    });
 
     $(document).ready(function(){        
         showData(); 
+        getNamaUser();
 
     });
 

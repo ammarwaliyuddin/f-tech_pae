@@ -21,6 +21,10 @@ class KeuanganController extends Controller
             'total' => 'required'
         ]);
         $show = Transaksi::create($validatedData);
+
+        $keuangans = empty($searching) ? Keuangan::latest()->paginate(2) : Keuangan::where('nama_kota','like','%'.$searching.'%')->paginate(2);
+        
+        return view('dashboard.datadestinasi.view.list_kota',compact('kotas'));
     
         return redirect('/keuangan')->with('success', 'Game is successfully saved');
     }

@@ -20,30 +20,20 @@
                 </div>
             </div>
         </div>
-        <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div>
-        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
+         {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
+         <div class="w-full sm:w-auto mt-3 sm:mt-0 ml-auto">
+            <div class="w-100 sm:w-56 relative text-gray-700 dark:text-gray-300">
+                <input type="text" class="form-control w-100 sm:w-56  box pr-10 placeholder-theme-13" id="search-data" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i> 
             </div>
         </div>
     </div>
     
     <!-- BEGIN: Data List -->
-    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">  @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <i data-feather="x" class="w-4 h-4"></i> </button> </div>
-       
-    @endif
-
-        <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible " id="showData">
 
     </div>
 </div>
-
 
  <!-- BEGIN: Add Item Modal -->
  <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -58,13 +48,13 @@
             <form method="post" id="form_tambah" onsubmit="return false;" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota-origin">
                         <label for="id_kota_origin" class="form-label">Kota Origin</label>
                         <select id="id_kota_origin" class="form-select w-full mt-2" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kota_destinasi">
+                    <div class="col-span-12 remote-data-kota-destinasi">
                         <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
                         <select id="id_kota_destinasi" class="form-select w-full mt-2" name="id_kota_destinasi">
                             <option>Loading ...</option>
@@ -89,7 +79,7 @@
                     <div class="col-span-12">
                         <label for="harga" class="form-label">Harga</label>
                         <div class="input-group mt-2">
-                            <div id="harga" class="input-group-text">%</div>
+                            <div id="harga" class="input-group-text">Rp.</div>
                             <input type="text" class="form-control w-full" id="harga" name="harga" placeholder="Harga" aria-describedby="Rp">
                         </div>
                     </div>
@@ -160,20 +150,20 @@
 
                     <input type="hidden" class="id_destinasi" id="id_destinasi" name="id_destinasi" >
 
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota-origin">
                         <label for="id_kota_origin" class="form-label">Kota Origin</label>
                         <select id="id_kota_origin" class="form-select w-full mt-2 id_kota_origin" name="id_kota_origin">
                             <option>Loading ...</option>
                         </select>
                     </div>
-                    <div class="col-span-12 remote-data-kota">
+                    <div class="col-span-12 remote-data-kota-destinasi">
                         <label for="id_kota_destinasi" class="form-label">Kota Destinasi</label>
                         <select id="id_kota_destinasi" class="form-select w-full mt-2 id_kota_destinasi" name="id_kota_destinasi">
                             <option>Loading ...</option>
                         </select>
                     </div>
                     <div class="col-span-12 remote-data-kecamatan">
-                        <label for="id_kecamatan" class="form-label">Kecamatan Destinasi</label>
+                        <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
                         <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">
                             <option>Loading ...</option>
                         </select>
@@ -414,7 +404,7 @@
                     })
                 el+="</select>";
 
-                $(".remote-data-kota").empty().html(el);
+                $(".remote-data-kota-origin").empty().html(el);
             }
         })
     }
@@ -435,7 +425,7 @@
                     })
                 el+="</select>";
 
-                $(".remote-data-kota_destinasi").empty().html(el);
+                $(".remote-data-kota-destinasi").empty().html(el);
             }
         })
     }
@@ -448,7 +438,7 @@
                 
                 let el = `
                 <label for="id_service" class="form-label">Service</label>
-                <select id="id_service" class="form-select w-full mt-2" name="id_service">`;
+                <select id="id_service" class="form-select w-full mt-2 id_service" name="id_service">`;
                 el+="<option value=''>-- Pilih Service --</option>";
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_service+"'>"+b.nama_service+"</option>";
@@ -479,7 +469,7 @@
             }
         })
     }
-    $(document).on("change","#id_kota_destinasi",function(){
+    $(document).on("click","#id_kota_destinasi",function(){
         
         let id_kota_destinasi = $(this).val()
         console.log(id_kota_destinasi);
@@ -493,12 +483,54 @@
     //   calcBarang(harga_barang,asuransi);
   })
 
+// function getNamaKecamatan(){
+//         $.ajax({
+//             url:"{{URL::to('api/data-kecamatan')}}",
+//             type:"GET",
+//             success:function(result){
+//                 console.log(result);
+//                 console.log('nama_kecamatan');
+//                 let el = `
+//                 <label for="id_kecamatan" class="form-label">Nama Kecamatan</label>
+//                 <select id="id_kecamatan" class="form-select w-full mt-2 id_kecamatan" name="id_kecamatan">`;
+//                     $.each(result,function(a,b){
+//                         el+="<option value='"+b.id_kecamatan+"'>"+b.nama_kecamatan+"</option>";
+//                     })
+//                 el+="</select>";
+
+//                 $(".remote-data-kecamatan").empty().html(el);
+//             }
+//         })
+//     }
+
+  $('#showData').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href'),
+		    page = url.split('page=')[1],
+			data = $('#search').serializeArray();
+            
+        var data={
+            searching:  $('#search-data').val(),
+            page:page
+		}
+
+        $.ajax({
+            url:"{{URL::to('datadestinasi/destinasi-list')}}",
+            type:"GET",
+            data: data,
+            success:function(result){
+                $("#showData").empty().html(result);
+            }
+        })
+    });
+
 
     $(document).ready(function(){        
         showData(); 
         getNamaKotaOrigin();
         getNamaKotaDestinasi();
         getNamaService();
+        
 
     });
 

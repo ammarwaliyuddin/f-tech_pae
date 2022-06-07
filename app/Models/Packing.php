@@ -9,5 +9,5 @@ class Packing extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_packing', 'biaya'];
+    protected $fillable = ['nama_packing', 'pengali'];
 }
