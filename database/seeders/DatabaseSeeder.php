@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use \App\Models\Kota;
 use \App\Models\Kecamatan;
-// use \App\Models\Destinasi;
+use \App\Models\Destinasi;
 use \App\Models\Barang;
 use \App\Models\Service;
 use \App\Models\Packing;
@@ -85,16 +85,16 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Kecamatan di Waikabubak'
         ]);
         
-        // // Data Destinasi Seeder
-        // Destinasi::create([
-        //     'id_kota_origin' => '',
-        //     'id_kota_destinasi' => '',
-        //     'id_kecamatan' => '',
-        //     'id_service' => '',
-        //     'kode_destinasi' => '',
-        //     'harga' => ''
+        // Data Destinasi Seeder
+        Destinasi::create([
+            'id_kota_origin' => 1,
+            'id_kota_destinasi' => 2,
+            'id_kecamatan' => 2,
+            'id_service' => 1,
+            'kode_destinasi' => 'ATB - KOE - ALK',
+            'harga' => '9000'
         
-        // ]);
+        ]);
         
         // Data Barang Seeder
         Barang::create([

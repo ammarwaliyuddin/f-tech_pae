@@ -117,7 +117,7 @@ class DestinasiController extends Controller
     public function data_destinasi(Request $request){
 
         $data = array();
-        $data =Destinasi::select("id_destinasi","kode_destinasi");
+        $data =Destinasi::select("id_destinasi","kode_destinasi","harga");
         if($request->has('q')){
             $search = $request->q;
             $data =$data->where('kode_destinasi','LIKE',"%$search%");
@@ -131,4 +131,6 @@ class DestinasiController extends Controller
         // $destinasis = destinasi::all();
         // return $destinasis;
     }
+
+    
 }

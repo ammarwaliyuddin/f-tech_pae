@@ -116,58 +116,7 @@
         </div>
     </div>
     <!-- END: Delete Confirmation Modal -->
-    <!-- BEGIN: Add user Modal -->
-    <div id="add-user-modal" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">
-                        Tambah User
-                    </h2>
-                </div>
-
-                <form method="post" id="form-add-user" onsubmit="return false;" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12">
-                            <label for="nama_user" class="form-label">Nama User</label>
-                            <input type="text" id="nama_user" name="nama_user" class="form-control w-full mt-2" placeholder="Nama User">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" name="password" class="form-control w-full mt-2" placeholder="Password">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="level" class="form-label">Level</label>
-                            <input type="text" id="level" name="level" class="form-control w-full mt-2" placeholder="Level">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="alamat" class="form-label">Alamat</label>
-                            <input type="text" id="alamat" name="alamat" class="form-control w-full mt-2" placeholder="Alamat">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="hp" class="form-label">HP</label>
-                            <input type="text" id="hp" name="hp" class="form-control w-full mt-2" placeholder="HP">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="id_kota" class="form-label">kota</label>
-                            <textarea id="id_kota" class="form-control w-full mt-2" name="id_kota" placeholder="id_kota"></textarea>
-                        </div>
-                        <div class="col-span-12">
-                            <label for="kecamatan" class="form-label">Kecamatan</label>
-                            <textarea id="kecamatan" class="form-control w-full mt-2" name="kecamatan" placeholder="Kecamatan"></textarea>
-                        </div>
-                    
-                    </div>
-                    <div class="modal-footer text-right">
-                        <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- END: Add Item Modal -->
+    
      <!-- BEGIN: Modal Content -->
     <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
         <div class="modal-dialog">

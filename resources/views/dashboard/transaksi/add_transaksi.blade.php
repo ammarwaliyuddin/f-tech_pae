@@ -12,9 +12,8 @@
         <div class="grid grid-cols-12 gap-4 p-5">
             <div class="intro-y col-span-12 lg:col-span-6">
                 <label for="pengirim" class="form-label">Pengirim</label>
-                <div class="input-group data-kosong-pengirim">
+                <div class="input-group ">
                     <select id="pengirim" class="form-select rounded-r-none remote-data-pengirim" name="pengirim">
-                        <option>Loading ...</option>
                     </select>
                     <a  type="button" data-toggle="modal" data-target="#add-user-modal" class="btn p-0 input-group-text">
                         <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
@@ -27,9 +26,8 @@
             </div>
             <div class="intro-y col-span-12 lg:col-span-6">
                 <label for="penerima" class="form-label">Penerima</label>
-                <div class="input-group data-kosong-penerima">
+                <div class="input-group ">
                     <select id="penerima" class="form-select rounded-r-none remote-data-penerima" name="penerima">
-                        <option>Loading ...</option>
                     </select>
                     <a  type="button" data-toggle="modal" data-target="#add-user-modal" class="btn p-0 input-group-text">
                         <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
@@ -46,10 +44,9 @@
                     <option>Loading ...</option>
                 </select>
             </div>
-            <div class="intro-y col-span-12 lg:col-span-4 remote-data-destinasi ">
+            <div class="intro-y col-span-12 lg:col-span-4 ">
                 <label for="destinasi" class="form-label">Destinasi</label>
-                <select id="destinasi" class="form-select" name="destinasi">
-                    <option>Loading ...</option>
+                <select id="destinasi" class="form-select remote-data-destinasi" name="destinasi">
                 </select>
 
             </div>
@@ -75,6 +72,10 @@
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="berat" class="form-label">Berat</label>
                 <input id="berat" type="number" class="form-control" value="1" placeholder="Masukkan Berat" >
+            </div>
+            <div class="intro-y col-span-12 lg:col-span-4 data-packing hidden">
+                <label for="harga_packing" class="form-label">Harga Packing</label>
+                <input id="harga_packing" type="text" class="form-control" placeholder="Masukkan Harga Packing">
             </div>
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="jumlah" class="form-label">Jumlah</label>
@@ -117,7 +118,58 @@
     </form>
 </div>
 
+<!-- BEGIN: Add user Modal -->
+<div id="add-user-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-medium text-base mr-auto">
+                    Tambah User
+                </h2>
+            </div>
 
+            <form method="post" id="form-add-user" onsubmit="return false;" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                    <div class="col-span-12">
+                        <label for="nama_user" class="form-label">Nama User</label>
+                        <input type="text" id="nama_user" name="nama_user" class="form-control w-full mt-2" placeholder="Nama User">
+                    </div>
+                    <div class="col-span-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control w-full mt-2" placeholder="Password">
+                    </div>
+                    <div class="col-span-12">
+                        <label for="level" class="form-label">Level</label>
+                        <input type="text" id="level" name="level" class="form-control w-full mt-2" placeholder="Level">
+                    </div>
+                    <div class="col-span-12">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" id="alamat" name="alamat" class="form-control w-full mt-2" placeholder="Alamat">
+                    </div>
+                    <div class="col-span-12">
+                        <label for="hp" class="form-label">HP</label>
+                        <input type="text" id="hp" name="hp" class="form-control w-full mt-2" placeholder="HP">
+                    </div>
+                    <div class="col-span-12">
+                        <label for="id_kota" class="form-label">kota</label>
+                        <textarea id="id_kota" class="form-control w-full mt-2" name="id_kota" placeholder="id_kota"></textarea>
+                    </div>
+                    <div class="col-span-12">
+                        <label for="kecamatan" class="form-label">Kecamatan</label>
+                        <textarea id="kecamatan" class="form-control w-full mt-2" name="kecamatan" placeholder="Kecamatan"></textarea>
+                    </div>
+                
+                </div>
+                <div class="modal-footer text-right">
+                    <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END: Add Item Modal -->
 
 
         
@@ -190,7 +242,9 @@
                 console.log(result);
                 let el = `
                 <label for="barang" class="form-label">Barang</label>
-                <select id="barang" class="form-select" name="barang">`;
+                <select id="barang" class="form-select" name="barang">
+                <option value=''>-- Pilih Jenis Barang --</option>
+                    `;
                     $.each(result,function(a,b){
                         el+="<option value='"+b.id_barang+"' data-harga_barang='"+b.harga+"''>"+b.jenis_barang+"</option>";
                     })
@@ -208,9 +262,12 @@
                 console.log(result);
                 let el = `
                 <label for="packing" class="form-label">Packing</label>
-                <select id="packing" class="form-select" name="packing">`;
+                <select id="packing" class="form-select" name="packing">
+                <option value='' >-- Pilih Packing --</option>
+                    `;
+
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_packing+"' data-packing='"+b.biaya+"''>"+b.nama_packing+"</option>";
+                        el+="<option value='"+b.id_packing+"' data-pengali='"+b.pengali+"''>"+b.nama_packing+"</option>";
                     })
                 el+="</select>";
 
@@ -243,10 +300,12 @@
             success:function(result){
                 console.log(result);
                 let el = `
-                <label for="asuransi" class="form-label">Asuransi</label>
-                <select id="asuransi" class="form-select" name="asuransi">`;
+                            <label for="asuransi" class="form-label">Asuransi</label>
+                            <select id="asuransi" class="form-select" name="asuransi">
+                            <option value=''>-- Pilih Asuransi --</option>
+                    `;
                     $.each(result,function(a,b){
-                        el+="<option value='"+b.id_asuransi+"' data-asuransi='"+b.biaya+"''>"+b.nama_asuransi+"</option>";
+                        el+="<option value='"+b.id_asuransi+"' data-asuransi='"+b.harga+"''>"+b.nama_asuransi+"</option>";
                     })
                 el+="</select>";
 
@@ -255,114 +314,146 @@
         })
     }  
     function getDestinasi(){
-        $.ajax({
-            url:"{{URL::to('api/data-destinasi')}}",
-            type:"GET",
-            success:function(result){
-                console.log(result);
-                
-                // <label for="destinasi" class="form-label">Postal Code</label>
-                // <select id="destinasi" data-search="true" class="tail-select w-full ">
-                //     <option value="1">018906 - 1 STRAITS BOULEVARD SINGA...</option>
-                //     <option value="2">018910 - 5A MARINA GARDENS DRIVE...</option>
-                // </select>
-                let el = `
-                <label for="destinasi" class="form-label">Destinasi</label>
-                <select id="destinasi" class="form-select" name="destinasi" >`;
-                    $.each(result,function(a,b){
-                        el+="<option value='"+b.id_destinasi+"' data-harga='"+b.harga+"''>"+b.kode_destinasi+"</option>";
-                    })
-                el+="</select>";
-                
-                $(".remote-data-destinasi").empty().html(el);
-                
-            }
-        })
-    }
-    function getPengirim(){
-        $.ajax({
-            url:"{{URL::to('api/data-user')}}",
-            type:"GET",
-            success:function(result){
-                console.log(result.length==0);
-                let el=""
-                if (result.length==0) {
-                    
-                    el +=`
-                    <input  type="text" class="form-control info-kosong-pengirim" placeholder="Data Kosong !!!" disabled>
-                    `;
-                    $(".data-kosong-pengirim").prepend(el);
-                    $(".remote-data-pengirim").css("display", "none");
-                }else{
-                    
-                    el += `
-                    <select id="pengirim" class="form-select rounded-r-none remote-data-pengirim" name="pengirim">
-                        <option value=''>-- Pilih Pengirim --</option>`;
-                        $.each(result,function(a,b){
-                            el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
-                        })
-                    el+=`</select> `;
-                    $(".info-kosong-pengirim").remove();
-                    $(".remote-data-pengirim").css("display", "inline-block");
-                    $(".remote-data-pengirim ").empty().html(el);
-                }
+        
+        $('.remote-data-destinasi').select2({
 
-            }
-        })
-    }
-    function getPenerima(){
-        $.ajax({
-            url:"{{URL::to('api/data-user')}}",
-            type:"GET",
-            success:function(result){
-                let el=""
-                if (result.length==0) {
-                    
-                    el +=`
-                    <input  type="text" class="form-control info-kosong-penerima" placeholder="Data Kosong !!!" disabled>
-                    `;
-                    $(".data-kosong-penerima").prepend(el);
-                    $(".remote-data-penerima").css("display", "none");
-                }else{
-                    
-                    el += `
-                    <select id="penerima" class="form-select rounded-r-none remote-data-penerima" name="penerima">
-                        <option value=''>-- Pilih Penerima --</option>`;
-                        $.each(result,function(a,b){
-                            el+="<option value='"+b.id_user+"'>"+b.nama_user+"</option>";
+            placeholder: 'Cari Destinasi',
+            ajax: {
+                url: "{{URL::to('api/data-destinasi')}}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                                q: params.term, // search term
+                                id_service:$("#service").val(),
+                            };
+                },
+                
+                processResults: function(data, page) {
+                    console.log(data);
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.kode_destinasi,
+                                id: item.id_destinasi,
+                                harga_destinasi: item.harga,
+                            }
                         })
-                    el+=`</select> `;
-                    $(".info-kosong-penerima").remove();
-                    $(".remote-data-penerima").css("display", "inline-block");
-                    $(".remote-data-penerima ").empty().html(el);
-                }
+                    };
+                },
+                cache: true
             }
-        })
+        });
+
+    }
+    // BEGIN : GET PENGIRIM DATA
+    function getPengirim(){
+        $('.remote-data-pengirim').select2({
+
+            placeholder: 'Cari Nama Pengirim',
+            ajax: {
+                url: "{{URL::to('api/data-user')}}",
+                dataType: 'json',
+                delay: 250,
+
+                processResults: function (data) {
+                    return {
+                    results:  $.map(data, function (item) {
+                            return {
+                                text: item.nama_user,
+                                id: item.id_user
+                            }
+                        })
+                    };
+
+                },
+                cache: true
+            }
+        });
+    }
+
+    // $(document).on("change","#pengirim",function(){
+
+    // console.log($('#pengirim').val())
+
+    // })
+
+    // END : GET PENGIRIM DATA
+    
+    
+    function getPenerima(){
+        $('.remote-data-penerima').select2({
+
+            
+        placeholder: 'Cari Nama Penerima',
+        ajax: {
+            url: "{{URL::to('api/data-user')}}",
+            dataType: 'json',
+            delay: 250,
+
+            processResults: function (data) {
+                return {
+                results:  $.map(data, function (item) {
+                        return {
+                            text: item.nama_user,
+                            id: item.id_user
+                        }
+                    })
+                };
+
+            },
+            cache: true
+        }
+        });
     }
 
     // BEGIN :: Biaya Barang
     $(document).on("change","#barang",function(){
+        
       
-        var harga_barang = $(this).find(':selected').data('harga_barang');
+        let harga_barang = $(this).find(':selected').data('harga_barang');
+        let berat = $('#berat').val();
 
-        let element = document.getElementById("asuransi");
-        let asuransi  = element.options[element.selectedIndex].getAttribute("data-asuransi");
-        console.log(harga_barang,asuransi,harga_barang*asuransi)
-        calcBarang(harga_barang,asuransi);
+        // let element = document.getElementById("asuransi");
+        // let asuransi  = element.options[element.selectedIndex].getAttribute("data-asuransi");
+        // console.log(harga_barang,asuransi,harga_barang*asuransi)
+
+        let asuransi = $('#asuransi').find(':selected').data('asuransi');
+
+        console.log(harga_barang , berat, asuransi)
+
+        calcBarang(harga_barang,berat,asuransi);
     })
 
     $(document).on("change","#asuransi",function(){
       
         var asuransi = $(this).find(':selected').data('asuransi');
-
-        let element = document.getElementById("barang");
-        let harga_barang  = element.options[element.selectedIndex].getAttribute("data-harga_barang");
-        console.log(harga_barang,asuransi,harga_barang*asuransi)
-        calcBarang(harga_barang,asuransi);
+        let berat = $('#berat').val();
+        let harga_barang = $('#barang').find(':selected').data('harga_barang');
+        
+        calcBarang(harga_barang,berat,asuransi);
+    })
+    $(document).on("change","#berat",function(){
+      
+        let asuransi = $('#asuransi').find(':selected').data('asuransi');
+        let berat = $(this).val();
+        let harga_barang = $('#barang').find(':selected').data('harga_barang');
+        
+        calcBarang(harga_barang,berat,asuransi);
+    })
+    $(document).on("keyup","#berat",function(){
+        let asuransi = $('#asuransi').find(':selected').data('asuransi');
+        let berat = $(this).val();
+        let harga_barang = $('#barang').find(':selected').data('harga_barang');
+        
+        calcBarang(harga_barang,berat,asuransi);
     })
 
-    function calcBarang(harga_barang,asuransi){
-        let biaya_barang = harga_barang * asuransi
+    function calcBarang(harga_barang,berat,asuransi){
+        let biaya_barang;
+        let perhitungan_persentase = parseFloat(harga_barang) * parseFloat(berat) * parseFloat(asuransi/100)
+        biaya_barang = (asuransi > 0)?(parseFloat(harga_barang) * parseFloat(berat)) + perhitungan_persentase : parseFloat(harga_barang) * parseFloat(berat);
+         
         $('#biaya_barang').val(biaya_barang);
         calcTotal()
     }
@@ -370,36 +461,66 @@
 
     // BEGIN :: Biaya Pengiriman
     $(document).on("change","#destinasi",function(){
-      
-      var harga = $(this).find(':selected').data('harga');
+        
+        
+        let data=$(".remote-data-destinasi").select2('data')[0];
+        let harga = data.harga_destinasi;
 
-      let element = document.getElementById("packing");
-      let packing  = element.options[element.selectedIndex].getAttribute("data-packing");
-      console.log(harga,packing,harga+packing)
-      calcPengiriman(harga,packing);
+        let packing_pengali = $('#packing').find(':selected').data('pengali');
+        let diskon = $('#diskon').val();
+
+    
+      calcPengiriman(harga,packing_pengali,diskon);
     })
 
     $(document).on("change","#packing",function(){
+        let packing_pengali
+        let id_packing = $(this).val()
+// console.log(id_packing)
+//         if(id_packing == 1){
+//             console.log('masuk sini')
+            packing_pengali = $(this).find(':selected').data('pengali');
+        // }else{
+        //     $(".data-packing").remove(".hidden");
+        // }
+        let data=$(".remote-data-destinasi").select2('data')[0];
+            let harga = data.harga_destinasi;
+            let diskon = $('#diskon').val();
     
-      var packing = $(this).find(':selected').data('packing');
+        
 
-      let element = document.getElementById("destinasi");
-      let harga  = element.options[element.selectedIndex].getAttribute("data-harga");
-      console.log(harga,packing,harga+packing)
-      calcPengiriman(harga,packing);
+    
+        calcPengiriman(harga,packing_pengali,diskon);
+    })
+    $(document).on("keyup","#diskon",function(){
+    
+        let data=$(".remote-data-destinasi").select2('data')[0];
+        let harga = data.harga_destinasi;
+
+        let packing_pengali = $('#packing').find(':selected').data('pengali');
+        let diskon = $(this).val();
+
+    
+        calcPengiriman(harga,packing_pengali,diskon);
     })
 
-    function calcPengiriman(harga,packing){
-      let biaya_pengirim = parseInt(harga) + parseInt(packing) 
-      $('#biaya_pengirim').val(biaya_pengirim);
-      calcTotal()
+    function calcPengiriman(harga,packing_pengali,diskon){
+        console.log(harga,packing_pengali,diskon)
+        
+            
+        let harga_packing = (packing_pengali>0)?parseFloat(harga) * parseFloat(packing_pengali):0;
+        let harga_diskon = (diskon>0)?parseFloat(diskon):0;
+
+        let biaya_pengirim = parseFloat(harga) + parseFloat(harga_packing) - parseFloat(harga_diskon)
+        $('#biaya_pengirim').val(biaya_pengirim);
+        calcTotal()
       
     }
     // END :: Biaya pengiriman
 
     function calcTotal(){
-        var biaya_barang = $('#biaya_barang').val();
-        var biaya_pengirim = ($('#biaya_pengirim').val() === "")? 0 :$('#biaya_pengirim').val();
+        var biaya_barang = ($('#biaya_barang').val() === "") ? 0 : $('#biaya_barang').val();
+        var biaya_pengirim = ($('#biaya_pengirim').val() === "") ? 0 :$('#biaya_pengirim').val();
 
 
         console.log(parseInt(biaya_barang) , parseInt(biaya_pengirim))
