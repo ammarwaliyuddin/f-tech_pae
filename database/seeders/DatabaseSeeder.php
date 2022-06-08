@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         
-        // Data Kota Seeder
+        // Data KOTA Seeder
         Kota::create([
             'nama_kota' => 'Atambua',
             'kode_kota' => 'ABU',
@@ -52,6 +52,31 @@ class DatabaseSeeder extends Seeder
             'kode_kota' => 'WKB',
             'keterangan' => 'Base Untuk Kota Waikabubak'
         ]);
+        Kota::create([
+            'nama_kota' => 'Ende',
+            'kode_kota' => 'END',
+            'keterangan' => 'Base Untuk Kota Ende'
+        ]);
+        Kota::create([
+            'nama_kota' => 'Labuan Bajo',
+            'kode_kota' => 'LBJ',
+            'keterangan' => 'Base Untuk Kota Labuan Bajo'
+        ]);
+        Kota::create([
+            'nama_kota' => 'Tambolaka',
+            'kode_kota' => 'TBL',
+            'keterangan' => 'Base Untuk Kota Tambolaka'
+        ]);
+        Kota::create([
+            'nama_kota' => 'Kalabahi',
+            'kode_kota' => 'ALR',
+            'keterangan' => 'Base Untuk Kota Kalabahi'
+        ]);
+        Kota::create([
+            'nama_kota' => 'Larantuka',
+            'kode_kota' => 'LTK',
+            'keterangan' => 'Base Untuk Kota Larantuka'
+        ]);
         
         // // Data Kecamatan Seeder
         Kecamatan::create([
@@ -59,6 +84,27 @@ class DatabaseSeeder extends Seeder
             'nama_kecamatan' => 'Atambua Selatan',
             'keterangan' => 'Kecamatan di Atambua'
         ]);
+        Kecamatan::create([
+            'id_kota' => '1',
+            'nama_kecamatan' => 'Atambua Barat',
+            'keterangan' => 'Kecamatan di Atambua'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '1',
+            'nama_kecamatan' => 'Kakuluk',
+            'keterangan' => 'Kecamatan di Atambua'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '1',
+            'nama_kecamatan' => 'Laelmanen',
+            'keterangan' => 'Kecamatan di Atambua'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '1',
+            'nama_kecamatan' => 'Lasiolat',
+            'keterangan' => 'Kecamatan di Atambua'
+        ]);
+        ///////
         Kecamatan::create([
             'id_kota' => '2',
             'nama_kecamatan' => 'Alak',
@@ -70,19 +116,237 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Kecamatan di Kota Kupang'
         ]);
         Kecamatan::create([
+            'id_kota' => '2',
+            'nama_kecamatan' => 'Alak',
+            'keterangan' => 'Kecamatan di Kota Kupang'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '2',
+            'nama_kecamatan' => 'Oebobo',
+            'keterangan' => 'Kecamatan di Kota Kupang'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '2',
+            'nama_kecamatan' => 'Kota Lama',
+            'keterangan' => 'Kecamatan di Kota Kupang'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '2',
+            'nama_kecamatan' => 'Naikoten',
+            'keterangan' => 'Kecamatan di Kota Kupang'
+        ]);
+        ///////
+        Kecamatan::create([
             'id_kota' => '3',
             'nama_kecamatan' => 'Magepanda',
             'keterangan' => 'Kecamatan di Maumere'
         ]);
+        Kecamatan::create([
+            'id_kota' => '3',
+            'nama_kecamatan' => 'Paga',
+            'keterangan' => 'Kecamatan di Maumere'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '3',
+            'nama_kecamatan' => 'Nita',
+            'keterangan' => 'Kecamatan di Maumere'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '3',
+            'nama_kecamatan' => 'Lela',
+            'keterangan' => 'Kecamatan di Maumere'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '3',
+            'nama_kecamatan' => 'Kewapante',
+            'keterangan' => 'Kecamatan di Maumere'
+        ]);
+        ///////
         Kecamatan::create([
             'id_kota' => '4',
             'nama_kecamatan' => 'Golewa',
             'keterangan' => 'Kecamatan di Bajawa'
         ]);
         Kecamatan::create([
+            'id_kota' => '4',
+            'nama_kecamatan' => 'Bajawa',
+            'keterangan' => 'Kecamatan di Bajawa'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '4',
+            'nama_kecamatan' => 'Bajawa Utara',
+            'keterangan' => 'Kecamatan di Bajawa'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '4',
+            'nama_kecamatan' => 'Aimere',
+            'keterangan' => 'Kecamatan di Bajawa'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '4',
+            'nama_kecamatan' => 'Inerie',
+            'keterangan' => 'Kecamatan di Bajawa'
+        ]);
+        ///////
+        Kecamatan::create([
             'id_kota' => '5',
             'nama_kecamatan' => 'Kota Waikabubak',
             'keterangan' => 'Kecamatan di Waikabubak'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '5',
+            'nama_kecamatan' => 'Kota Kota Waikabubak',
+            'keterangan' => 'Kecamatan di Waikabubak'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '5',
+            'nama_kecamatan' => 'Lamboya',
+            'keterangan' => 'Kecamatan di Waikabubak'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '5',
+            'nama_kecamatan' => 'Loli',
+            'keterangan' => 'Kecamatan di Waikabubak'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '5',
+            'nama_kecamatan' => 'Wanokaka',
+            'keterangan' => 'Kecamatan di Waikabubak'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '5',
+            'nama_kecamatan' => 'Wewaria',
+            'keterangan' => 'Kecamatan di Ende'
+        ]);
+        ///////
+        Kecamatan::create([
+            'id_kota' => '6',
+            'nama_kecamatan' => 'Wolojita',
+            'keterangan' => 'Kecamatan di Ende'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '6',
+            'nama_kecamatan' => 'Ende',
+            'keterangan' => 'Kecamatan di Ende'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '6',
+            'nama_kecamatan' => 'Ende Selatan',
+            'keterangan' => 'Kecamatan di Ende'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '6',
+            'nama_kecamatan' => 'Ende Timur',
+            'keterangan' => 'Kecamatan di Ende'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '6',
+            'nama_kecamatan' => 'Ende Timur',
+            'keterangan' => 'Kecamatan di Ende'
+        ]);
+        ///////
+        Kecamatan::create([
+            'id_kota' => '7',
+            'nama_kecamatan' => 'Boleng',
+            'keterangan' => 'Kecamatan di Labuan Bajo'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '7',
+            'nama_kecamatan' => 'Komodo',
+            'keterangan' => 'Kecamatan di Labuan Bajo'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '7',
+            'nama_kecamatan' => 'Kuwus',
+            'keterangan' => 'Kecamatan di Labuan Bajo'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '7',
+            'nama_kecamatan' => 'Lembor',
+            'keterangan' => 'Kecamatan di Labuan Bajo'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '7',
+            'nama_kecamatan' => 'Macang Pacar',
+            'keterangan' => 'Kecamatan di Labuan Bajo'
+        ]);
+        ///////
+        Kecamatan::create([
+            'id_kota' => '8',
+            'nama_kecamatan' => 'Kodi',
+            'keterangan' => 'Kecamatan di Tambolaka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '8',
+            'nama_kecamatan' => 'Kota Tambolaka',
+            'keterangan' => 'Kecamatan di Tambolaka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '8',
+            'nama_kecamatan' => 'Loura',
+            'keterangan' => 'Kecamatan di Tambolaka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '8',
+            'nama_kecamatan' => 'Wewewa Barat',
+            'keterangan' => 'Kecamatan di Tambolaka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '8',
+            'nama_kecamatan' => 'Wewewa Timur',
+            'keterangan' => 'Kecamatan di Tambolaka'
+        ]);
+        //////
+        Kecamatan::create([
+            'id_kota' => '9',
+            'nama_kecamatan' => 'Lembur',
+            'keterangan' => 'Kecamatan di Kalabahi'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '9',
+            'nama_kecamatan' => 'Alor Barat Daya',
+            'keterangan' => 'Kecamatan di Kalabahi'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '9',
+            'nama_kecamatan' => 'Kabola',
+            'keterangan' => 'Kecamatan di Kalabahi'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '9',
+            'nama_kecamatan' => 'Mataru',
+            'keterangan' => 'Kecamatan di Kalabahi'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '9',
+            'nama_kecamatan' => 'Pantar',
+            'keterangan' => 'Kecamatan di Kalabahi'
+        ]);
+        //////
+        Kecamatan::create([
+            'id_kota' => '10',
+            'nama_kecamatan' => 'Adonara',
+            'keterangan' => 'Kecamatan di Larantuka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '10',
+            'nama_kecamatan' => 'Demon Pagong',
+            'keterangan' => 'Kecamatan di Larantuka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '10',
+            'nama_kecamatan' => 'Ile Boleng',
+            'keterangan' => 'Kecamatan di Larantuka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '10',
+            'nama_kecamatan' => 'Ile Bura',
+            'keterangan' => 'Kecamatan di Larantuka'
+        ]);
+        Kecamatan::create([
+            'id_kota' => '10',
+            'nama_kecamatan' => 'Kelu Bagolit',
+            'keterangan' => 'Kecamatan di Larantuka'
         ]);
         
         // Data Destinasi Seeder
@@ -151,27 +415,31 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Asuransi Barang'
         ]);
         
-        // Data Disposisi Seeder
-        Disposisi::create([
-            'nama_disposisi' => 'Kantor Pengirim',
-            'keterangan' => 'Kantor Pengirim'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Gudang Pengirim',
-            'keterangan' => 'Gudang Pengirim'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Kendaraan Pengirim',
-            'keterangan' => 'Kendaraan Pengirim'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Kendaraan Destinasi',
-            'keterangan' => 'Kendaraan Destinasi'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Gudang Destinasi',
-            'keterangan' => 'Gudang Destinasi'
-        ]);
+        // // Data Disposisi Seeder
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Kantor Pengirim',
+        //     'keterangan' => 'Kantor Pengirim',
+        //     'id_user'=> '1'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Gudang Pengirim',
+        //     'keterangan' => 'Gudang Pengirim',
+        //     'id_user'=> '1'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Kendaraan Pengirim',
+        //     'keterangan' => 'Kendaraan Pengirim'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Kendaraan Destinasi',
+        //     'keterangan' => 'Kendaraan Destinasi',
+        //     'id_user'=> '1'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Gudang Destinasi',
+        //     'keterangan' => 'Gudang Destinasi',
+        //     'id_user'=> '1'
+        // ]);
         
         // Data Status Pengiriman Seeder
         Status::create([
@@ -204,6 +472,31 @@ class DatabaseSeeder extends Seeder
             'nama_status' => 'Delivery',
             'keterangan' => 'Security'
         ]);
+        Status::create([
+            'kode_status' => 'U21',
+            'nama_status' => 'Undelivery',
+            'keterangan' => 'Penerima Menolak Bayar Kiriman COD'
+        ]);
+        Status::create([
+            'kode_status' => 'D01',
+            'nama_status' => 'Delivery',
+            'keterangan' => 'Yang Bersangkutan'
+        ]);
+        Status::create([
+            'kode_status' => 'U09',
+            'nama_status' => 'Undelivery',
+            'keterangan' => 'Hari Libur'
+        ]);
+        Status::create([
+            'kode_status' => 'D12',
+            'nama_status' => 'Delivery',
+            'keterangan' => 'Office Boy'
+        ]);
+        Status::create([
+            'kode_status' => 'D06',
+            'nama_status' => 'Delivery',
+            'keterangan' => 'Suami'
+        ]);
         
         // Data Level Seeder
         Level::create([
@@ -213,6 +506,14 @@ class DatabaseSeeder extends Seeder
         Level::create([
             'nama_level' => 'Admin',
             'keterangan' => 'Admin'
+        ]);
+        Level::create([
+            'nama_level' => 'Admin2',
+            'keterangan' => 'Admin2'
+        ]);
+        Level::create([
+            'nama_level' => 'Admin3',
+            'keterangan' => 'Admin3'
         ]);
         Level::create([
             'nama_level' => 'Kurir',
@@ -247,6 +548,86 @@ class DatabaseSeeder extends Seeder
             'hp' => '086376529213',
             'id_kota' => '1',
             'id_kecamatan' => '1'
+        ]);
+        User::create([
+            'nama_user' => 'Brazer',
+            'email' => 'Brazerboss@example.com',
+            'password' => 'Brazerboss',
+            'id_level' => '1',
+            'alamat' => 'Jl. Bumi III',
+            'hp' => '086376529213',
+            'id_kota' => '1',
+            'id_kecamatan' => '1'
+        ]);
+        User::create([
+            'nama_user' => 'Bimasakti',
+            'email' => 'Bimasakti@example.com',
+            'password' => 'Bimsak',
+            'id_level' => '3',
+            'alamat' => 'Jl. Pluto No.09',
+            'hp' => '09873873478',
+            'id_kota' => '4',
+            'id_kecamatan' => '2'
+        ]);
+        User::create([
+            'nama_user' => 'Desta',
+            'email' => 'desta01@example.com',
+            'password' => 'Destainaja',
+            'id_level' => '1',
+            'alamat' => 'Jl. kakatua',
+            'hp' => '09383837383',
+            'id_kota' => '1',
+            'id_kecamatan' => '4'
+        ]);
+        User::create([
+            'nama_user' => 'Desta',
+            'email' => 'desta01@example.com',
+            'password' => 'Destainaja',
+            'id_level' => '1',
+            'alamat' => 'Jl. kakatua',
+            'hp' => '09383837383',
+            'id_kota' => '1',
+            'id_kecamatan' => '4'
+        ]);
+        User::create([
+            'nama_user' => 'Andi',
+            'email' => 'Andilaw@example.com',
+            'password' => 'andiL',
+            'id_level' => '3',
+            'alamat' => 'Jl. Kenari',
+            'hp' => '08585832738',
+            'id_kota' => '6',
+            'id_kecamatan' => '2'
+        ]);
+        User::create([
+            'nama_user' => 'Supri',
+            'email' => 'suprigan@example.com',
+            'password' => 'supriyasdi',
+            'id_level' => '2',
+            'alamat' => 'Jl. Danger',
+            'hp' => '09828736484',
+            'id_kota' => '10',
+            'id_kecamatan' => '3'
+        ]);
+        User::create([
+            'nama_user' => 'Pedro',
+            'email' => 'pedrosa@example.com',
+            'password' => 'peendro',
+            'id_level' => '1',
+            'alamat' => 'Jl. Ujung Kulon',
+            'hp' => '0918273834',
+            'id_kota' => '7',
+            'id_kecamatan' => '8'
+        ]);
+        User::create([
+            'nama_user' => 'Sugar',
+            'email' => 'dedysugar@example.com',
+            'password' => 'dedgar',
+            'id_level' => '1',
+            'alamat' => 'Jl. Belimbing',
+            'hp' => '082182736812',
+            'id_kota' => '3',
+            'id_kecamatan' => '7'
         ]);
         
     }

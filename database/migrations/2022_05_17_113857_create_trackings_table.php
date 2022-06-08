@@ -17,7 +17,7 @@ class CreateTrackingsTable extends Migration
             $table->string('no_resi');
             $table->foreignId('id_status_pengiriman');
             $table->foreignId('id_disposisi');
-            $table->foreignId('insert_user');
+            $table->foreignId('id_kota');
             $table->string('keterangan')->nullable();
             $table->timestamps();    
         });

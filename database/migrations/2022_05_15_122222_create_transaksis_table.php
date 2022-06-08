@@ -19,25 +19,23 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('id_pengirim');
             $table->foreignId('id_penerima');
             $table->foreignId('id_destinasi');
-            $table->foreignId('id_barang');
             $table->foreignId('id_packing');
             $table->foreignId('id_service');
-            $table->foreignId('id_asuransi')->nullable();
+            $table->foreignId('id_asuransi');
             $table->string('alamat_pengirim');
             $table->string('alamat_penerima');
             $table->integer('jumlah');
             $table->integer('berat');
             $table->text('deskripsi');
             $table->text('instruksi');
-            $table->string('harga_packing')->nullable();
             $table->string('biaya_barang');
             $table->string('biaya_pengiriman');
             $table->string('diskon')->nullable();
+            $table->foreignId('id_status_pengiriman');
             $table->float('total');
             $table->timestamps();    
         });
     }
-
     /**
      * Reverse the migrations.
      *
