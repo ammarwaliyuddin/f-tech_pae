@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kota extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
+    protected $table = "kotas";
+    protected $primaryKey ="id_kota";
     protected $fillable = ['nama_kota','kode_kota']; 
 }

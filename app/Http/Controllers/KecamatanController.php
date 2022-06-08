@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KecamatanExport;
+use App\Imports\KecamatanImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kecamatan;
 
@@ -18,6 +22,21 @@ class KecamatanController extends Controller
         
         $kecamatans = empty($searching) ? Kecamatan::latest()->paginate(2) : Kecamatan::where('nama_kecamatan','like','%'.$searching.'%')->paginate(2);
         return view('dashboard.datadestinasi.view.list_kecamatan',compact('kecamatans'));
+    }
+
+    public function kecamatanexport()
+    {
+        return Excel::download(new KecamatanExport,'kecamatan.xlsx');
+    }
+
+    public function kecamatanimportexcel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataKecamatan' , $namaFile);
+
+        Excel::import(new KecamatanImport, public_path('/DataKecamatan/'.$namaFile));
+        return redirect('/datadestinasi/kecamatan');
     }
 
     public function store(Request $request)
