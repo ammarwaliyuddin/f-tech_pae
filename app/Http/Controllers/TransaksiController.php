@@ -6,6 +6,7 @@ use App\Models\Destinasi;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\Kota;
+use App\Models\Tracking;
 
 class TransaksiController extends Controller
 {
@@ -104,12 +105,20 @@ class TransaksiController extends Controller
             $transaksi->diskon = $request->input('diskon');
             $transaksi->biaya_barang = $request->input('biaya_barang');
             $transaksi->biaya_pengiriman = $request->input('biaya_pengirim');
-            $transaksi->id_status_pengiriman = 1;
             $transaksi->total = $request->input('total');
             $transaksi = $transaksi->save();
 
+            if($transaksi){
+                $tracking =new Tracking();
+                $tracking->no_resi = $no_resi;
+                $tracking->id_status_pengiriman = 1;
+                $tracking->id_disposisi = 1;
+                $tracking->insert_user = 1;
+                $tracking = $tracking->save();
+            }
+
             $data=array(
-                'success'=> $transaksi,
+                'success'=> $tracking,
                 'pesan'=>'Data berhasil dikirim'
             );
             return $data;

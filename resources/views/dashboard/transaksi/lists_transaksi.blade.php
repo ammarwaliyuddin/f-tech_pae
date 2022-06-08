@@ -29,24 +29,25 @@
                     <th class="text-center whitespace-nowrap">Destinasi</th>
                     <th class="text-center whitespace-nowrap">Tanggal</th>
                     <th class="text-center whitespace-nowrap">Jumlah</th>
-                    <th class="text-center whitespace-nowrap">Disposisi</th>
+                    {{-- <th class="text-center whitespace-nowrap">Disposisi</th> --}}
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 @php
                 $no = 1;
+               
                 @endphp
                 @foreach ($transaksis as $item)
                 <tr class="intro-x">
                     <td class="w-40"><a href="" class="font-medium whitespace-nowrap">{{ $no++ }}</a></td>
                     <td><a href="" class="font-medium whitespace-nowrap">{{ $item->no_resi }}</a></td>
-                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->pengirim }}</a></td>
-                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->penerima }}</a></td>
-                    <td class="w-40 text-center">{{ $item->destinasi }}</td>
-                    <td class="w-40 text-center">{{ $item->tanggal }} </td>
+                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->user_pengirim->nama_user }}</a></td>
+                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->user_penerima->nama_user }}</a></td>
+                    <td class="w-40 text-center">{{ $item->destinasi->kode_destinasi }}</td>
+                    <td class="w-40 text-center">{{ $item->created_at }} </td>
                     <td class="w-40 text-center">{{ $item->jumlah }} </td>
-                    <td class="w-40 text-center">{{ $item->disposisi }} </td>
+                    {{-- <td class="w-40 text-center">{{ $item->disposisi->nama_disposisi }} </td> --}}
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
                             <a class="flex items-center mr-3 btn btn-sm" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg> Edit </a>

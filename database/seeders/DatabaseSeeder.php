@@ -175,6 +175,11 @@ class DatabaseSeeder extends Seeder
         
         // Data Status Pengiriman Seeder
         Status::create([
+            'kode_status' => 'P01',
+            'nama_status' => 'PROGRESS',
+            'keterangan' => ''
+        ]);
+        Status::create([
             'kode_status' => 'U01',
             'nama_status' => 'Undelivery',
             'keterangan' => 'Alamat Tidak Lengkap/Tidak Dikenal'
