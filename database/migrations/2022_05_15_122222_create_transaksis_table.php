@@ -18,6 +18,9 @@ class CreateTransaksisTable extends Migration
             $table->string('no_resi');
             $table->foreignId('id_pengirim');
             $table->foreignId('id_penerima');
+            $table->foreignId('id_disposisi');
+            $table->foreignId('id_status_pengiriman');
+            $table->foreignId('id_barang');
             $table->foreignId('id_destinasi');
             $table->foreignId('id_packing');
             $table->foreignId('id_service');
@@ -30,8 +33,8 @@ class CreateTransaksisTable extends Migration
             $table->text('instruksi');
             $table->string('biaya_barang');
             $table->string('biaya_pengiriman');
+            $table->string('harga_packing')->nullable();
             $table->string('diskon')->nullable();
-            $table->foreignId('id_status_pengiriman');
             $table->float('total');
             $table->timestamps();    
         });

@@ -17,7 +17,6 @@ class CreateDisposisisTable extends Migration
             $table->id('id_disposisi');
             $table->string('nama_disposisi');
             $table->string('keterangan')->nullable();
-            $table->foreignId('id_user');
             $table->timestamps();
         });
     }

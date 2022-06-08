@@ -90,6 +90,8 @@ class TransaksiController extends Controller
             $transaksi->no_resi = $no_resi;
             $transaksi->id_pengirim = $request->input('pengirim');
             $transaksi->id_penerima = $request->input('penerima');
+            $transaksi->id_disposisi = 1;
+            $transaksi->id_status_pengiriman = 1;
             $transaksi->id_destinasi = $request->input('destinasi');
             $transaksi->id_barang = $request->input('barang');
             $transaksi->id_packing = $request->input('packing');
