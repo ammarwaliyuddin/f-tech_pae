@@ -33,7 +33,6 @@ class CreateTransaksisTable extends Migration
             $table->string('biaya_barang');
             $table->string('biaya_pengiriman');
             $table->string('diskon')->nullable();
-            $table->foreignId('id_status_pengiriman');
             $table->float('total');
             $table->timestamps();    
         });
