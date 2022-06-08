@@ -22,7 +22,7 @@
             </div>
             <div class="intro-y col-span-12 lg:col-span-6">
                 <label for="alamat_pengirim" class="form-label">Alamat Pengirim</label>
-                <input id="alamat_pengirim" type="text" class="form-control" >
+                <input id="alamat_pengirim" name="alamat_pengirim" type="text" class="form-control" >
             </div>
             <div class="intro-y col-span-12 lg:col-span-6">
                 <label for="penerima" class="form-label">Penerima</label>
@@ -36,7 +36,7 @@
             </div>
             <div class="intro-y col-span-12 lg:col-span-6">
                 <label for="alamat_penerima" class="form-label">Alamat Penerima</label>
-                <input id="alamat_penerima" type="text" class="form-control" >
+                <input id="alamat_penerima" name="alamat_penerima" type="text" class="form-control" >
             </div>
             <div class="intro-y col-span-12 lg:col-span-4 remote-data-service">
                 <label for="service" class="form-label">Service</label>
@@ -71,29 +71,29 @@
             </div>
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="berat" class="form-label">Berat</label>
-                <input id="berat" type="number" class="form-control" value="1" placeholder="Masukkan Berat" >
+                <input id="berat" name="berat" type="number" class="form-control" value="1" placeholder="Masukkan Berat" >
             </div>
             <div class="intro-y col-span-12 lg:col-span-4 data-packing hidden">
                 <label for="harga_packing" class="form-label">Harga Packing</label>
-                <input id="harga_packing" type="text" class="form-control" placeholder="Masukkan Harga Packing">
+                <input id="harga_packing" name="harga_packing" type="text" class="form-control" placeholder="Masukkan Harga Packing">
             </div>
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="jumlah" class="form-label">Jumlah</label>
-                <input id="jumlah" type="text" class="form-control" placeholder="Masukkan Jumlah">
+                <input id="jumlah" name="jumlah" type="text" class="form-control" placeholder="Masukkan Jumlah">
             </div>
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="diskon" class="form-label">Diskon</label>
-                <input id="diskon" type="text" class="form-control" placeholder="Masukkan Diskon">
+                <input id="diskon" name="diskon" type="text" class="form-control" placeholder="Masukkan Diskon">
             </div>
            
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="deskripsi" class="form-label">Deskripsi</label>
-                <input id="deskripsi" type="text" class="form-control" placeholder="Masukkan Deskripsi">
+                <input id="deskripsi" name="deskripsi" type="text" class="form-control" placeholder="Masukkan Deskripsi">
             </div>
 
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="instruksi" class="form-label">Instruksi</label>
-                <textarea id="instruksi" class="form-control" ></textarea>
+                <textarea id="instruksi" name="instruksi" class="form-control" ></textarea>
             </div>
             
         </div>
@@ -101,15 +101,15 @@
         <div class="grid grid-cols-12 gap-4 p-5">
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="biaya_barang" class="form-label">Biaya Barang</label>
-                <input id="biaya_barang" type="text" class="form-control" placeholder="Loading Biaya Barang ..." disabled>
+                <input id="biaya_barang" name="biaya_barang" type="text" class="form-control" placeholder="Loading Biaya Barang ..." disabled>
             </div>
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="biaya_pengirim" class="form-label">Biaya Pengirim</label>
-                <input id="biaya_pengirim" type="text" class="form-control" placeholder="Loading Biaya Pengirim ..." disabled>
+                <input id="biaya_pengirim" name="biaya_pengirim" type="text" class="form-control" placeholder="Loading Biaya Pengirim ..." disabled>
             </div>
             <div class="intro-y col-span-12 lg:col-span-4">
                 <label for="total" class="form-label">Total</label>
-                <input id="total" type="text" class="form-control" placeholder="Loading Total Biaya ..." disabled>
+                <input id="total" name="total" type="text" class="form-control" placeholder="Loading Total Biaya ..." disabled>
             </div>
         </div>
         <div class="flex justify-end pb-5 px-5">
@@ -171,6 +171,35 @@
 </div>
 <!-- END: Add Item Modal -->
 
+ <!-- BEGIN: Modal Content -->
+ <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="p-5 text-center"> <i data-feather="check-circle" class="w-16 h-16 text-theme-9 mx-auto mt-3"></i>
+                    <div class="text-3xl mt-5">Berhasil Tersimpan!</div>
+                    <div class="text-gray-600 mt-2">Data Anda tersimpan!</div>
+                </div>
+                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- END: Modal Content -->
+ <!-- BEGIN: Modal Content -->
+ <div id="unsuccess-saved" class="modal " tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="p-5 text-center"> <i data-feather="x-circle" class="w-16 h-16 text-theme-12 mx-auto mt-3"></i>
+                    <div class="text-3xl mt-5 ">Tidak Tersimpan!</div>
+                    <div class="text-gray-600 mt-2 pesan"></div>
+                </div>
+                <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="btn btn-primary w-24">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- END: Modal Content -->
+
 
         
 @stop
@@ -181,12 +210,18 @@
 
     $(document).on("submit","#form_tambah",function(e){
         var data = new FormData(this);
+        let biaya_barang = $('#biaya_barang').val()
+        let biaya_pengirim = $('#biaya_pengirim').val()
+        let total = $('#total').val()
+        data.append("biaya_barang", biaya_barang);
+        data.append("biaya_pengirim", biaya_pengirim);
+        data.append("total", total);
         
         if($("#form_tambah")[0].checkValidity()) {
             //updateAllMessageForms();
             e.preventDefault();
             $.ajax({
-                url         : "{{URL::to('datamaster/add')}}",
+                url         : "{{URL::to('transaksi/api/add_transaksi')}}",
                 type        : 'post',
                 data        : data,
                 dataType    : 'JSON',
@@ -194,8 +229,21 @@
                 cache       : false,
                 processData : false,
                 success: function(data) {
-                    modal.show('#success-saved'); 
-                    showData();
+                    if(data.success){
+                        modal.show('#success-saved');
+                        setInterval(function() {
+                            window.location.href = "{{ url('transaksi/lists')}}";
+                        }, 1000); //5 seconds
+ 
+                        
+
+                        // return redirect()->route('transaksi/lists');
+                        
+                    }else{
+                        let pesan= `<div class="text-gray-600 mt-2 pesan">${data.error}</div>`
+                        $(".pesan").empty().html(pesan);
+                        modal.show('#unsuccess-saved'); 
+                    }    
                 }
                         
             });

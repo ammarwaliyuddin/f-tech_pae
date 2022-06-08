@@ -107,7 +107,13 @@ Route::prefix('datadestinasi')->group(function () {
 Route::prefix('transaksi')->group(function () {
     // user
     Route::get('add', [TransaksiController::class,'index']);
+   
     Route::get('lists', [TransaksiController::class,'lists']);
+
+    Route::prefix('api')->group(function () {
+        Route::post('add_transaksi', [TransaksiController::class,'add_transaksi']);
+    });
+    
 
 });
 
