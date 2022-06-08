@@ -29,24 +29,25 @@
                     <th class="text-center whitespace-nowrap">Destinasi</th>
                     <th class="text-center whitespace-nowrap">Tanggal</th>
                     <th class="text-center whitespace-nowrap">Jumlah</th>
-                    <th class="text-center whitespace-nowrap">Disposisi</th>
+                    {{-- <th class="text-center whitespace-nowrap">Disposisi</th> --}}
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 @php
                 $no = 1;
+               
                 @endphp
                 @foreach ($transaksis as $item)
                 <tr class="intro-x">
                     <td class="w-40"><a href="" class="font-medium whitespace-nowrap">{{ $no++ }}</a></td>
                     <td><a href="" class="font-medium whitespace-nowrap">{{ $item->no_resi }}</a></td>
-                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->pengirim }}</a></td>
-                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->penerima }}</a></td>
-                    <td class="w-40 text-center">{{ $item->destinasi }}</td>
-                    <td class="w-40 text-center">{{ $item->tanggal }} </td>
+                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->user_pengirim->nama_user }}</a></td>
+                    <td><a href="" class="font-medium whitespace-nowrap">{{ $item->user_penerima->nama_user }}</a></td>
+                    <td class="w-40 text-center">{{ $item->destinasi->kode_destinasi }}</td>
+                    <td class="w-40 text-center">{{ $item->created_at }} </td>
                     <td class="w-40 text-center">{{ $item->jumlah }} </td>
-                    <td class="w-40 text-center">{{ $item->disposisi }} </td>
+                    {{-- <td class="w-40 text-center">{{ $item->disposisi->nama_disposisi }} </td> --}}
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
                             <a class="flex items-center mr-3 btn btn-sm" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg> Edit </a>
@@ -116,58 +117,7 @@
         </div>
     </div>
     <!-- END: Delete Confirmation Modal -->
-    <!-- BEGIN: Add user Modal -->
-    <div id="add-user-modal" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">
-                        Tambah User
-                    </h2>
-                </div>
-
-                <form method="post" id="form-add-user" onsubmit="return false;" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12">
-                            <label for="nama_user" class="form-label">Nama User</label>
-                            <input type="text" id="nama_user" name="nama_user" class="form-control w-full mt-2" placeholder="Nama User">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" name="password" class="form-control w-full mt-2" placeholder="Password">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="level" class="form-label">Level</label>
-                            <input type="text" id="level" name="level" class="form-control w-full mt-2" placeholder="Level">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="alamat" class="form-label">Alamat</label>
-                            <input type="text" id="alamat" name="alamat" class="form-control w-full mt-2" placeholder="Alamat">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="hp" class="form-label">HP</label>
-                            <input type="text" id="hp" name="hp" class="form-control w-full mt-2" placeholder="HP">
-                        </div>
-                        <div class="col-span-12">
-                            <label for="id_kota" class="form-label">kota</label>
-                            <textarea id="id_kota" class="form-control w-full mt-2" name="id_kota" placeholder="id_kota"></textarea>
-                        </div>
-                        <div class="col-span-12">
-                            <label for="kecamatan" class="form-label">Kecamatan</label>
-                            <textarea id="kecamatan" class="form-control w-full mt-2" name="kecamatan" placeholder="Kecamatan"></textarea>
-                        </div>
-                    
-                    </div>
-                    <div class="modal-footer text-right">
-                        <button data-dismiss="modal" type="button" class="btn btn-outline-secondary w-24 mr-1">Batal</button>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary w-24">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- END: Add Item Modal -->
+    
      <!-- BEGIN: Modal Content -->
     <div id="success-saved" class="modal " tabindex="-1" aria-hidden="true" >
         <div class="modal-dialog">

@@ -468,6 +468,7 @@
     }
 
     function getKecamatan(id_kota_destinasi){
+        console.log(id_kota_destinasi)
         $.ajax({
             url:"{{URL::to('api/data-kecamatan')}}",
             type:"GET",

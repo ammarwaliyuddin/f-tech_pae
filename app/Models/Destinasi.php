@@ -14,10 +14,10 @@ class Destinasi extends Model
     protected $fillable = ['id_kota_origin','id_kota_destinasi', 'id_kecamatan' , 'id_service' , 'kode_destinasi', 'harga' ];
 
     public function kota_origin(){
-        return $this->belongsTo(Kota::class,'id_kota','id_kota_origin');
+        return $this->belongsTo(Kota::class,'id_kota_origin','id_kota');
     }
     public function kota_destinasi(){
-        return $this->belongsTo(Kota::class,'id_kota','id_kota_destinasi');
+        return $this->belongsTo(Kota::class,'id_kota_destinasi','id_kota');
     }
     public function kecamatan(){
         return $this->belongsTo(Kecamatan::class,'id_kecamatan','id_kecamatan');
