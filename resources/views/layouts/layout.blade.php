@@ -718,7 +718,7 @@
                     <div class="dropdown-menu w-56">
                         <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white">
                             <div class="p-4 border-b border-theme-27 dark:border-dark-3">
-                                <div class="font-medium">Johnny Depp</div>
+                                <div class="font-medium">Dimas</div>
                                 {{-- <div class="font-medium">{{ auth()->user()->nama_user }}</div> --}}
                                
                             </div>
