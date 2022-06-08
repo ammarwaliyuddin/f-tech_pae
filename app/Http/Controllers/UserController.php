@@ -155,9 +155,18 @@ class UserController extends Controller
         return $data;
 
     }
-    public function data_user(){
-        $users = User::all();
-        return $users;
+    public function data_user(Request $request){
+        $data = array();
+        $data =User::select("id_user","nama_user");
+        if($request->has('q')){
+            $search = $request->q;
+            $data =$data->where('nama_user','LIKE',"%$search%");
+        }
+        $data =$data->get();
+        return response()->json($data);
+
+        // $users = User::all();
+        // return $users;
     }
     public function data_alamatUser(Request $request){
         $users = User::where('id_user',$request->input('id_user'))->first();

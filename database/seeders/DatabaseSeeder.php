@@ -5,12 +5,12 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use \App\Models\Kota;
 use \App\Models\Kecamatan;
-// use \App\Models\Destinasi;
+use \App\Models\Destinasi;
 use \App\Models\Barang;
 use \App\Models\Service;
 use \App\Models\Packing;
 use \App\Models\Asuransi;
-// use \App\Models\Disposisi;
+use \App\Models\Disposisi;
 use \App\Models\Status;
 use \App\Models\Level;
 use \App\Models\User;
@@ -349,17 +349,31 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Kecamatan di Larantuka'
         ]);
         
-        // // Data Destinasi Seeder
-        // Destinasi::create([
-        //     'id_kota_origin' => '',
-        //     'id_kota_destinasi' => '',
-        //     'id_kecamatan' => '',
-        //     'id_service' => '',
-        //     'kode_destinasi' => '',
-        //     'harga' => ''
+        // Data Destinasi Seeder
+        Destinasi::create([
+            'id_kota_origin' => 1,
+            'id_kota_destinasi' => 2,
+            'id_kecamatan' => 2,
+            'id_service' => 1,
+            'kode_destinasi' => 'ABU - KOE - ALK',
+            'harga' => '9000'
         
+<<<<<<< HEAD
         // ]);
 
+=======
+        ]);
+        // Data Destinasi Seeder
+        Destinasi::create([
+            'id_kota_origin' => 1,
+            'id_kota_destinasi' => 3,
+            'id_kecamatan' => 3,
+            'id_service' => 1,
+            'kode_destinasi' => 'ABU - MOF - ALK',
+            'harga' => '5000'
+        
+        ]);
+>>>>>>> b92c6b5c1ee24df3aa65be90cce575f007c00bc7
         
         // Data Barang Seeder
         Barang::create([
@@ -407,26 +421,26 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // Data Disposisi Seeder
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Kantor Pengirim',
-        //     'keterangan' => 'Kantor Pengirim'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Gudang Pengirim',
-        //     'keterangan' => 'Gudang Pengirim'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Kendaraan Pengirim',
-        //     'keterangan' => 'Kendaraan Pengirim'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Kendaraan Destinasi',
-        //     'keterangan' => 'Kendaraan Destinasi'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Gudang Destinasi',
-        //     'keterangan' => 'Gudang Destinasi'
-        // ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Kantor Pengirim',
+            'keterangan' => 'Kantor Pengirim'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Gudang Pengirim',
+            'keterangan' => 'Gudang Pengirim'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Kendaraan Pengirim',
+            'keterangan' => 'Kendaraan Pengirim'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Kendaraan Destinasi',
+            'keterangan' => 'Kendaraan Destinasi'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Gudang Destinasi',
+            'keterangan' => 'Gudang Destinasi'
+        ]);
         
         // Data Status Pengiriman Seeder
         Status::create([

@@ -31,10 +31,10 @@
                         <a href="" class="font-medium whitespace-nowrap">{{ $no++ }}</a> 
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->id_kota_origin }}</a> 
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->kota_origin->nama_kota }}</a> 
                     </td>
                     <td>
-                        <a href="" class="font-medium whitespace-nowrap">{{ $item->id_kota_destinasi }}</a> 
+                        <a href="" class="font-medium whitespace-nowrap">{{ $item->kota_destinasi->nama_kota }}</a> 
                     </td>
                     <td>
                         <a href="" class="font-medium whitespace-nowrap">{{ $item->kecamatan->nama_kecamatan }}</a> 
