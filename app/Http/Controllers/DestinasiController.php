@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DestinasiExport;
+use App\Imports\DestinasiImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Destinasi;
 
@@ -21,6 +25,20 @@ class DestinasiController extends Controller
         return view('dashboard.datadestinasi.view.list_destinasi',compact('destinasis'));
     }
 
+    public function destinasiexport()
+    {
+        return Excel::download(new DestinasiExport,'destinasi.xlsx');
+    }
+
+    public function destinasiimportexcel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataDestinasi' , $namaFile);
+
+        Excel::import(new DestinasiImport, public_path('/DataDestinasi/'.$namaFile));
+        return redirect('/datadestinasi/destinasi');
+    }
 
     public function store(Request $request)
     {

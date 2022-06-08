@@ -525,6 +525,7 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // Data User Seeder
+        
         User::create([
             'nama_user' => 'Anton',
             'email' => 'Antonesia@example.com',

@@ -9,16 +9,8 @@
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
         <a  data-toggle="modal" data-target="#add-item-modal" class="btn btn-primary shadow-md mr-2">Tambah Kecamatan</a>
         <div class="dropdown">
-            <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
-                <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
-            </button>
-            <div class="dropdown-menu w-40">
-                <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </a>
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                    <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
-                </div>
-            </div>
+            <a href="{{ URL::to('datadestinasi/kecamatan-exportkecamatan') }}" class="btn btn-primary">Export</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Import</a>
         </div>
         {{-- <div class="hidden md:block mx-auto text-gray-600">Showing 1 to 10 of 150 entries</div> --}}
         <div class="w-full sm:w-auto mt-3 sm:mt-0 ml-auto">
@@ -34,6 +26,31 @@
 
     </div>
 </div>
+
+<!-- Modal Import data-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ URL::to('datadestinasi/kecamatan-importkecamatan') }}" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          
+            <div class="form-group">
+                <input type="file" name="file" required="required" >
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Selesai</button>
+          <button type="submit" class="btn btn-primary">Import</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
 
  <!-- BEGIN: Add Item Modal -->
  <div id="add-item-modal" class="modal" tabindex="-1" aria-hidden="true">

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KotaExport;
+use App\Imports\KotaImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kota;
 
@@ -21,6 +25,20 @@ class KotaController extends Controller
         return view('dashboard.datadestinasi.view.list_kota',compact('kotas'));
     }
 
+    public function kotaexport()
+    {
+        return Excel::download(new KotaExport,'kota.xlsx');
+    }
+
+    public function kotaimportexcel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataKota' , $namaFile);
+
+        Excel::import(new KotaImport, public_path('/DataKota/'.$namaFile));
+        return redirect('/datadestinasi/kota');
+    }
 
     public function store(Request $request)
     {

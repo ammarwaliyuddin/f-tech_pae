@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destinasi extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    protected $table = "destinasis";
+    protected $primaryKey ="id_destinasi";
 
     protected $fillable = ['id_kota_origin','id_kota_destinasi', 'id_kecamatan' , 'id_service' , 'kode_destinasi', 'harga' ];
 

@@ -30,6 +30,18 @@ use App\Models\Packing;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+// Route::post('/', [LoginController::class, 'postlogin'])->name('postlogin');
+// // Route::post('/postlogin', [LoginController::class, 'postlogin']);
+// Route::post('/logout', [LoginController::class, 'logout']);
+
+// Route::get('/dashboard', [DashboardController::class, 'index']);
+// // Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -92,16 +104,22 @@ Route::prefix('datadestinasi')->group(function () {
     Route::resource('kota', KotaController::class);
     Route::get('kota-list', [KotaController::class,'list']);
     Route::post('kota-update', [KotaController::class,'update']);
+    Route::get('kota-exportkota', [KotaController::class,'kotaexport']);
+    Route::post('kota-importkota', [KotaController::class,'kotaimportexcel']);
 
     //kecamatan
     Route::resource('kecamatan', KecamatanController::class);
     Route::get('kecamatan-list', [KecamatanController::class,'list']);
     Route::post('kecamatan-update', [KecamatanController::class,'update']);
+    Route::get('kecamatan-exportkecamatan', [KecamatanController::class,'kecamatanexport']);
+    Route::post('kecamatan-importkecamatan', [KecamatanController::class,'kecamatanimportexcel']);
 
     //destinasi
     Route::resource('destinasi', DestinasiController::class);
     Route::get('destinasi-list', [DestinasiController::class,'list']);
     Route::post('destinasi-update', [DestinasiController::class,'update']);
+    Route::get('destinasi-exportdestinasi', [DestinasiController::class,'destinasiexport']);
+    Route::post('destinasi-importdestinasi', [DestinasiController::class,'destinasiimportexcel']);
 });
 
 Route::prefix('transaksi')->group(function () {
