@@ -416,30 +416,26 @@ class DatabaseSeeder extends Seeder
         ]);
         
         // // Data Disposisi Seeder
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Kantor Pengirim',
-        //     'keterangan' => 'Kantor Pengirim',
-        //     'id_user'=> '1'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Gudang Pengirim',
-        //     'keterangan' => 'Gudang Pengirim',
-        //     'id_user'=> '1'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Kendaraan Pengirim',
-        //     'keterangan' => 'Kendaraan Pengirim'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Kendaraan Destinasi',
-        //     'keterangan' => 'Kendaraan Destinasi',
-        //     'id_user'=> '1'
-        // ]);
-        // Disposisi::create([
-        //     'nama_disposisi' => 'Gudang Destinasi',
-        //     'keterangan' => 'Gudang Destinasi',
-        //     'id_user'=> '1'
-        // ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Kantor Pengirim',
+            'keterangan' => 'Kantor Pengirim'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Gudang Pengirim',
+            'keterangan' => 'Gudang Pengirim'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Kendaraan Pengirim',
+            'keterangan' => 'Kendaraan Pengirim'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Kendaraan Destinasi',
+            'keterangan' => 'Kendaraan Destinasi'
+        ]);
+        Disposisi::create([
+            'nama_disposisi' => 'Gudang Destinasi',
+            'keterangan' => 'Gudang Destinasi'
+        ]);
         
         // Data Status Pengiriman Seeder
         Status::create([
@@ -550,7 +546,7 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '1'
         ]);
         User::create([
-            'nama_user' => 'Brazer',
+            'nama_user' => 'Alawi',
             'email' => 'Brazerboss@example.com',
             'password' => 'Brazerboss',
             'id_level' => '1',
