@@ -358,10 +358,6 @@ class DatabaseSeeder extends Seeder
             'kode_destinasi' => 'ABU - KOE - ALK',
             'harga' => '9000'
         
-<<<<<<< HEAD
-        // ]);
-
-=======
         ]);
         // Data Destinasi Seeder
         Destinasi::create([
@@ -373,7 +369,6 @@ class DatabaseSeeder extends Seeder
             'harga' => '5000'
         
         ]);
->>>>>>> b92c6b5c1ee24df3aa65be90cce575f007c00bc7
         
         // Data Barang Seeder
         Barang::create([
@@ -420,27 +415,31 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Asuransi Barang'
         ]);
         
-        // Data Disposisi Seeder
-        Disposisi::create([
-            'nama_disposisi' => 'Kantor Pengirim',
-            'keterangan' => 'Kantor Pengirim'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Gudang Pengirim',
-            'keterangan' => 'Gudang Pengirim'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Kendaraan Pengirim',
-            'keterangan' => 'Kendaraan Pengirim'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Kendaraan Destinasi',
-            'keterangan' => 'Kendaraan Destinasi'
-        ]);
-        Disposisi::create([
-            'nama_disposisi' => 'Gudang Destinasi',
-            'keterangan' => 'Gudang Destinasi'
-        ]);
+        // // Data Disposisi Seeder
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Kantor Pengirim',
+        //     'keterangan' => 'Kantor Pengirim',
+        //     'id_user'=> '1'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Gudang Pengirim',
+        //     'keterangan' => 'Gudang Pengirim',
+        //     'id_user'=> '1'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Kendaraan Pengirim',
+        //     'keterangan' => 'Kendaraan Pengirim'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Kendaraan Destinasi',
+        //     'keterangan' => 'Kendaraan Destinasi',
+        //     'id_user'=> '1'
+        // ]);
+        // Disposisi::create([
+        //     'nama_disposisi' => 'Gudang Destinasi',
+        //     'keterangan' => 'Gudang Destinasi',
+        //     'id_user'=> '1'
+        // ]);
         
         // Data Status Pengiriman Seeder
         Status::create([
