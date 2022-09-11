@@ -527,7 +527,7 @@
             <!-- BEGIN: Side Menu -->
             <nav class="side-nav">
                 <a href="" class="intro-x flex items-center pl-5 pt-4">
-                    <img alt="Rubick Tailwind HTML Admin Template" class="w-6" src="{{asset('images/logo.svg')}}">
+                    <img alt="logo" class="w-6" src="{{asset('images/logo.svg')}}">
                     <span class="hidden xl:block text-white text-lg ml-3"> P<span class="font-medium text-orange-400">AE</span> </span>
                 </a>
                 <div class="side-nav__devider my-6"></div>
@@ -685,6 +685,7 @@
                         </a>
                     </li>
                     <li class="side-nav__devider my-6"></li>
+                    @can('super_admin')
                     <li>
                         <a href="side-menu-light-inbox.html" class="side-menu">
                             <div class="side-menu__icon"> <i data-feather="trello"></i> </div>
@@ -697,6 +698,7 @@
                             <div class="side-menu__title"> Pengaturan </div>
                         </a>
                     </li>
+                    @endcan
                 </ul>
             </nav>
             <!-- END: Side Menu -->
@@ -719,45 +721,19 @@
                     <div class="dropdown-menu w-56">
                         <div class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white">
                             <div class="p-4 border-b border-theme-27 dark:border-dark-3">
-                                <div class="font-medium">Dimas</div>
-                                {{-- <div class="font-medium">{{ auth()->user()->nama_user }}</div> --}}
+                                <div class="font-medium">{{ ucwords(auth()->user()->nama_user )}}</div>
+                                 <div class="text-xs text-theme-28 mt-0.5 dark:text-gray-600">{{ auth()->user()->email }}</div>
                                
                             </div>
-                            {{-- <div class="p-2">
-                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
-                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
-                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
-                            </div> --}}
-                            {{-- <div class="p-2 border-t border-theme-27 dark:border-dark-3">
-                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
-                            </div> --}}
-                            <form action="/logout" method="post">
+                            <form action="/logout" method="post" id="logout">
                                 @csrf 
-                                <button type="submit" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"><i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout</button>
+                                <a href="javascript:;" onclick="document.getElementById('logout').submit();"  class="flex w-100 items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"><i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout</a>
                             </form>
-                            {{-- <div class="p-2 border-t border-theme-27 dark:border-dark-3">
-                                <a href="" class="flex items-center p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
-                            </div> --}}
                             
                         </div>
                     </div>
                 </div>
-
-                <ul class="navbar-nav ms-auto">
-                    @auth
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Welcome back , {{ auth()->user()->nama_user }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </ul>
-                      </li>
-                    @endauth
-                </ul>
+                
                 <!-- END: Account Menu -->
             </div>
             <!-- END: Top Bar -->

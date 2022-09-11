@@ -415,7 +415,7 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Asuransi Barang'
         ]);
         
-        // // Data Disposisi Seeder
+        // Data Disposisi Seeder
         Disposisi::create([
             'nama_disposisi' => 'Kantor Pengirim',
             'keterangan' => 'Kantor Pengirim'
@@ -504,14 +504,6 @@ class DatabaseSeeder extends Seeder
             'keterangan' => 'Admin'
         ]);
         Level::create([
-            'nama_level' => 'Admin2',
-            'keterangan' => 'Admin2'
-        ]);
-        Level::create([
-            'nama_level' => 'Admin3',
-            'keterangan' => 'Admin3'
-        ]);
-        Level::create([
             'nama_level' => 'Kurir',
             'keterangan' => 'Kurir'
         ]);
@@ -527,9 +519,9 @@ class DatabaseSeeder extends Seeder
         // Data User Seeder
         
         User::create([
-            'nama_user' => 'Anton',
-            'email' => 'Antonesia@example.com',
-            'password' => 'Antonesia',
+            'nama_user' => 'anton',
+            'email' => 'antonesia@pae.com',
+            'password' => bcrypt('admin'),
             'id_level' => '2',
             'alamat' => 'Jl. Nangka',
             'hp' => '0819838973884',
@@ -537,9 +529,9 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '2'
         ]);
         User::create([
-            'nama_user' => 'Brazer',
-            'email' => 'Brazerboss@example.com',
-            'password' => 'Brazerboss',
+            'nama_user' => 'brazer',
+            'email' => 'brazerboss@pae.com',
+            'password' => bcrypt('superadmin'),
             'id_level' => '1',
             'alamat' => 'Jl. Bumi III',
             'hp' => '086376529213',
@@ -547,9 +539,9 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '1'
         ]);
         User::create([
-            'nama_user' => 'Alawi',
-            'email' => 'Brazerboss@example.com',
-            'password' => 'Brazerboss',
+            'nama_user' => 'alawi',
+            'email' => 'alawi@pae.com',
+            'password' => bcrypt('superadmin'),
             'id_level' => '1',
             'alamat' => 'Jl. Bumi III',
             'hp' => '086376529213',
@@ -557,9 +549,9 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '1'
         ]);
         User::create([
-            'nama_user' => 'Bimasakti',
-            'email' => 'Bimasakti@example.com',
-            'password' => 'Bimsak',
+            'nama_user' => 'bimasakti',
+            'email' => 'bimasakti@pae.com',
+            'password' => bcrypt('user'),
             'id_level' => '3',
             'alamat' => 'Jl. Pluto No.09',
             'hp' => '09873873478',
@@ -567,9 +559,9 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '2'
         ]);
         User::create([
-            'nama_user' => 'Desta',
-            'email' => 'desta01@example.com',
-            'password' => 'Destainaja',
+            'nama_user' => 'desta',
+            'email' => 'desta01@pae.com',
+            'password' =>bcrypt('superadmin'),
             'id_level' => '1',
             'alamat' => 'Jl. kakatua',
             'hp' => '09383837383',
@@ -577,9 +569,9 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '4'
         ]);
         User::create([
-            'nama_user' => 'Desta',
-            'email' => 'desta01@example.com',
-            'password' => 'Destainaja',
+            'nama_user' => 'vinen',
+            'email' => 'vinen@pae.com',
+            'password' => bcrypt('superadmin'),
             'id_level' => '1',
             'alamat' => 'Jl. kakatua',
             'hp' => '09383837383',
@@ -588,8 +580,8 @@ class DatabaseSeeder extends Seeder
         ]);
         User::create([
             'nama_user' => 'Andi',
-            'email' => 'Andilaw@example.com',
-            'password' => 'andiL',
+            'email' => 'andilaw@pae.com',
+            'password' => bcrypt('user'),
             'id_level' => '3',
             'alamat' => 'Jl. Kenari',
             'hp' => '08585832738',
@@ -598,8 +590,8 @@ class DatabaseSeeder extends Seeder
         ]);
         User::create([
             'nama_user' => 'Supri',
-            'email' => 'suprigan@example.com',
-            'password' => 'supriyasdi',
+            'email' => 'suprigan@pae.com',
+            'password' => bcrypt('admin'),
             'id_level' => '2',
             'alamat' => 'Jl. Danger',
             'hp' => '09828736484',
@@ -608,8 +600,8 @@ class DatabaseSeeder extends Seeder
         ]);
         User::create([
             'nama_user' => 'Pedro',
-            'email' => 'pedrosa@example.com',
-            'password' => 'peendro',
+            'email' => 'pedrosa@pae.com',
+            'password' => bcrypt('superadmin'),
             'id_level' => '1',
             'alamat' => 'Jl. Ujung Kulon',
             'hp' => '0918273834',
@@ -617,9 +609,9 @@ class DatabaseSeeder extends Seeder
             'id_kecamatan' => '8'
         ]);
         User::create([
-            'nama_user' => 'Sugar',
-            'email' => 'dedysugar@example.com',
-            'password' => 'dedgar',
+            'nama_user' => 'sugar',
+            'email' => 'dedysugar@pae.com',
+            'password' => bcrypt('superadmin'),
             'id_level' => '1',
             'alamat' => 'Jl. Belimbing',
             'hp' => '082182736812',

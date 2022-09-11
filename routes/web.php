@@ -18,43 +18,16 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 
-use App\Models\Packing;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('login', [LoginController::class, 'authenticate']);
+Route::post('logout', [LoginController::class, 'logout']);
 
-// Route::post('/', [LoginController::class, 'postlogin'])->name('postlogin');
-// // Route::post('/postlogin', [LoginController::class, 'postlogin']);
-// Route::post('/logout', [LoginController::class, 'logout']);
-
-// Route::get('/dashboard', [DashboardController::class, 'index']);
-// // Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-
-
-
-Route::get('/', function () {
-    return view('auth.login');
+Route::group(['middleware'=>['auth','can:general']],function(){
+    Route::get('dashboard', [DashboardController::class,'index']);
 });
 
-// Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
-// Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-
-Route::get('/dashboard', [DashboardController::class, 'index']);
-// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-
-Route::prefix('datapelanggan')->group(function () {
+Route::group(['prefix'=>'datapelanggan','middleware'=>['auth']],function(){
     // user
     Route::resource('user', UserController::class);
     Route::get('user-list', [UserController::class,'list']);
@@ -66,8 +39,7 @@ Route::prefix('datapelanggan')->group(function () {
     Route::post('level-update', [LevelController::class,'update']);
 
 });
-
-Route::prefix('datamaster')->group(function () {
+Route::group(['prefix'=>'datamaster','middleware'=>['auth','can:super_admin']],function(){
     // barang
     Route::resource('barang', BarangController::class);
     Route::get('barang-list', [BarangController::class,'list']);

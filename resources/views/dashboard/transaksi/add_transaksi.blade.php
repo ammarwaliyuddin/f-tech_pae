@@ -73,7 +73,7 @@
                 <label for="berat" class="form-label">Berat</label>
                 <input id="berat" name="berat" type="number" class="form-control" value="1" placeholder="Masukkan Berat" >
             </div>
-            <div class="intro-y col-span-12 lg:col-span-4 data-packing hidden">
+            <div class="intro-y col-span-12 lg:col-span-4 ">
                 <label for="harga_packing" class="form-label">Harga Packing</label>
                 <input id="harga_packing" name="harga_packing" type="text" class="form-control" placeholder="Masukkan Harga Packing">
             </div>
@@ -553,10 +553,17 @@
     })
 
     function calcPengiriman(harga,packing_pengali,diskon){
-        console.log(harga,packing_pengali,diskon)
+        let harga_packing
+
+        console.log($('#harga_packing').val() !== "", $('#harga_packing').val() )
         
-            
-        let harga_packing = (packing_pengali>0)?parseFloat(harga) * parseFloat(packing_pengali):0;
+        if($('#harga_packing').val() !== ""){
+            harga_packing = parseFloat($('#harga_packing').val());
+        }else{
+            harga_packing = (packing_pengali>0)?parseFloat(harga) * parseFloat(packing_pengali):0;
+        }
+
+// let harga_packing = (packing_pengali>0)?parseFloat(harga) * parseFloat(packing_pengali):0;
         let harga_diskon = (diskon>0)?parseFloat(diskon):0;
 
         let biaya_pengirim = parseFloat(harga) + parseFloat(harga_packing) - parseFloat(harga_diskon)

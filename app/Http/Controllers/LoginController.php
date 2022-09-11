@@ -13,33 +13,22 @@ class LoginController extends Controller
     { 
         return view('auth.login');
     }
-
+     
     public function authenticate(Request $request)
     {
-        // dd($request->all());
-        if (Auth::attempt($request->only('email','password'))){
-            return redirect('/');
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required'
+        ]);
+        if(Auth::attempt($credentials)){ 
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard');
         }
-        return redirect('/dashboard');
+
+        return back()->with('loginError', 'Email atau Password anda salah!');
     }
-
-    // public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'email' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-    //     // dd($credentials);
-    //     if(Auth::attempt($credentials)){
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('/dashboard');
-    //     }
-
-    //     return back()->with('loginError', 'Login failed!');
-    // }
     
-        public function logout()
+    public function logout()
     {
         Auth::logout();
     

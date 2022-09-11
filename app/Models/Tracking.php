@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tracking extends Model
 {
     use HasFactory;
+
+    public function disposisi(){
+        return $this->belongsTo(Disposisi::class,'id_disposisi','id_disposisi');
+    }
 }

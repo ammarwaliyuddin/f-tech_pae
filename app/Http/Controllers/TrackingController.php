@@ -13,8 +13,11 @@ class TrackingController extends Controller
         return view('dashboard.tracking');
     }
 
-    public function list(){     
-        $trackings = Tracking::all();
+    public function list(Request $request){     
+
+        $searching = $request->input('searching');
+        
+        $trackings = empty($searching) ? Tracking::latest()->paginate(10) : Tracking::where('no_resi','like','%'.$searching.'%')->paginate(10);
         
         return view('dashboard.view.list_tracking',compact('trackings'));
     }

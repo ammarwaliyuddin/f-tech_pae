@@ -10,11 +10,13 @@ class User extends Authenticatable
 {
     use HasFactory;
 
-    protected $guard = 'user';
+    protected $table = 'users';
+    protected $guarded = ['id_user'];
+    protected $primaryKey = 'id_user';
 
-    protected $fillable = ['nama_user', 'email', 'password', 'id_level' , 'alamat' , 'hp' , 'id_kota' , 'id_kecamatan'];
+    // protected $fillable = ['nama_user', 'email', 'password', 'id_level' , 'alamat' , 'hp' , 'id_kota' , 'id_kecamatan'];
 
-    public function level(){
+    public function levels(){
         return $this->hasOne(Level::class,'id_level','id_level');
     }
     public function kota(){
